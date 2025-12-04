@@ -103,3 +103,7 @@
             <h3>Part-Time Traders</h3>
             <p>Flexible policies designed for mechanics and dealers operating from home as a second income.</p>
         </div>
+        
+    </section>
+
+<?php include 'footer.php'; ?>
