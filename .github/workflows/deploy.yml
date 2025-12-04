@@ -75,11 +75,11 @@ jobs:
           git fetch origin
           git reset --hard origin/main 2>/dev/null || git reset --hard origin/master 2>/dev/null || true
           
-          # If git pull fails, clone fresh
-          if [ ! -d "Motortrade" ]; then
+          # Clone or pull latest code
+          if [ ! -d ".git" ] || [ ! -f "index.php" ]; then
             echo "Cloning repository..."
             cd /var/www/html
-            rm -rf *
+            rm -rf * .[^.]* 2>/dev/null || true
             git clone https://github.com/${{ github.repository }}.git .
             git checkout main 2>/dev/null || git checkout master 2>/dev/null || true
           else
@@ -91,13 +91,13 @@ jobs:
           echo "Setting file permissions..."
           chown -R www-data:www-data /var/www/html
           chmod -R 755 /var/www/html
-          chmod -R 775 /var/www/html/Motortrade 2>/dev/null || true
+          chmod -R 775 /var/www/html 2>/dev/null || true
           
           # Create enquiries.csv file with proper permissions if it doesn't exist
-          if [ ! -f "/var/www/html/Motortrade/enquiries.csv" ]; then
-            touch /var/www/html/Motortrade/enquiries.csv
-            chown www-data:www-data /var/www/html/Motortrade/enquiries.csv
-            chmod 664 /var/www/html/Motortrade/enquiries.csv
+          if [ ! -f "/var/www/html/enquiries.csv" ]; then
+            touch /var/www/html/enquiries.csv
+            chown www-data:www-data /var/www/html/enquiries.csv
+            chmod 664 /var/www/html/enquiries.csv
           fi
           
           # Configure Apache virtual host
@@ -105,9 +105,9 @@ jobs:
           cat > /etc/apache2/sites-available/000-default.conf << 'EOF'
           <VirtualHost *:80>
               ServerAdmin webmaster@localhost
-              DocumentRoot /var/www/html/Motortrade
+              DocumentRoot /var/www/html
               
-              <Directory /var/www/html/Motortrade>
+              <Directory /var/www/html>
                   Options Indexes FollowSymLinks
                   AllowOverride All
                   Require all granted
