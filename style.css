@@ -227,6 +227,12 @@ footer { background: #222; color: var(--white); padding: 60px 20px 30px; margin-
 
     .about-wrapper { flex-direction: column; }
     .section-title { font-size: 1.8rem; }
+    
+    /* Contact page mobile responsiveness */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
 }
 
 

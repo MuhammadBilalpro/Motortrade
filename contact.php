@@ -3,7 +3,7 @@
 <div class="container">
     <h1 class="text-center">Contact Us</h1>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
         
         <div>
             <h3>Get in Touch</h3>
