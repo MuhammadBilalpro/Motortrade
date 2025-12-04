@@ -104,6 +104,6 @@
             <p>Flexible policies designed for mechanics and dealers operating from home as a second income.</p>
         </div>
         
-        </section>
+    </section>
 
-        <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
