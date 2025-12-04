@@ -32,24 +32,49 @@ jobs:
           
           # Install essential dependencies
           echo "Installing essential dependencies..."
-          apt-get install -y software-properties-common curl wget git unzip
+          apt-get install -y software-properties-common curl wget git unzip lsb-release ca-certificates apt-transport-https
           
-          # Install PHP 8.2 and required extensions
+          # Add PHP repository for Ubuntu 24.04
+          echo "Adding PHP repository..."
+          add-apt-repository -y ppa:ondrej/php
+          apt-get update -y
+          
+          # Install PHP (try 8.3 first, fallback to 8.2, then default)
           echo "Installing PHP and extensions..."
-          apt-get install -y php8.2 php8.2-cli php8.2-fpm php8.2-common php8.2-mysql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath
+          if apt-get install -y php8.3 php8.3-cli php8.3-common php8.3-mysql php8.3-zip php8.3-gd php8.3-mbstring php8.3-curl php8.3-xml php8.3-bcmath libapache2-mod-php8.3 2>/dev/null; then
+            PHP_VERSION="8.3"
+            PHP_MODULE="php8.3"
+          elif apt-get install -y php8.2 php8.2-cli php8.2-common php8.2-mysql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath libapache2-mod-php8.2 2>/dev/null; then
+            PHP_VERSION="8.2"
+            PHP_MODULE="php8.2"
+          else
+            # Fallback to default PHP
+            apt-get install -y php php-cli php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-bcmath libapache2-mod-php
+            PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')
+            PHP_MODULE="php"
+          fi
           
           # Install Apache web server
           echo "Installing Apache web server..."
           apt-get install -y apache2
           
-          # Install PHP Apache module
-          apt-get install -y libapache2-mod-php8.2
-          
           # Enable required Apache modules
           echo "Enabling Apache modules..."
           a2enmod rewrite
-          a2enmod php8.2
+          a2enmod $PHP_MODULE
+          
+          # Verify PHP is working
+          echo "Verifying PHP installation..."
+          php -v
+          
+          # Restart Apache to apply changes
           systemctl restart apache2
+          
+          # Test PHP processing
+          echo "Testing PHP processing..."
+          echo "<?php phpinfo(); ?>" > /tmp/test_php.php
+          php /tmp/test_php.php > /dev/null 2>&1 && echo "✓ PHP CLI working" || echo "⚠ PHP CLI issue"
+          rm /tmp/test_php.php
           
           # Create web directory if it doesn't exist
           echo "Setting up web directory..."
