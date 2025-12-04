@@ -90,12 +90,29 @@ jobs:
           # Verify we have the latest code
           echo "Current commit:"
           git log -1 --oneline
-          echo "Verifying index.php exists and has footer..."
-          if grep -q "footer.php" index.php; then
-            echo "✓ Footer found in index.php"
+          echo ""
+          echo "=== Verifying deployment ==="
+          echo "Checking if index.php exists..."
+          if [ -f "index.php" ]; then
+            echo "✓ index.php exists"
+            echo "Checking if footer.php exists..."
+            if [ -f "footer.php" ]; then
+              echo "✓ footer.php exists"
+            else
+              echo "✗ ERROR: footer.php NOT FOUND!"
+            fi
+            echo "Checking if index.php includes footer..."
+            if grep -q "footer.php" index.php; then
+              echo "✓ Footer include found in index.php"
+              echo "Last 5 lines of index.php:"
+              tail -5 index.php
+            else
+              echo "✗ ERROR: Footer include NOT FOUND in index.php!"
+            fi
           else
-            echo "⚠ Warning: Footer not found in index.php"
+            echo "✗ ERROR: index.php NOT FOUND!"
           fi
+          echo "==========================="
           
           # Set proper permissions
           echo "Setting file permissions..."
