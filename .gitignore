@@ -1,0 +1,21 @@
+# CSV files with sensitive data
+*.csv
+enquiries.csv
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
