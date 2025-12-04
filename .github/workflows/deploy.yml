@@ -1,0 +1,132 @@
+name: Deploy to Ubuntu VPS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to server and setup
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          echo "=== Starting deployment on Ubuntu 24 LTS ==="
+          
+          # Update system packages
+          echo "Updating system packages..."
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update -y
+          
+          # Install essential dependencies
+          echo "Installing essential dependencies..."
+          apt-get install -y software-properties-common curl wget git unzip
+          
+          # Install PHP 8.2 and required extensions
+          echo "Installing PHP and extensions..."
+          apt-get install -y php8.2 php8.2-cli php8.2-fpm php8.2-common php8.2-mysql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath
+          
+          # Install Apache web server
+          echo "Installing Apache web server..."
+          apt-get install -y apache2
+          
+          # Install PHP Apache module
+          apt-get install -y libapache2-mod-php8.2
+          
+          # Enable required Apache modules
+          echo "Enabling Apache modules..."
+          a2enmod rewrite
+          a2enmod php8.2
+          systemctl restart apache2
+          
+          # Create web directory if it doesn't exist
+          echo "Setting up web directory..."
+          mkdir -p /var/www/html
+          cd /var/www/html
+          
+          # Initialize git if not already done
+          if [ ! -d ".git" ]; then
+            echo "Initializing git repository..."
+            git init
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+          fi
+          
+          # Add remote if not exists
+          if ! git remote | grep -q origin; then
+            echo "Adding git remote..."
+            git remote add origin https://github.com/${{ github.repository }}.git || true
+          fi
+          
+          # Fetch and pull latest code
+          echo "Pulling latest code..."
+          git fetch origin
+          git reset --hard origin/main 2>/dev/null || git reset --hard origin/master 2>/dev/null || true
+          
+          # If git pull fails, clone fresh
+          if [ ! -d "Motortrade" ]; then
+            echo "Cloning repository..."
+            cd /var/www/html
+            rm -rf *
+            git clone https://github.com/${{ github.repository }}.git .
+            git checkout main 2>/dev/null || git checkout master 2>/dev/null || true
+          else
+            # Pull latest changes
+            git pull origin main 2>/dev/null || git pull origin master 2>/dev/null || true
+          fi
+          
+          # Set proper permissions
+          echo "Setting file permissions..."
+          chown -R www-data:www-data /var/www/html
+          chmod -R 755 /var/www/html
+          chmod -R 775 /var/www/html/Motortrade 2>/dev/null || true
+          
+          # Create enquiries.csv file with proper permissions if it doesn't exist
+          if [ ! -f "/var/www/html/Motortrade/enquiries.csv" ]; then
+            touch /var/www/html/Motortrade/enquiries.csv
+            chown www-data:www-data /var/www/html/Motortrade/enquiries.csv
+            chmod 664 /var/www/html/Motortrade/enquiries.csv
+          fi
+          
+          # Configure Apache virtual host
+          echo "Configuring Apache virtual host..."
+          cat > /etc/apache2/sites-available/000-default.conf << 'EOF'
+          <VirtualHost *:80>
+              ServerAdmin webmaster@localhost
+              DocumentRoot /var/www/html/Motortrade
+              
+              <Directory /var/www/html/Motortrade>
+                  Options Indexes FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+              </Directory>
+              
+              ErrorLog ${APACHE_LOG_DIR}/error.log
+              CustomLog ${APACHE_LOG_DIR}/access.log combined
+          </VirtualHost>
+          EOF
+          
+          # Enable site and restart Apache
+          a2ensite 000-default.conf
+          systemctl reload apache2
+          
+          # Check Apache status
+          systemctl status apache2 --no-pager
+          
+          # Display PHP version
+          echo "=== Installation Summary ==="
+          php -v
+          echo "=== Deployment completed successfully ==="
+
