@@ -99,17 +99,44 @@ jobs:
           echo "Deploying latest code..."
           cd /var/www/html
           
+          # Fix git ownership issue to prevent "dubious ownership" errors
+          echo "Fixing git ownership and configuration..."
+          if [ -d ".git" ]; then
+            # Fix ownership of .git directory
+            chown -R root:root /var/www/html/.git 2>/dev/null || true
+            # Add safe directory to git config
+            git config --global --add safe.directory /var/www/html || true
+            # Ensure git config is accessible
+            git config --global user.name "GitHub Actions" || true
+            git config --global user.email "actions@github.com" || true
+          fi
+          
           # Remove existing files (except .git if it exists)
           if [ -d ".git" ]; then
             echo "Updating existing repository..."
-            git fetch origin
-            git reset --hard origin/main 2>/dev/null || git reset --hard origin/master 2>/dev/null || true
+            # Fetch latest changes
+            git fetch origin || {
+              echo "Git fetch failed, trying to fix ownership..."
+              chown -R root:root /var/www/html/.git
+              git config --global --add safe.directory /var/www/html
+              git fetch origin
+            }
+            # Reset to latest code
+            git reset --hard origin/main 2>/dev/null || git reset --hard origin/master 2>/dev/null || {
+              echo "Git reset failed, trying to fix ownership..."
+              chown -R root:root /var/www/html/.git
+              git config --global --add safe.directory /var/www/html
+              git reset --hard origin/main 2>/dev/null || git reset --hard origin/master 2>/dev/null || true
+            }
             git clean -fd
           else
             echo "Cloning fresh repository..."
             rm -rf * .[^.]* 2>/dev/null || true
             git clone https://github.com/${{ github.repository }}.git .
             git checkout main 2>/dev/null || git checkout master 2>/dev/null || true
+            # Set ownership after clone
+            chown -R root:root /var/www/html/.git 2>/dev/null || true
+            git config --global --add safe.directory /var/www/html || true
           fi
           
           # Verify we have the latest code
@@ -141,9 +168,23 @@ jobs:
           
           # Set proper permissions
           echo "Setting file permissions..."
+          # Keep .git owned by root for git operations, but make it accessible
+          if [ -d "/var/www/html/.git" ]; then
+            chown -R root:root /var/www/html/.git
+            chmod -R 755 /var/www/html/.git
+          fi
+          # Set ownership for web files (www-data for Apache)
           chown -R www-data:www-data /var/www/html
+          # But keep .git accessible for future deployments
+          if [ -d "/var/www/html/.git" ]; then
+            chown -R root:root /var/www/html/.git
+          fi
           chmod -R 755 /var/www/html
           chmod -R 775 /var/www/html 2>/dev/null || true
+          # Ensure .git is readable but owned by root
+          if [ -d "/var/www/html/.git" ]; then
+            chmod -R 755 /var/www/html/.git
+          fi
           
           # Create enquiries.csv file with proper permissions if it doesn't exist
           if [ ! -f "/var/www/html/enquiries.csv" ]; then
