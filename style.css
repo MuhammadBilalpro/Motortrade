@@ -238,6 +238,9 @@ footer { background: #222; color: var(--white); padding: 60px 20px 30px; margin-
 
 /* --- 3D FORM STYLES (Premium UI) --- */
 .hero-form-3d {
+    flex: 1;
+    min-width: 320px;
+    max-width: 450px;
     background: #ffffff;
     border-radius: 15px;
     padding: 0; /* Header handles padding */
@@ -248,8 +251,7 @@ footer { background: #222; color: var(--white); padding: 60px 20px 30px; margin-
     transform: perspective(1000px) rotateX(0deg);
     transition: transform 0.3s ease;
     overflow: hidden; /* Header radius fix */
-    max-width: 450px;
-    margin: 0 auto; /* Center in column */
+    margin: 0;
 }
 
 .hero-form-3d:hover {
