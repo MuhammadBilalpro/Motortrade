@@ -26,8 +26,27 @@ h1, h2, h3 { color: var(--text-dark); margin-bottom: 15px; font-weight: 700; }
 header { background: var(--white); border-bottom: 3px solid var(--primary-color); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; }
 nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto; }
 
-.logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-color); text-decoration: none; letter-spacing: -0.5px; }
-.logo span { color: var(--text-dark); }
+.logo img {
+    height: 90px;        /* Desktop ke liye LARGE size */
+    width: auto;
+    object-fit: cover;
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .logo img {
+        height: 60px;    /* Tablet ke liye */
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+    .logo img {
+        height: 45px;    /* Mobile ke liye balance size */
+    }
+}
+
+
 
 .nav-links { list-style: none; display: flex; gap: 25px; }
 .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; font-size: 15px; }

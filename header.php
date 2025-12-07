@@ -16,7 +16,9 @@
 
 <header>
     <nav>
-        <a href="index.php" class="logo">MotorTrade<span>Specialists</span></a>
+       <a href="index.php" class="logo">
+    <img src="assets/logo.png" alt="MotorTrade Specialists Logo">
+</a>
         
         <ul class="nav-links" id="navLinks">
             <li><a href="index.php">Home</a></li>
