@@ -352,11 +352,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // If there are errors, we'll show them below (after header is included)
     } catch (Exception $e) {
-        error_log("✗ FATAL ERROR in POST processing: " . $e->getMessage());
+        $errorMsg = "Fatal error in POST processing: " . $e->getMessage();
+        error_log("✗ FATAL ERROR in POST processing: " . $errorMsg);
         error_log("File: " . $e->getFile());
         error_log("Line: " . $e->getLine());
         error_log("Stack trace: " . $e->getTraceAsString());
+        
+        // Output error to console (will be in output buffer)
+        echo "<script>";
+        echo "console.error('[FORM FATAL ERROR] " . htmlspecialchars($errorMsg, ENT_QUOTES) . "');";
+        echo "console.error('[FORM FATAL ERROR] File: " . htmlspecialchars($e->getFile(), ENT_QUOTES) . "');";
+        echo "console.error('[FORM FATAL ERROR] Line: " . $e->getLine() . "');";
+        echo "console.error('[FORM FATAL ERROR] Stack: " . htmlspecialchars($e->getTraceAsString(), ENT_QUOTES) . "');";
+        echo "</script>";
+        
         $errors[] = "An error occurred processing your request. Please try again.";
+    } catch (Error $e) {
+        $errorMsg = "Fatal PHP error in POST processing: " . $e->getMessage();
+        error_log("✗ FATAL PHP ERROR in POST processing: " . $errorMsg);
+        error_log("File: " . $e->getFile());
+        error_log("Line: " . $e->getLine());
+        
+        // Output error to console (will be in output buffer)
+        echo "<script>";
+        echo "console.error('[FORM FATAL PHP ERROR] " . htmlspecialchars($errorMsg, ENT_QUOTES) . "');";
+        echo "console.error('[FORM FATAL PHP ERROR] File: " . htmlspecialchars($e->getFile(), ENT_QUOTES) . "');";
+        echo "console.error('[FORM FATAL PHP ERROR] Line: " . $e->getLine() . "');";
+        echo "</script>";
+        
+        $errors[] = "A fatal error occurred. Please try again.";
     }
 }
 
