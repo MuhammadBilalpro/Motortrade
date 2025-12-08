@@ -65,10 +65,6 @@ function buildReferralEmailBody($formData) {
                     <tr>
                         <td class="label">Phone Number:</td>
                         <td>' . htmlspecialchars($formData['phone']) . '</td>
-                    </tr>
-                    <tr>
-                        <td class="label">Email Address:</td>
-                        <td><a href="mailto:' . htmlspecialchars($formData['email'] ?? '') . '">' . htmlspecialchars($formData['email'] ?? 'N/A') . '</a></td>
                     </tr>';
     
     if (!empty($formData['business_type'])) {
@@ -174,9 +170,6 @@ function buildReferralEmailText($formData) {
         $textBody .= "Date of Birth: " . $formData['dob'] . "\n";
     }
     $textBody .= "Phone: " . $formData['phone'] . "\n";
-    if (!empty($formData['email'])) {
-        $textBody .= "Email: " . $formData['email'] . "\n";
-    }
     if (!empty($formData['business_type'])) {
         $textBody .= "Business Type: " . $formData['business_type'] . "\n";
     }

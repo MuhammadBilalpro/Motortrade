@@ -223,11 +223,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
         
-        // Redirect for home form to referral page
+        // Redirect for home form to success page (like service forms)
         if ($isHomeForm) {
             error_log("=== REDIRECTING (Home Form) ===");
-            // Redirect to referral page with success message
-            $redirectUrl = "referal.php?success=1&name=" . urlencode($formData['name']);
+            // Redirect to success page (simple message, no technical details)
+            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
             error_log("Redirect URL: " . $redirectUrl);
             header("Location: " . $redirectUrl);
             exit();
