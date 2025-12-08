@@ -64,11 +64,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             'description' => 'We connect motor traders with trusted insurance brokers. GDPR compliant introducer service. No fees, no advice - just expert referrals to specialist insurers.',
             'keywords' => 'motor trade insurance introducer, insurance referral service, motor trade brokers'
         ],
-        'services' => [
-            'title' => 'Motor Trade Insurance Services | Road Risk & Combined Policies',
-            'description' => 'Comprehensive motor trade insurance services: Road Risk, Combined policies, convicted driver insurance. Compare quotes from specialist UK brokers.',
-            'keywords' => 'motor trade insurance services, road risk insurance, combined motor trade insurance'
-        ],
         'service-motor-trade' => [
             'title' => 'Motor Trade Insurance | Comprehensive Cover for Dealers & Mechanics',
             'description' => 'Motor trade insurance for car dealers, mechanics & traders. Cover for buying, selling & repairing vehicles. Get competitive quotes from specialist brokers.',
@@ -175,7 +170,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             <li><a href="about.php">About Us</a></li>
             
             <li class="dropdown">
-                <a href="services.php">Services <i class="fas fa-chevron-down" style="font-size: 0.8rem; margin-left: 5px;"></i></a>
+                <a href="#" onclick="return false;">Services <i class="fas fa-chevron-down" style="font-size: 0.8rem; margin-left: 5px;"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="service-motor-trade.php">Motor Trade Insurance</a></li>
                     <li><a href="service-high-risk.php">High-Risk Drivers (Convicted)</a></li>
