@@ -219,22 +219,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("Form data keys: " . implode(', ', array_keys($formData)));
         
         // NOW redirect for service and home forms (after processing)
-        // Clear output buffer to ensure clean redirect
-        ob_clean();
-        
-        if ($isServiceForm) {
-            error_log("=== REDIRECTING (Service Form) - AFTER PROCESSING ===");
+        // End and clean output buffer completely to ensure clean redirect
+        if ($isServiceForm || $isHomeForm) {
+            // End output buffering completely before redirect
+            if (ob_get_level() > 0) {
+                ob_end_clean();
+            }
+            
             $redirectUrl = "success.php?name=" . urlencode($formData['name']);
+            error_log("=== REDIRECTING (" . ($isServiceForm ? "Service" : "Home") . " Form) - AFTER PROCESSING ===");
             error_log("Redirect URL: " . $redirectUrl);
+            
+            // Send redirect header
             header("Location: " . $redirectUrl);
-            exit();
-        }
-        
-        if ($isHomeForm) {
-            error_log("=== REDIRECTING (Home Form) - AFTER PROCESSING ===");
-            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
-            error_log("Redirect URL: " . $redirectUrl);
-            header("Location: " . $redirectUrl);
+            header("HTTP/1.1 302 Found");
+            
+            // Flush any remaining output and exit immediately
+            if (ob_get_level() > 0) {
+                ob_end_flush();
+            }
             exit();
         }
         
