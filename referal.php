@@ -1,4 +1,7 @@
 <?php
+// Start output buffering to prevent "headers already sent" errors
+ob_start();
+
 // Suppress deprecation warnings and hide errors from users
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 ini_set('display_errors', 0); // Never show errors to users
@@ -216,6 +219,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Redirect for service forms to dedicated success page
         if ($isServiceForm) {
             error_log("=== REDIRECTING (Service Form) ===");
+            // Clear any output buffer before redirect
+            ob_clean();
             // Redirect to success page (simple message, no technical details)
             $redirectUrl = "success.php?name=" . urlencode($formData['name']);
             error_log("Redirect URL: " . $redirectUrl);
@@ -226,6 +231,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Redirect for home form to success page (like service forms)
         if ($isHomeForm) {
             error_log("=== REDIRECTING (Home Form) ===");
+            // Clear any output buffer before redirect
+            ob_clean();
             // Redirect to success page (simple message, no technical details)
             $redirectUrl = "success.php?name=" . urlencode($formData['name']);
             error_log("Redirect URL: " . $redirectUrl);
@@ -248,6 +255,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // NOW include header (after processing POST to allow redirects)
+// End output buffering and flush any buffered content before including header
+ob_end_flush();
 error_log("Including header.php...");
 try {
     include 'header.php';
