@@ -1,7 +1,9 @@
 <?php
-// Enable error logging
+// TEMPORARY: Enable error display to diagnose 500 error
+// TODO: Set display_errors back to 0 after fixing the issue
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 ini_set('log_errors', 1);
 
 // Log script start
