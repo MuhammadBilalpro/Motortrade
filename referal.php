@@ -189,11 +189,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Send to Google Sheets
             error_log("Sending to Google Sheets...");
             $sheetsSent = sendToGoogleSheets($formData);
+            $sheetsError = $GLOBALS['google_sheets_last_error'] ?? '';
             error_log("Google Sheets result: " . ($sheetsSent ? 'SUCCESS' : 'FAILED'));
+            if (!$sheetsSent && !empty($sheetsError)) {
+                error_log("Google Sheets error message: " . $sheetsError);
+            }
         } catch (Exception $e) {
             error_log("✗ ERROR sending to Google Sheets: " . $e->getMessage());
             error_log("Stack trace: " . $e->getTraceAsString());
             $sheetsSent = false;
+            $sheetsError = $e->getMessage();
         }
         
         // Always log detailed debug info
@@ -261,6 +266,7 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                 $name = isset($_GET['name']) ? htmlspecialchars(urldecode($_GET['name'])) : 'there';
                 $emailSent = isset($_GET['email_sent']) && $_GET['email_sent'] == '1';
                 $sheetsSent = isset($_GET['sheets_sent']) && $_GET['sheets_sent'] == '1';
+                $sheetsError = isset($_GET['sheets_error']) ? htmlspecialchars(urldecode($_GET['sheets_error'])) : '';
                 
                 echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
                         <strong>✓ Success!</strong> Thank you, ' . $name . '. Your details have been sent. Our partner broker will contact you shortly.';
@@ -271,7 +277,12 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                 if ($sheetsSent) {
                     echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
                 } else {
-                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed. Check PHP error log for details.</small>';
+                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed.</small>';
+                    if (!empty($sheetsError)) {
+                        echo '<br><small style="color: #721c24; margin-top: 5px; display: block; font-size: 0.85rem; background: #f8d7da; padding: 8px; border-radius: 4px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">Error: ' . $sheetsError . '</small>';
+                    } else {
+                        echo '<br><small style="color: #856404; margin-top: 5px; display: block;">Check PHP error log for details.</small>';
+                    }
                 }
                 
                 echo '</div>';

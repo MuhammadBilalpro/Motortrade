@@ -4,12 +4,18 @@
 
 require_once __DIR__ . '/../config/google_sheets_config.php';
 
+// Global variable to store last error message for browser display
+$GLOBALS['google_sheets_last_error'] = '';
+
 /**
  * Send referral data to Google Sheets
  * @param array $formData Form submission data
  * @return bool True if successful, false otherwise
  */
 function sendToGoogleSheets($formData) {
+    global $google_sheets_last_error;
+    $google_sheets_last_error = ''; // Reset error message
+    
     // Always log detailed information for debugging
     error_log("=== GOOGLE SHEETS FUNCTION CALLED ===");
     error_log("Form data service_type: " . ($formData['service_type'] ?? 'NOT SET'));
@@ -23,15 +29,20 @@ function sendToGoogleSheets($formData) {
     if (!file_exists($credentialsPath)) {
         $error = "Google Sheets: Credentials file not found at " . $credentialsPath;
         error_log("✗ " . $error);
+        $google_sheets_last_error = $error;
         error_log("File exists check: " . (file_exists($credentialsPath) ? 'YES' : 'NO'));
         error_log("Directory exists: " . (is_dir(dirname($credentialsPath)) ? 'YES' : 'NO'));
         if (is_dir(dirname($credentialsPath))) {
             $files = @scandir(dirname($credentialsPath));
             if ($files) {
-                error_log("Files in config directory: " . implode(', ', array_filter($files, function($f) { return $f !== '.' && $f !== '..'; })));
+                $fileList = implode(', ', array_filter($files, function($f) { return $f !== '.' && $f !== '..'; }));
+                error_log("Files in config directory: " . $fileList);
+                $google_sheets_last_error .= " | Files in config: " . $fileList;
             }
         }
-        error_log("Absolute path: " . realpath($credentialsPath) ?: 'PATH DOES NOT EXIST');
+        $absPath = realpath($credentialsPath) ?: 'PATH DOES NOT EXIST';
+        error_log("Absolute path: " . $absPath);
+        $google_sheets_last_error .= " | Absolute path: " . $absPath;
         return false;
     }
     error_log("✓ Credentials file found");
@@ -43,12 +54,15 @@ function sendToGoogleSheets($formData) {
     if (!file_exists($autoloadPath)) {
         $error = "Google Sheets: Autoload file not found at " . $autoloadPath;
         error_log("✗ " . $error);
+        $google_sheets_last_error = $error;
         error_log("Autoload exists: " . (file_exists($autoloadPath) ? 'YES' : 'NO'));
         error_log("Vendor directory exists: " . (is_dir(__DIR__ . '/../vendor') ? 'YES' : 'NO'));
         if (is_dir(__DIR__ . '/../vendor')) {
             $vendorFiles = @scandir(__DIR__ . '/../vendor');
             if ($vendorFiles) {
-                error_log("Vendor directory contents (first 10): " . implode(', ', array_slice(array_filter($vendorFiles, function($f) { return $f !== '.' && $f !== '..'; }), 0, 10)));
+                $vendorList = implode(', ', array_slice(array_filter($vendorFiles, function($f) { return $f !== '.' && $f !== '..'; }), 0, 10));
+                error_log("Vendor directory contents (first 10): " . $vendorList);
+                $google_sheets_last_error .= " | Vendor contents: " . $vendorList;
             }
         }
         return false;
@@ -227,15 +241,21 @@ function sendToGoogleSheets($formData) {
         }
         
         error_log("✗ Google Sheets update returned 0 cells updated");
+        $google_sheets_last_error = "Google Sheets update returned 0 cells updated. Check if tab '" . $tabName . "' exists in the spreadsheet.";
         error_log("=== GOOGLE SHEETS FUNCTION FAILED (0 cells) ===");
         return false;
         
     } catch (\Google_Service_Exception $e) {
         $error = "Google Sheets API Error: " . $e->getMessage();
         if ($e->getErrors()) {
-            $error .= " | Errors: " . json_encode($e->getErrors());
+            $errorDetails = [];
+            foreach ($e->getErrors() as $err) {
+                $errorDetails[] = ($err['message'] ?? 'N/A') . " (Reason: " . ($err['reason'] ?? 'N/A') . ")";
+            }
+            $error .= " | " . implode(' | ', $errorDetails);
         }
         error_log("✗ " . $error);
+        $google_sheets_last_error = $error;
         error_log("Google Service Exception caught");
         error_log("Exception code: " . $e->getCode());
         error_log("Exception details: " . print_r($e->getErrors(), true));
@@ -247,8 +267,9 @@ function sendToGoogleSheets($formData) {
         error_log("=== GOOGLE SHEETS FUNCTION FAILED (API Exception) ===");
         return false;
     } catch (\Exception $e) {
-        $error = "Google Sheets Error: " . $e->getMessage() . " | File: " . $e->getFile() . " | Line: " . $e->getLine();
+        $error = "Google Sheets Error: " . $e->getMessage() . " | File: " . basename($e->getFile()) . " | Line: " . $e->getLine();
         error_log("✗ " . $error);
+        $google_sheets_last_error = $error;
         error_log("General Exception caught");
         error_log("Exception class: " . get_class($e));
         error_log("Exception code: " . $e->getCode());
