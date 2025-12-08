@@ -1,9 +1,18 @@
 <?php
-// Process form submission FIRST (before any HTML output to allow redirects)
+// Load required files FIRST (before any processing to avoid errors)
+require_once 'includes/send_email.php';
+require_once 'includes/send_to_google_sheets.php';
+
+// Initialize variables to avoid undefined variable errors
+$isHomeForm = false;
+$isServiceForm = false;
+$formData = array();
+$errors = array();
+$emailSent = false;
+$sheetsSent = false;
+
+// Process form submission (before any HTML output to allow redirects)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once 'includes/send_email.php';
-    require_once 'includes/send_to_google_sheets.php';
-    
     // Detect form type and normalize data
     $isHomeForm = isset($_POST['firstname']) || isset($_POST['surname']);
     $isServiceForm = isset($_POST['name']) && (isset($_POST['trade_type']) || isset($_POST['conviction_code']) || isset($_POST['policy_type']));
@@ -145,8 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // NOW include header (after processing POST to allow redirects)
 include 'header.php';
-require_once 'includes/send_email.php';
-require_once 'includes/send_to_google_sheets.php';
 ?>
 
 <section style="background-color: #f4f6f8; padding: 40px 20px;">
@@ -179,7 +186,7 @@ require_once 'includes/send_to_google_sheets.php';
             }
             
             // Show success message for referral form (if form was submitted and no redirect happened)
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($isHomeForm) && isset($isServiceForm) && !$isHomeForm && !$isServiceForm && isset($formData) && isset($errors) && empty($errors)) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && !$isHomeForm && !$isServiceForm && !empty($formData) && empty($errors)) {
                 echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
                         <strong>✓ Success!</strong> Thank you, ' . htmlspecialchars($formData['name']) . '. Your details have been sent. Our partner broker will contact you shortly.';
                 
