@@ -22,6 +22,8 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_PASSWORD }}
         port: ${{ secrets.SSH_PORT }}
+        timeout: 30m  # 30 minutes timeout for long-running deployments
+        command_timeout: 30m  # 30 minutes for individual commands
         script: |
           echo "=== Starting deployment on Ubuntu 24 LTS ==="
           
