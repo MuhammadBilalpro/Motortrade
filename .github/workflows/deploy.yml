@@ -151,14 +151,34 @@ jobs:
           # Install PHP dependencies via Composer
           echo "Installing PHP dependencies via Composer..."
           cd /var/www/html
-          composer install --no-dev --optimize-autoloader
+          
+          # Remove vendor directory to ensure clean install (git might have incomplete vendor)
+          if [ -d "/var/www/html/vendor" ]; then
+            echo "Removing existing vendor directory for clean install..."
+            rm -rf /var/www/html/vendor
+          fi
+          
+          # Run composer install
+          echo "Running composer install..."
+          composer install --no-dev --optimize-autoloader || {
+            echo "✗ ERROR: composer install failed!"
+            echo "Trying again with verbose output..."
+            composer install --no-dev --optimize-autoloader -vvv
+            exit 1
+          }
           
           # Verify vendor/autoload.php exists
           if [ ! -f "/var/www/html/vendor/autoload.php" ]; then
-            echo "✗ ERROR: vendor/autoload.php NOT FOUND! Running composer install again..."
-            composer install --no-dev --optimize-autoloader
+            echo "✗ ERROR: vendor/autoload.php NOT FOUND after composer install!"
+            echo "Checking composer.json..."
+            cat composer.json
+            echo "Checking if composer is available..."
+            composer --version
+            exit 1
           else
             echo "✓ vendor/autoload.php exists"
+            echo "Verifying vendor directory structure..."
+            ls -la /var/www/html/vendor/ | head -20
           fi
           
           # Verify we have the latest code
