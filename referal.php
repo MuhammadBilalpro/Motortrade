@@ -1,7 +1,32 @@
 <?php
+// Enable error logging
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
+// Log script start
+error_log("=== REFERAL.PHP START ===");
+error_log("REQUEST_METHOD: " . ($_SERVER["REQUEST_METHOD"] ?? 'NOT SET'));
+error_log("POST data: " . json_encode($_POST));
+
 // Load required files FIRST (before any processing to avoid errors)
-require_once 'includes/send_email.php';
-require_once 'includes/send_to_google_sheets.php';
+try {
+    error_log("Loading send_email.php...");
+    require_once 'includes/send_email.php';
+    error_log("✓ send_email.php loaded successfully");
+} catch (Exception $e) {
+    error_log("✗ ERROR loading send_email.php: " . $e->getMessage());
+    error_log("Stack trace: " . $e->getTraceAsString());
+}
+
+try {
+    error_log("Loading send_to_google_sheets.php...");
+    require_once 'includes/send_to_google_sheets.php';
+    error_log("✓ send_to_google_sheets.php loaded successfully");
+} catch (Exception $e) {
+    error_log("✗ ERROR loading send_to_google_sheets.php: " . $e->getMessage());
+    error_log("Stack trace: " . $e->getTraceAsString());
+}
 
 // Initialize variables to avoid undefined variable errors
 $isHomeForm = false;
@@ -13,10 +38,17 @@ $sheetsSent = false;
 
 // Process form submission (before any HTML output to allow redirects)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Detect form type and normalize data
-    $isHomeForm = isset($_POST['firstname']) || isset($_POST['surname']);
-    $isServiceForm = isset($_POST['name']) && (isset($_POST['trade_type']) || isset($_POST['conviction_code']) || isset($_POST['policy_type']));
-    $serviceType = htmlspecialchars(trim($_POST['service_type'] ?? ''));
+    error_log("=== POST REQUEST DETECTED ===");
+    
+    try {
+        // Detect form type and normalize data
+        $isHomeForm = isset($_POST['firstname']) || isset($_POST['surname']);
+        $isServiceForm = isset($_POST['name']) && (isset($_POST['trade_type']) || isset($_POST['conviction_code']) || isset($_POST['policy_type']));
+        $serviceType = htmlspecialchars(trim($_POST['service_type'] ?? ''));
+        
+        error_log("Form type detection - isHomeForm: " . ($isHomeForm ? 'YES' : 'NO'));
+        error_log("Form type detection - isServiceForm: " . ($isServiceForm ? 'YES' : 'NO'));
+        error_log("Service type: " . $serviceType);
     
     if ($isHomeForm) {
         // Home form format (from index.php)
@@ -106,54 +138,112 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "You must consent to the privacy policy.";
     }
     
+    error_log("Validation errors count: " . count($errors));
+    if (!empty($errors)) {
+        error_log("Validation errors: " . json_encode($errors));
+    }
+    
     if (empty($errors)) {
-        // Save to CSV (Database simulation) - PRESERVE EXISTING FUNCTIONALITY
-        $file = fopen("enquiries.csv", "a");
-        if ($file) {
-            $data = array(
-                date("Y-m-d H:i:s"), 
-                $formData['name'], 
-                $formData['dob'] ?? 'N/A', 
-                $formData['phone'], 
-                $formData['email'] ?? 'N/A', 
-                $formData['business_type'] ?? ($formData['policy_type'] ?? 'N/A'), 
-                $formData['convictions'] ?? ($formData['conviction_code'] ?? '')
-            );
-            fputcsv($file, $data);
-            fclose($file);
+        error_log("=== NO VALIDATION ERRORS - PROCESSING FORM ===");
+        error_log("Form data: " . json_encode($formData));
+        
+        try {
+            // Save to CSV (Database simulation) - PRESERVE EXISTING FUNCTIONALITY
+            error_log("Saving to CSV...");
+            $file = fopen("enquiries.csv", "a");
+            if ($file) {
+                $data = array(
+                    date("Y-m-d H:i:s"), 
+                    $formData['name'], 
+                    $formData['dob'] ?? 'N/A', 
+                    $formData['phone'], 
+                    $formData['email'] ?? 'N/A', 
+                    $formData['business_type'] ?? ($formData['policy_type'] ?? 'N/A'), 
+                    $formData['convictions'] ?? ($formData['conviction_code'] ?? '')
+                );
+                fputcsv($file, $data);
+                fclose($file);
+                error_log("✓ CSV saved successfully");
+            } else {
+                error_log("✗ ERROR: Could not open CSV file for writing");
+            }
+        } catch (Exception $e) {
+            error_log("✗ ERROR saving to CSV: " . $e->getMessage());
+            error_log("Stack trace: " . $e->getTraceAsString());
         }
 
-        // Send Email Notification
-        $emailSent = sendReferralEmail($formData);
-        
-        // Send to Google Sheets
-        $sheetsSent = sendToGoogleSheets($formData);
-        
-        // TEMPORARY DEBUG - Remove after testing
-        if (isset($_GET['debug']) || isset($_POST['debug'])) {
-            error_log("DEBUG: Google Sheets function called, result: " . ($sheetsSent ? 'SUCCESS' : 'FAILED'));
-            error_log("DEBUG: Credentials path: " . (defined('GOOGLE_CREDENTIALS_PATH') ? GOOGLE_CREDENTIALS_PATH : 'NOT DEFINED'));
-            error_log("DEBUG: Credentials exists: " . (file_exists(GOOGLE_CREDENTIALS_PATH) ? 'YES' : 'NO'));
-            error_log("DEBUG: Autoload exists: " . (file_exists(__DIR__ . '/vendor/autoload.php') ? 'YES' : 'NO'));
-            error_log("DEBUG: Form data keys: " . implode(', ', array_keys($formData)));
+        try {
+            // Send Email Notification
+            error_log("Sending email notification...");
+            $emailSent = sendReferralEmail($formData);
+            error_log("Email sent result: " . ($emailSent ? 'SUCCESS' : 'FAILED'));
+        } catch (Exception $e) {
+            error_log("✗ ERROR sending email: " . $e->getMessage());
+            error_log("Stack trace: " . $e->getTraceAsString());
+            $emailSent = false;
         }
+        
+        try {
+            // Send to Google Sheets
+            error_log("Sending to Google Sheets...");
+            $sheetsSent = sendToGoogleSheets($formData);
+            error_log("Google Sheets result: " . ($sheetsSent ? 'SUCCESS' : 'FAILED'));
+        } catch (Exception $e) {
+            error_log("✗ ERROR sending to Google Sheets: " . $e->getMessage());
+            error_log("Stack trace: " . $e->getTraceAsString());
+            $sheetsSent = false;
+        }
+        
+        // Always log detailed debug info
+        error_log("=== PROCESSING SUMMARY ===");
+        error_log("Email sent: " . ($emailSent ? 'YES' : 'NO'));
+        error_log("Sheets sent: " . ($sheetsSent ? 'YES' : 'NO'));
+        error_log("Is home form: " . ($isHomeForm ? 'YES' : 'NO'));
+        error_log("Is service form: " . ($isServiceForm ? 'YES' : 'NO'));
+        if (defined('GOOGLE_CREDENTIALS_PATH')) {
+            error_log("Credentials path: " . GOOGLE_CREDENTIALS_PATH);
+            error_log("Credentials exists: " . (file_exists(GOOGLE_CREDENTIALS_PATH) ? 'YES' : 'NO'));
+        }
+        error_log("Autoload exists: " . (file_exists(__DIR__ . '/vendor/autoload.php') ? 'YES' : 'NO'));
+        error_log("Form data keys: " . implode(', ', array_keys($formData)));
         
         // Redirect for home/service forms BEFORE any HTML output
         if ($isHomeForm || $isServiceForm) {
+            error_log("=== REDIRECTING (Home/Service Form) ===");
             // Redirect to referral page with success message
             $redirectUrl = "referal.php?success=1&name=" . urlencode($formData['name']);
             if ($emailSent) $redirectUrl .= "&email_sent=1";
             if ($sheetsSent) $redirectUrl .= "&sheets_sent=1";
+            error_log("Redirect URL: " . $redirectUrl);
             header("Location: " . $redirectUrl);
             exit();
         }
         // For referral form, we'll show success message below (after header is included)
+        error_log("=== NO REDIRECT (Referral Form) ===");
+    } else {
+        error_log("=== VALIDATION ERRORS - NOT PROCESSING ===");
     }
     // If there are errors, we'll show them below (after header is included)
+    } catch (Exception $e) {
+        error_log("✗ FATAL ERROR in POST processing: " . $e->getMessage());
+        error_log("File: " . $e->getFile());
+        error_log("Line: " . $e->getLine());
+        error_log("Stack trace: " . $e->getTraceAsString());
+        $errors[] = "An error occurred processing your request. Please try again.";
+    }
 }
 
 // NOW include header (after processing POST to allow redirects)
-include 'header.php';
+error_log("Including header.php...");
+try {
+    include 'header.php';
+    error_log("✓ header.php included successfully");
+} catch (Exception $e) {
+    error_log("✗ ERROR including header.php: " . $e->getMessage());
+    error_log("Stack trace: " . $e->getTraceAsString());
+    // Continue anyway to show error message
+}
+error_log("=== REFERAL.PHP HTML OUTPUT START ===");
 ?>
 
 <section style="background-color: #f4f6f8; padding: 40px 20px;">
@@ -267,4 +357,13 @@ include 'header.php';
     </div>
 </section>
 
-<?php include 'footer.php'; ?>
+<?php 
+error_log("Including footer.php...");
+try {
+    include 'footer.php';
+    error_log("✓ footer.php included successfully");
+} catch (Exception $e) {
+    error_log("✗ ERROR including footer.php: " . $e->getMessage());
+}
+error_log("=== REFERAL.PHP END ===");
+?>
