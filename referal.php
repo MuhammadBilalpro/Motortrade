@@ -221,6 +221,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $redirectUrl = "referal.php?success=1&name=" . urlencode($formData['name']);
             if ($emailSent) $redirectUrl .= "&email_sent=1";
             if ($sheetsSent) $redirectUrl .= "&sheets_sent=1";
+            if (!$sheetsSent && !empty($sheetsError)) {
+                $redirectUrl .= "&sheets_error=" . urlencode($sheetsError);
+            }
             error_log("Redirect URL: " . $redirectUrl);
             header("Location: " . $redirectUrl);
             exit();
@@ -290,6 +293,8 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
             
             // Show success message for referral form (if form was submitted and no redirect happened)
             if ($_SERVER["REQUEST_METHOD"] == "POST" && !$isHomeForm && !$isServiceForm && !empty($formData) && empty($errors)) {
+                $sheetsError = $GLOBALS['google_sheets_last_error'] ?? '';
+                
                 echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
                         <strong>✓ Success!</strong> Thank you, ' . htmlspecialchars($formData['name']) . '. Your details have been sent. Our partner broker will contact you shortly.';
                 
@@ -299,7 +304,12 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                 if (isset($sheetsSent) && $sheetsSent) {
                     echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
                 } else {
-                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed. Check PHP error log for details.</small>';
+                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed.</small>';
+                    if (!empty($sheetsError)) {
+                        echo '<br><small style="color: #721c24; margin-top: 5px; display: block; font-size: 0.85rem; background: #f8d7da; padding: 8px; border-radius: 4px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">Error: ' . htmlspecialchars($sheetsError) . '</small>';
+                    } else {
+                        echo '<br><small style="color: #856404; margin-top: 5px; display: block;">Check PHP error log for details.</small>';
+                    }
                 }
                 
                 echo '</div>';
