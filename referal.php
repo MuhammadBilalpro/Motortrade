@@ -1,10 +1,9 @@
 <?php
-// TEMPORARY: Enable error display to diagnose 500 error
-// TODO: Set display_errors back to 0 after fixing the issue
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-ini_set('log_errors', 1);
+// Suppress deprecation warnings and hide errors from users
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
+ini_set('display_errors', 0); // Never show errors to users
+ini_set('display_startup_errors', 0); // Never show startup errors
+ini_set('log_errors', 1); // Still log errors for debugging
 
 // Log script start
 error_log("=== REFERAL.PHP START ===");
