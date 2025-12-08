@@ -266,7 +266,19 @@ jobs:
           # Create google_credentials.json using GitHub Secret
           echo "Creating google_credentials.json..."
           mkdir -p /var/www/html/config
-          printf '%s\n' '${{ secrets.GOOGLE_CREDENTIALS_JSON }}' > /var/www/html/config/google_credentials.json
+          python3 -c "
+          import json
+          import sys
+          json_str = '''${{ secrets.GOOGLE_CREDENTIALS_JSON }}'''
+          try:
+              data = json.loads(json_str)
+              with open('/var/www/html/config/google_credentials.json', 'w') as f:
+                  json.dump(data, f, indent=2)
+              print('✓ Google credentials JSON created successfully')
+          except Exception as e:
+              print(f'✗ Error creating JSON: {e}', file=sys.stderr)
+              sys.exit(1)
+          "
           
           # Set proper permissions for config files
           chown www-data:www-data /var/www/html/config/email_config.php
