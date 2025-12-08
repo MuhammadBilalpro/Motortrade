@@ -157,17 +157,15 @@ function sendToGoogleSheets($formData) {
                 break;
                 
             case 'High-Risk Driver (Convicted)':
-                // High-Risk Driver: Timestamp | Name | Phone | Email | Conviction Code | Conviction Details | Service Type
+                // High-Risk Driver: Timestamp | Name | Phone | Conviction Code | Date of Conviction
                 $values = [[
                     date("Y-m-d H:i:s"),
                     $formData['name'] ?? 'N/A',
                     $formData['phone'] ?? 'N/A',
-                    $formData['email'] ?? 'N/A',
                     $formData['conviction_code'] ?? 'N/A',
-                    $formData['convictions'] ?? ($formData['details'] ?? 'N/A'),
-                    $serviceType
+                    $formData['details'] ?? ($formData['convictions'] ?? 'N/A'), // Date of Conviction
                 ]];
-                $range = $tabName . '!A:G'; // 7 columns
+                $range = $tabName . '!A:E'; // 5 columns
                 break;
                 
             case 'Road Risk & Combined':
