@@ -44,6 +44,15 @@ $sheetsSent = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     error_log("=== POST REQUEST DETECTED ===");
     
+    // Add JavaScript console logging at the start (will be in output buffer)
+    ob_start();
+    echo "<script>";
+    echo "console.log('[FORM] POST request received');";
+    echo "console.log('[FORM] Starting form processing...');";
+    echo "</script>";
+    ob_end_flush();
+    ob_start(); // Restart buffer for the rest
+    
     try {
         // Detect form type and normalize data
         $isHomeForm = isset($_POST['firstname']) || isset($_POST['surname']);
@@ -156,6 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // Save to CSV (Database simulation) - PRESERVE EXISTING FUNCTIONALITY
             error_log("Saving to CSV...");
+            echo "<script>console.log('[FORM] Saving to CSV...');</script>";
             $file = fopen("enquiries.csv", "a");
             if ($file) {
                 $data = array(
@@ -181,6 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // Send Email Notification
             error_log("Sending email notification...");
+            echo "<script>console.log('[FORM] Sending email notification...');</script>";
             $emailSent = sendReferralEmail($formData);
             error_log("Email sent result: " . ($emailSent ? 'SUCCESS' : 'FAILED'));
         } catch (Exception $e) {
@@ -192,6 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             // Send to Google Sheets
             error_log("Sending to Google Sheets...");
+            echo "<script>console.log('[FORM] Sending to Google Sheets...');</script>";
             $sheetsSent = sendToGoogleSheets($formData);
             $sheetsError = $GLOBALS['google_sheets_last_error'] ?? '';
             error_log("Google Sheets result: " . ($sheetsSent ? 'SUCCESS' : 'FAILED'));
@@ -221,24 +233,116 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // NOW redirect for service and home forms (after processing)
         // End and clean output buffer completely to ensure clean redirect
         if ($isServiceForm || $isHomeForm) {
-            // End output buffering completely before redirect
-            if (ob_get_level() > 0) {
-                ob_end_clean();
-            }
-            
-            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
-            error_log("=== REDIRECTING (" . ($isServiceForm ? "Service" : "Home") . " Form) - AFTER PROCESSING ===");
-            error_log("Redirect URL: " . $redirectUrl);
-            
-            // Send redirect header
-            header("Location: " . $redirectUrl);
-            header("HTTP/1.1 302 Found");
-            
-            // Flush any remaining output and exit immediately
-            if (ob_get_level() > 0) {
+            try {
+                // Log detailed information before redirect (to server logs)
+                $obLevel = ob_get_level();
+                $headersSent = headers_sent($file, $line);
+                $outputBufferLength = ob_get_length();
+                
+                error_log("=== REDIRECT PREPARATION ===");
+                error_log("Output buffer level: " . $obLevel);
+                error_log("Output buffer length: " . ($outputBufferLength !== false ? $outputBufferLength : 'N/A'));
+                error_log("Headers sent: " . ($headersSent ? "YES (file: {$file}, line: {$line})" : "NO"));
+                error_log("Form type: " . ($isServiceForm ? "Service" : "Home"));
+                
+                // Store redirect info for potential error display
+                $redirectInfo = array(
+                    'obLevel' => $obLevel,
+                    'obLength' => $outputBufferLength !== false ? $outputBufferLength : 0,
+                    'headersSent' => $headersSent,
+                    'formType' => $isServiceForm ? "Service" : "Home"
+                );
+                
+                // End output buffering completely before redirect
+                if ($obLevel > 0) {
+                    error_log("Ending output buffer (level: {$obLevel})...");
+                    ob_end_clean();
+                    error_log("✓ Output buffer ended");
+                } else {
+                    error_log("No output buffer to end");
+                }
+                
+                $redirectUrl = "success.php?name=" . urlencode($formData['name']);
+                error_log("=== REDIRECTING (" . ($isServiceForm ? "Service" : "Home") . " Form) - AFTER PROCESSING ===");
+                error_log("Redirect URL: " . $redirectUrl);
+                
+                // Check if headers can be sent
+                if (headers_sent($file, $line)) {
+                    $errorMsg = "Cannot redirect: Headers already sent in {$file} on line {$line}";
+                    error_log("✗ ERROR: " . $errorMsg);
+                    // Output error page with console logging
+                    ob_start();
+                    echo "<!DOCTYPE html><html><head><title>Redirect Error</title></head><body>";
+                    echo "<h1>Redirect Error</h1><p>" . htmlspecialchars($errorMsg) . "</p>";
+                    echo "<script>";
+                    echo "console.error('[REDIRECT ERROR] " . htmlspecialchars($errorMsg, ENT_QUOTES) . "');";
+                    echo "console.error('[REDIRECT ERROR] File: " . htmlspecialchars($file, ENT_QUOTES) . "');";
+                    echo "console.error('[REDIRECT ERROR] Line: " . $line . "');";
+                    echo "console.error('[REDIRECT ERROR] OB Level: " . $redirectInfo['obLevel'] . "');";
+                    echo "console.error('[REDIRECT ERROR] OB Length: " . $redirectInfo['obLength'] . "');";
+                    echo "</script></body></html>";
+                    ob_end_flush();
+                    exit();
+                }
+                
+                // Send redirect header
+                error_log("Sending Location header: " . $redirectUrl);
+                header("Location: " . $redirectUrl);
+                header("HTTP/1.1 302 Found");
+                error_log("✓ Headers sent successfully");
+                
+                // Final check
+                $finalObLevel = ob_get_level();
+                error_log("Final output buffer level: " . $finalObLevel);
+                error_log("=== EXITING AFTER REDIRECT ===");
+                
+                // Exit immediately
+                exit();
+                
+            } catch (Exception $e) {
+                $errorMsg = "Redirect error: " . $e->getMessage();
+                error_log("✗ FATAL ERROR in redirect: " . $errorMsg);
+                error_log("File: " . $e->getFile());
+                error_log("Line: " . $e->getLine());
+                error_log("Stack trace: " . $e->getTraceAsString());
+                
+                // Output error page with detailed console logging
+                ob_start();
+                echo "<!DOCTYPE html><html><head><title>Redirect Fatal Error</title></head><body>";
+                echo "<h1>Redirect Fatal Error</h1>";
+                echo "<p><strong>Error:</strong> " . htmlspecialchars($errorMsg) . "</p>";
+                echo "<p><strong>File:</strong> " . htmlspecialchars($e->getFile()) . "</p>";
+                echo "<p><strong>Line:</strong> " . $e->getLine() . "</p>";
+                echo "<script>";
+                echo "console.error('[REDIRECT FATAL ERROR] " . htmlspecialchars($errorMsg, ENT_QUOTES) . "');";
+                echo "console.error('[REDIRECT FATAL ERROR] File: " . htmlspecialchars($e->getFile(), ENT_QUOTES) . "');";
+                echo "console.error('[REDIRECT FATAL ERROR] Line: " . $e->getLine() . "');";
+                echo "console.error('[REDIRECT FATAL ERROR] Stack: " . htmlspecialchars($e->getTraceAsString(), ENT_QUOTES) . "');";
+                echo "</script></body></html>";
                 ob_end_flush();
+                exit();
+                
+            } catch (Error $e) {
+                $errorMsg = "Fatal PHP error in redirect: " . $e->getMessage();
+                error_log("✗ FATAL PHP ERROR in redirect: " . $errorMsg);
+                error_log("File: " . $e->getFile());
+                error_log("Line: " . $e->getLine());
+                
+                // Output error page with detailed console logging
+                ob_start();
+                echo "<!DOCTYPE html><html><head><title>Redirect Fatal PHP Error</title></head><body>";
+                echo "<h1>Redirect Fatal PHP Error</h1>";
+                echo "<p><strong>Error:</strong> " . htmlspecialchars($errorMsg) . "</p>";
+                echo "<p><strong>File:</strong> " . htmlspecialchars($e->getFile()) . "</p>";
+                echo "<p><strong>Line:</strong> " . $e->getLine() . "</p>";
+                echo "<script>";
+                echo "console.error('[REDIRECT FATAL PHP ERROR] " . htmlspecialchars($errorMsg, ENT_QUOTES) . "');";
+                echo "console.error('[REDIRECT FATAL PHP ERROR] File: " . htmlspecialchars($e->getFile(), ENT_QUOTES) . "');";
+                echo "console.error('[REDIRECT FATAL PHP ERROR] Line: " . $e->getLine() . "');";
+                echo "</script></body></html>";
+                ob_end_flush();
+                exit();
             }
-            exit();
         }
         
         // For referral form, continue to show success message below (after header is included)
