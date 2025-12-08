@@ -213,16 +213,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("Autoload exists: " . (file_exists(__DIR__ . '/vendor/autoload.php') ? 'YES' : 'NO'));
         error_log("Form data keys: " . implode(', ', array_keys($formData)));
         
-        // Redirect for home/service forms BEFORE any HTML output
-        if ($isHomeForm || $isServiceForm) {
-            error_log("=== REDIRECTING (Home/Service Form) ===");
+        // Redirect for service forms to dedicated success page
+        if ($isServiceForm) {
+            error_log("=== REDIRECTING (Service Form) ===");
+            // Redirect to success page (simple message, no technical details)
+            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
+            error_log("Redirect URL: " . $redirectUrl);
+            header("Location: " . $redirectUrl);
+            exit();
+        }
+        
+        // Redirect for home form to referral page
+        if ($isHomeForm) {
+            error_log("=== REDIRECTING (Home Form) ===");
             // Redirect to referral page with success message
             $redirectUrl = "referal.php?success=1&name=" . urlencode($formData['name']);
-            if ($emailSent) $redirectUrl .= "&email_sent=1";
-            if ($sheetsSent) $redirectUrl .= "&sheets_sent=1";
-            if (!$sheetsSent && !empty($sheetsError)) {
-                $redirectUrl .= "&sheets_error=" . urlencode($sheetsError);
-            }
             error_log("Redirect URL: " . $redirectUrl);
             header("Location: " . $redirectUrl);
             exit();
@@ -292,26 +297,9 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
             
             // Show success message for referral form (if form was submitted and no redirect happened)
             if ($_SERVER["REQUEST_METHOD"] == "POST" && !$isHomeForm && !$isServiceForm && !empty($formData) && empty($errors)) {
-                $sheetsError = $GLOBALS['google_sheets_last_error'] ?? '';
-                
                 echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
-                        <strong>✓ Success!</strong> Thank you, ' . htmlspecialchars($formData['name']) . '. Your details have been sent. Our partner broker will contact you shortly.';
-                
-                if (isset($emailSent) && $emailSent) {
-                    echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Email notification sent to broker</small>';
-                }
-                if (isset($sheetsSent) && $sheetsSent) {
-                    echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
-                } else {
-                    // Log error to console instead of displaying
-                    if (!empty($sheetsError)) {
-                        echo '<script>logErrorToConsole(' . json_encode('Google Sheets Error: ' . $sheetsError) . ', "error");</script>';
-                    } else {
-                        echo '<script>logErrorToConsole("Google Sheets save failed. Check PHP error log for details.", "warning");</script>';
-                    }
-                }
-                
-                echo '</div>';
+                        <strong>✓ Success!</strong> Thank you, ' . htmlspecialchars($formData['name']) . '. Your details have been sent. Our partner broker will contact you shortly.
+                      </div>';
             }
             
             // Show errors if form was submitted but had validation errors - log to console
