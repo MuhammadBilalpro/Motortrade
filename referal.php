@@ -279,11 +279,11 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                 if ($sheetsSent) {
                     echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
                 } else {
-                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed.</small>';
+                    // Log error to console instead of displaying
                     if (!empty($sheetsError)) {
-                        echo '<br><small style="color: #721c24; margin-top: 5px; display: block; font-size: 0.85rem; background: #f8d7da; padding: 8px; border-radius: 4px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">Error: ' . $sheetsError . '</small>';
+                        echo '<script>logErrorToConsole(' . json_encode('Google Sheets Error: ' . $sheetsError) . ', "error");</script>';
                     } else {
-                        echo '<br><small style="color: #856404; margin-top: 5px; display: block;">Check PHP error log for details.</small>';
+                        echo '<script>logErrorToConsole("Google Sheets save failed. Check PHP error log for details.", "warning");</script>';
                     }
                 }
                 
@@ -303,25 +303,20 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                 if (isset($sheetsSent) && $sheetsSent) {
                     echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
                 } else {
-                    echo '<br><small style="color: #856404; margin-top: 10px; display: block;">⚠ Google Sheets save failed.</small>';
+                    // Log error to console instead of displaying
                     if (!empty($sheetsError)) {
-                        echo '<br><small style="color: #721c24; margin-top: 5px; display: block; font-size: 0.85rem; background: #f8d7da; padding: 8px; border-radius: 4px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">Error: ' . htmlspecialchars($sheetsError) . '</small>';
+                        echo '<script>logErrorToConsole(' . json_encode('Google Sheets Error: ' . $sheetsError) . ', "error");</script>';
                     } else {
-                        echo '<br><small style="color: #856404; margin-top: 5px; display: block;">Check PHP error log for details.</small>';
+                        echo '<script>logErrorToConsole("Google Sheets save failed. Check PHP error log for details.", "warning");</script>';
                     }
                 }
                 
                 echo '</div>';
             }
             
-            // Show errors if form was submitted but had validation errors
+            // Show errors if form was submitted but had validation errors - log to console
             if (isset($errors) && !empty($errors)) {
-                echo '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                        <strong>Error:</strong> Please correct the following:<ul style="margin: 10px 0 0 20px;">';
-                foreach ($errors as $error) {
-                    echo '<li>' . htmlspecialchars($error) . '</li>';
-                }
-                echo '</ul></div>';
+                echo '<script>logErrorToConsole(' . json_encode('Validation Errors: ' . implode(', ', $errors)) . ', "error");</script>';
             }
             ?>
 

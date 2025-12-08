@@ -48,17 +48,12 @@
                         // Clear form data after successful submission
                         $formData = array('name' => '', 'email' => '', 'phone' => '', 'message' => '');
                     } else {
-                        echo '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                                <strong>Error:</strong> There was a problem sending your message. Please try again or contact us directly.
-                              </div>';
+                        // Log error to console instead of displaying
+                        echo '<script>logErrorToConsole("There was a problem sending your message. Please try again or contact us directly.", "error");</script>';
                     }
                 } else {
-                    echo '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                            <strong>Error:</strong> Please correct the following:<ul style="margin: 10px 0 0 20px;">';
-                    foreach ($errors as $error) {
-                        echo '<li>' . htmlspecialchars($error) . '</li>';
-                    }
-                    echo '</ul></div>';
+                    // Log validation errors to console instead of displaying
+                    echo '<script>logErrorToConsole(' . json_encode('Validation Errors: ' . implode(', ', $errors)) . ', "error");</script>';
                 }
             } else {
                 $formData = array('name' => '', 'email' => '', 'phone' => '', 'message' => '');

@@ -1,3 +1,45 @@
+<?php
+// Set up error handler to log PHP errors to JavaScript console
+set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    // Only log if errors are not suppressed
+    if (!(error_reporting() & $errno)) {
+        return false;
+    }
+    
+    $errorType = 'Unknown';
+    switch($errno) {
+        case E_ERROR:
+        case E_CORE_ERROR:
+        case E_COMPILE_ERROR:
+        case E_USER_ERROR:
+        case E_RECOVERABLE_ERROR:
+            $errorType = 'Error';
+            break;
+        case E_WARNING:
+        case E_CORE_WARNING:
+        case E_COMPILE_WARNING:
+        case E_USER_WARNING:
+            $errorType = 'Warning';
+            break;
+        case E_NOTICE:
+        case E_USER_NOTICE:
+            $errorType = 'Notice';
+            break;
+        case E_DEPRECATED:
+        case E_USER_DEPRECATED:
+            $errorType = 'Deprecated';
+            break;
+    }
+    
+    // Output JavaScript to log error to console
+    $errorMsg = htmlspecialchars($errstr, ENT_QUOTES, 'UTF-8');
+    $errorFile = htmlspecialchars(basename($errfile), ENT_QUOTES, 'UTF-8');
+    echo "<script>console.error('[PHP {$errorType}] {$errorMsg} in {$errorFile} on line {$errline}');</script>\n";
+    
+    // Don't execute PHP internal error handler
+    return true;
+}, E_ALL & ~E_DEPRECATED & ~E_STRICT);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,5 +197,29 @@
     function toggleMenu() {
         const nav = document.getElementById("navLinks");
         nav.classList.toggle("active");
+    }
+    
+    // Global error handler - log all errors to console, never display on page
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript Error:', e.error);
+        e.preventDefault(); // Prevent default error display
+        return true;
+    });
+    
+    // Catch unhandled promise rejections
+    window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled Promise Rejection:', e.reason);
+        e.preventDefault();
+    });
+    
+    // Function to log PHP errors to console
+    function logErrorToConsole(message, type) {
+        if (type === 'error') {
+            console.error('[PHP Error]', message);
+        } else if (type === 'warning') {
+            console.warn('[PHP Warning]', message);
+        } else {
+            console.log('[PHP Info]', message);
+        }
     }
 </script>
