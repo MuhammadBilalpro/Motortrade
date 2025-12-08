@@ -263,28 +263,19 @@ jobs:
           ?>
           EMAIL_EOF
           
-          # Create google_credentials.json using GitHub Secret
-          echo "Creating google_credentials.json..."
-          mkdir -p /var/www/html/config
-          python3 -c "
-          import json
-          import sys
-          json_str = '''${{ secrets.GOOGLE_CREDENTIALS_JSON }}'''
-          try:
-              data = json.loads(json_str)
-              with open('/var/www/html/config/google_credentials.json', 'w') as f:
-                  json.dump(data, f, indent=2)
-              print('✓ Google credentials JSON created successfully')
-          except Exception as e:
-              print(f'✗ Error creating JSON: {e}', file=sys.stderr)
-              sys.exit(1)
-          "
-          
-          # Set proper permissions for config files
+          # Set proper permissions for email config file
           chown www-data:www-data /var/www/html/config/email_config.php
           chmod 600 /var/www/html/config/email_config.php
-          chown www-data:www-data /var/www/html/config/google_credentials.json
-          chmod 600 /var/www/html/config/google_credentials.json
+          
+          # Create .user.ini to suppress PHP deprecation warnings
+          echo "Creating .user.ini to suppress PHP deprecation warnings..."
+          cat > /var/www/html/.user.ini << 'USER_INI_EOF'
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+display_errors = Off
+log_errors = On
+USER_INI_EOF
+          chown www-data:www-data /var/www/html/.user.ini
+          chmod 644 /var/www/html/.user.ini
           
           # Create enquiries.csv file with proper permissions if it doesn't exist
           if [ ! -f "/var/www/html/enquiries.csv" ]; then
