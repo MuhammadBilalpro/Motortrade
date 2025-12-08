@@ -102,22 +102,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
         
         // Add service-specific fields and ensure correct service type
-        if (isset($_POST['trade_type'])) {
-            $formData['business_type'] = htmlspecialchars(trim($_POST['trade_type']));
-            // Always set service type when trade_type is detected
-            $formData['service_type'] = 'Motor Trade Insurance';
-        }
-        if (isset($_POST['conviction_code'])) {
-            $formData['conviction_code'] = htmlspecialchars(trim($_POST['conviction_code']));
-            $formData['convictions'] = htmlspecialchars(trim($_POST['details'] ?? ''));
-            // Always set service type when conviction_code is detected
-            $formData['service_type'] = 'High-Risk Driver (Convicted)';
-        }
+        // Use elseif to ensure only one service type is set (priority order matters)
         if (isset($_POST['policy_type'])) {
+            // Road Risk & Combined - check this FIRST to avoid conflicts
             $formData['policy_type'] = htmlspecialchars(trim($_POST['policy_type']));
             $formData['stock_value'] = htmlspecialchars(trim($_POST['stock_value'] ?? ''));
-            // Always set service type when policy_type is detected (ensures correct routing)
             $formData['service_type'] = 'Road Risk & Combined';
+        } elseif (isset($_POST['trade_type'])) {
+            // Motor Trade Insurance
+            $formData['business_type'] = htmlspecialchars(trim($_POST['trade_type']));
+            $formData['service_type'] = 'Motor Trade Insurance';
+        } elseif (isset($_POST['conviction_code'])) {
+            // High-Risk Driver (Convicted)
+            $formData['conviction_code'] = htmlspecialchars(trim($_POST['conviction_code']));
+            $formData['convictions'] = htmlspecialchars(trim($_POST['details'] ?? ''));
+            $formData['service_type'] = 'High-Risk Driver (Convicted)';
         }
     } else {
         // Referral form format (from referal.php itself)
