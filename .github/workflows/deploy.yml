@@ -24,6 +24,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         timeout: 30m  # 30 minutes timeout for long-running deployments
         command_timeout: 30m  # 30 minutes for individual commands
+        debug: true  # Enable debug output to diagnose connection issues
         script: |
           echo "=== Starting deployment on Ubuntu 24 LTS ==="
           
