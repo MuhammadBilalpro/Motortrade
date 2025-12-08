@@ -270,10 +270,10 @@ jobs:
           # Create .user.ini to suppress PHP deprecation warnings
           echo "Creating .user.ini to suppress PHP deprecation warnings..."
           cat > /var/www/html/.user.ini << 'USER_INI_EOF'
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
-display_errors = Off
-log_errors = On
-USER_INI_EOF
+          error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+          display_errors = Off
+          log_errors = On
+          USER_INI_EOF
           chown www-data:www-data /var/www/html/.user.ini
           chmod 644 /var/www/html/.user.ini
           
