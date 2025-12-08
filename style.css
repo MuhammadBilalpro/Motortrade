@@ -27,24 +27,25 @@ header { background: var(--white); border-bottom: 3px solid var(--primary-color)
 nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto; }
 
 .logo img {
-    height: 90px;        /* Desktop ke liye LARGE size */
+    height: 45px;       /* Default medium size */
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
-/* Tablets */
-@media (max-width: 992px) {
-    .logo img {
-        height: 60px;    /* Tablet ke liye */
-    }
-}
-
-/* Mobile phones */
+/* Mobile Screens */
 @media (max-width: 600px) {
     .logo img {
-        height: 45px;    /* Mobile ke liye balance size */
+        height: 35px;   /* Mobile ke liye thoda chhota */
     }
 }
+
+/* Large Screens (Optional) */
+@media (min-width: 1200px) {
+    .logo img {
+        height: 55px;   /* Large screen par thoda bada */
+    }
+}
+
 
 
 
