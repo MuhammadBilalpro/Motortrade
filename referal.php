@@ -151,28 +151,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("=== NO VALIDATION ERRORS - PROCESSING FORM ===");
         error_log("Form data: " . json_encode($formData));
         
-        // REDIRECT IMMEDIATELY for service and home forms (before any processing)
-        // This prevents any output or errors from blocking the redirect
-        if ($isServiceForm) {
-            error_log("=== REDIRECTING (Service Form) - BEFORE PROCESSING ===");
-            ob_clean();
-            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
-            error_log("Redirect URL: " . $redirectUrl);
-            header("Location: " . $redirectUrl);
-            exit();
-        }
-        
-        if ($isHomeForm) {
-            error_log("=== REDIRECTING (Home Form) - BEFORE PROCESSING ===");
-            ob_clean();
-            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
-            error_log("Redirect URL: " . $redirectUrl);
-            header("Location: " . $redirectUrl);
-            exit();
-        }
-        
-        // Only process (CSV, email, Google Sheets) for referral form
-        // Service and home forms redirect immediately, processing happens in background if needed
+        // Process CSV, email, and Google Sheets for ALL forms (with error handling)
+        // Errors won't block redirect - processing happens but redirect always succeeds
         try {
             // Save to CSV (Database simulation) - PRESERVE EXISTING FUNCTIONALITY
             error_log("Saving to CSV...");
@@ -237,6 +217,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         error_log("Autoload exists: " . (file_exists(__DIR__ . '/vendor/autoload.php') ? 'YES' : 'NO'));
         error_log("Form data keys: " . implode(', ', array_keys($formData)));
+        
+        // NOW redirect for service and home forms (after processing)
+        // Clear output buffer to ensure clean redirect
+        ob_clean();
+        
+        if ($isServiceForm) {
+            error_log("=== REDIRECTING (Service Form) - AFTER PROCESSING ===");
+            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
+            error_log("Redirect URL: " . $redirectUrl);
+            header("Location: " . $redirectUrl);
+            exit();
+        }
+        
+        if ($isHomeForm) {
+            error_log("=== REDIRECTING (Home Form) - AFTER PROCESSING ===");
+            $redirectUrl = "success.php?name=" . urlencode($formData['name']);
+            error_log("Redirect URL: " . $redirectUrl);
+            header("Location: " . $redirectUrl);
+            exit();
+        }
+        
+        // For referral form, continue to show success message below
+        error_log("=== NO REDIRECT (Referral Form) ===");
         // For referral form, we'll show success message below (after header is included)
         error_log("=== NO REDIRECT (Referral Form) ===");
     } else {
