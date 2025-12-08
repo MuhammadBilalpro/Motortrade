@@ -238,9 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
         
-        // For referral form, continue to show success message below
-        error_log("=== NO REDIRECT (Referral Form) ===");
-        // For referral form, we'll show success message below (after header is included)
+        // For referral form, continue to show success message below (after header is included)
         error_log("=== NO REDIRECT (Referral Form) ===");
     } else {
         error_log("=== VALIDATION ERRORS - NOT PROCESSING ===");
