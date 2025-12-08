@@ -266,9 +266,7 @@ jobs:
           # Create google_credentials.json using GitHub Secret
           echo "Creating google_credentials.json..."
           mkdir -p /var/www/html/config
-          cat > /var/www/html/config/google_credentials.json << 'GOOGLE_EOF'
-${{ secrets.GOOGLE_CREDENTIALS_JSON }}
-GOOGLE_EOF
+          printf '%s\n' '${{ secrets.GOOGLE_CREDENTIALS_JSON }}' > /var/www/html/config/google_credentials.json
           
           # Set proper permissions for config files
           chown www-data:www-data /var/www/html/config/email_config.php
