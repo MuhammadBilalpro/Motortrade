@@ -34,6 +34,15 @@ jobs:
           echo "Installing essential dependencies..."
           apt-get install -y software-properties-common curl wget git unzip lsb-release ca-certificates apt-transport-https
           
+          # Install Composer
+          echo "Installing Composer..."
+          if [ ! -f "/usr/local/bin/composer" ]; then
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+            chmod +x /usr/local/bin/composer
+          fi
+          composer --version
+          
           # Add PHP repository for Ubuntu 24.04
           echo "Adding PHP repository..."
           add-apt-repository -y ppa:ondrej/php
@@ -139,6 +148,19 @@ jobs:
             git config --global --add safe.directory /var/www/html || true
           fi
           
+          # Install PHP dependencies via Composer
+          echo "Installing PHP dependencies via Composer..."
+          cd /var/www/html
+          composer install --no-dev --optimize-autoloader
+          
+          # Verify vendor/autoload.php exists
+          if [ ! -f "/var/www/html/vendor/autoload.php" ]; then
+            echo "✗ ERROR: vendor/autoload.php NOT FOUND! Running composer install again..."
+            composer install --no-dev --optimize-autoloader
+          else
+            echo "✓ vendor/autoload.php exists"
+          fi
+          
           # Verify we have the latest code
           echo "Current commit:"
           git log -1 --oneline
@@ -186,6 +208,65 @@ jobs:
             chmod -R 755 /var/www/html/.git
           fi
           
+          # Create config directory if it doesn't exist
+          echo "Setting up config files..."
+          mkdir -p /var/www/html/config
+          
+          # Create email_config.php with real values
+          echo "Creating email_config.php..."
+          cat > /var/www/html/config/email_config.php << 'EMAIL_EOF'
+          <?php
+          // Hostinger Email Configuration - Exact Server Settings
+          // Webmail: https://mail.hostinger.com/v2/
+          
+          // Outgoing Server (SMTP) - Exact Hostinger Settings
+          define('SMTP_HOST', 'smtp.hostinger.com');
+          define('SMTP_PORT', 465); // Hostinger SMTP Port
+          define('SMTP_USERNAME', 'james@motortradeinsurancesra.co.uk');
+          define('SMTP_PASSWORD', 'Sra133719@');
+          define('SMTP_ENCRYPTION', 'ssl'); // Hostinger uses SSL
+          
+          // Incoming Server (IMAP) - For reference (email clients)
+          define('IMAP_HOST', 'imap.hostinger.com');
+          define('IMAP_PORT', 993);
+          define('IMAP_ENCRYPTION', 'ssl');
+          
+          // Incoming Server (POP) - For reference (email clients)
+          define('POP_HOST', 'pop.hostinger.com');
+          define('POP_PORT', 995);
+          define('POP_ENCRYPTION', 'ssl');
+          
+          // Email Addresses
+          define('RECIPIENT_EMAIL', 'james@motortradeinsurancesra.co.uk');
+          define('FROM_EMAIL', 'james@motortradeinsurancesra.co.uk');
+          define('FROM_NAME', 'Motor Trade Referrals');
+          ?>
+          EMAIL_EOF
+          
+          # Create google_credentials.json with real values
+          echo "Creating google_credentials.json..."
+          cat > /var/www/html/config/google_credentials.json << 'GOOGLE_EOF'
+          {
+            "type": "service_account",
+            "project_id": "gen-lang-client-0652227259",
+            "private_key_id": "1a9691dbfa16207213a4e24848c05f423cb58373",
+            "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCV2OwFPDJWahvg\nmAk/FfkLRDSA6R7hBk5R5/nEijjD7SNfgdTh0GZDUKXh3praGFm6BNN1Ud6fnL8x\nd+s7GMgV+/TrfE4J534Ma6rxAnlxO2mUEBYxTm5z8zSQR8aqVZeCkYGhf7Qt8wRk\nBH5tH3XZyeQ2g7mAKKwqH+Bgy/UGZPC4jjKXTRGPgYPwGISnPf+dVlDTl+RAEEkK\nFR1Y7AROVnbvSu80piXpLleDCRmCjITDblyHmZf0+6K4WcdctHlZ6suVB9nQJC95\nRCCMc7/A47+0dTEdq0Qfc/Ukn1R0HGJOxy6q1sXydpyuirOCEe2iw7wJ7V6FVdWp\nIHQHQoY/AgMBAAECggEAM7ExOl0ZwFW6aDAKgIjD8O8GbbH9xQK34el0cCh+jJgx\nq7DOD1gk7vPTRafVI4di7JjdmYs0kTsxeY80xp4159+TDelDwobpJL+/qISCAF3O\nfhVOkpPL5pPvfhZEol4EdjZb0aqMLY235gjm1B4WOZs77tJiG6PsQFveu4WgcSO5\n9kj969u2CjC1fUZTrHbTOSzh7pDrfEZX8j40aXtahu3ZKfQErFpNWnrchvNlZWEu\nkWSd5LLjwbujuoKoTGLEJnd3QjQHo46QHrtNTv14ng4zwsaxwk0iFfCQpENHHGW6\nK5kEYdY6kYAyVV0TvGkXpnsbzeQeDZIbuQy6rKdAgQKBgQDJtXdpHxFUXPNCLWKJ\nzr/fIDx87qsk+54IMudOmUKUAhOtqPIforvc/b+nVTtLl21JuP94hzk9eGcX4UiV\nV9NA4VFwpFG+IO2oj7X5jl9ImW2ejHiR6Mes5jjs2rgz/+9dByB5bjNFNHy0Z9ZO\nUQ5VT/LclHVbBq6zUNWnXonaYwKBgQC+Lf52QWjUgJDMBRF2YBLf/Y14/vtO+INq\nxp9UL/4u3jFkdAjtpAtUdfAmGmtJYVrK3UjaHM/chI8LlfP+k4Utfv1jtVbhQp56\nzeMrCwChmYY7xx7+ZxZFHdfa8LhvoYFfq84F6v1oA8mr4cwGsSP6tMzcdUncKSLz\n1nmuelGddQKBgFPg/4AaaEVxxcLORrzR2h46NI0rXsYpUEVOjbu0pegQmQhNSip3\nrLGwX6OBIQBFPzA6GxqO+PGkARMAHwPjmrjPOeOioU90OAAxitX1K5BwJRKajYT3\njRlMP33XUmRlWK+RyCJW/kEYG4eV6pt0v4YgkfjCT68Dr2BoDADmomLLAoGBAKAJ\nuG7vUDYzEqZ9RVqmMnwHtLuzZuvnuT9rcby4vl/WXx43fyPrvhUPQk3uQYZ4xJye\nZqYVRN4/Ntj7EV6T6aiFitoTSc857n9NLvOTyK40sX8wa2aOfXEgUftOQwa9lE9c\nFn1oaGLVfSqFUtn2y144M4T5tnPsshsbyz4GdRPZAoGAESQfp0G2OXGj9HO5rNJM\n6erWyAoNSRS2u94IqlTYzhuhHMtFeiZ17Jv5+RiuSf0Ssv9b23TPZTEe0f+Ealn7\nwMujr+2/Vuqpn5jFn7Oyu8KGXAlwoK3KQSgv/4dIMZryphxpkUSgV4IcegE1Raut\niXrfCPjvKUp5i8UD2OQepDI=\n-----END PRIVATE KEY-----\n",
+            "client_email": "sra-990@gen-lang-client-0652227259.iam.gserviceaccount.com",
+            "client_id": "103693685270061292389",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sra-990%40gen-lang-client-0652227259.iam.gserviceaccount.com",
+            "universe_domain": "googleapis.com"
+          }
+          GOOGLE_EOF
+          
+          # Set proper permissions for config files
+          chown www-data:www-data /var/www/html/config/email_config.php
+          chmod 600 /var/www/html/config/email_config.php
+          chown www-data:www-data /var/www/html/config/google_credentials.json
+          chmod 600 /var/www/html/config/google_credentials.json
+          
           # Create enquiries.csv file with proper permissions if it doesn't exist
           if [ ! -f "/var/www/html/enquiries.csv" ]; then
             touch /var/www/html/enquiries.csv
@@ -222,4 +303,3 @@ jobs:
           echo "=== Installation Summary ==="
           php -v
           echo "=== Deployment completed successfully ==="
-

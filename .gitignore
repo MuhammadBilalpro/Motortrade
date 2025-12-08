@@ -1,21 +1,14 @@
-# CSV files with sensitive data
-*.csv
+# Email Configuration (contains sensitive password)
+config/email_config.php
+
+# Google Sheets Credentials (contains sensitive API keys)
+config/google_credentials.json
+
+# CSV Data files
 enquiries.csv
-
-# System files
-.DS_Store
-Thumbs.db
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
 
 # Logs
 *.log
 
 # Temporary files
 *.tmp
-*.temp
-

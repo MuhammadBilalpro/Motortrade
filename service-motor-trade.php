@@ -18,7 +18,8 @@
             Get Trade Quote
         </div>
         <div class="form-3d-body">
-            <form action="referral.php" method="POST">
+            <form action="referal.php" method="POST">
+                <input type="hidden" name="service_type" value="Motor Trade Insurance">
                 <div class="form-row">
                     <input type="text" name="name" class="input-3d" placeholder="Full Name" required>
                 </div>

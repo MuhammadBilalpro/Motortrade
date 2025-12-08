@@ -4,54 +4,75 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://motortradeinsurancesra.co.uk/</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
+
 <url>
   <loc>https://motortradeinsurancesra.co.uk/index.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
 </url>
+
 <url>
   <loc>https://motortradeinsurancesra.co.uk/about.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/services.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/service-motor-trade.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/service-high-risk.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/service-road-risk.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/contact.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://motortradeinsurancesra.co.uk/privacy.php</loc>
-  <lastmod>2025-12-05T23:32:05+00:00</lastmod>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/services.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/service-motor-trade.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/service-high-risk.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/service-road-risk.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.85</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/referal.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/contact.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.70</priority>
+</url>
+
+<url>
+  <loc>https://motortradeinsurancesra.co.uk/privacy.php</loc>
+  <lastmod>2025-12-08</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.30</priority>
+</url>
 
 </urlset>

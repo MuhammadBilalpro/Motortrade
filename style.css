@@ -26,8 +26,25 @@ h1, h2, h3 { color: var(--text-dark); margin-bottom: 15px; font-weight: 700; }
 header { background: var(--white); border-bottom: 3px solid var(--primary-color); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; }
 nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto; }
 
-.logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-color); text-decoration: none; letter-spacing: -0.5px; }
-.logo span { color: var(--text-dark); }
+.logo img {
+    height: 45px;       /* Default medium size */
+    width: auto;
+    object-fit: contain;
+}
+
+/* Mobile Screens */
+@media (max-width: 600px) {
+    .logo img {
+        height: 35px;   /* Mobile ke liye thoda chhota */
+    }
+}
+
+/* Large Screens (Optional) */
+@media (min-width: 1200px) {
+    .logo img {
+        height: 55px;   /* Large screen par thoda bada */
+    }
+}
 
 .nav-links { list-style: none; display: flex; gap: 25px; }
 .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; font-size: 15px; }
@@ -208,6 +225,11 @@ footer { background: #222; color: var(--white); padding: 60px 20px 30px; margin-
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
+    .logo-img {
+        height: 35px; /* Slightly smaller on mobile for better fit */
+        max-width: 180px;
+    }
+    
     .nav-links {
         display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white);
         flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1);

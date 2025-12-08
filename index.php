@@ -20,7 +20,7 @@
             Get Your Quote
         </div>
         <div class="form-body">
-            <form action="referral.php" method="POST">
+            <form action="referal.php" method="POST">
                 
                 <div class="form-row">
                     <div class="form-col-small">

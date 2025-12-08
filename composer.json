@@ -1,0 +1,14 @@
+{
+    "name": "motortrade/referrals",
+    "description": "Motor Trade Insurance Referral Website",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "google/apiclient": "2.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "includes/"
+        }
+    }
+}

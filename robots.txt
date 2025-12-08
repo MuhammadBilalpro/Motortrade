@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /config/
+Disallow: /includes/
+Disallow: /vendor/
+Disallow: /enquiries.csv
+Disallow: /*.csv$
+
+# Sitemap
+Sitemap: https://motortradeinsurancesra.co.uk/sitemap.xml
+

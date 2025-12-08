@@ -11,7 +11,7 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="services.php">Services</a></li>
-                <li><a href="referral.php">Get a Quote</a></li>
+                <li><a href="referal.php">Get a Quote</a></li>
                 <li><a href="privacy.php">Privacy Policy</a></li>
             </ul>
         </div>

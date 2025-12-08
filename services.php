@@ -28,7 +28,7 @@
     </div>
 
     <div class="text-center" style="margin-top: 40px;">
-        <a href="referral.php" class="cta-btn" style="padding: 15px 30px;">Get a Quote for these Services</a>
+        <a href="referal.php" class="cta-btn" style="padding: 15px 30px;">Get a Quote for these Services</a>
     </div>
 </div>
 

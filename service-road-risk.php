@@ -18,7 +18,8 @@
             Combined Quote
         </div>
         <div class="form-3d-body">
-            <form action="referral.php" method="POST">
+            <form action="referal.php" method="POST">
+                <input type="hidden" name="service_type" value="Road Risk & Combined">
                 <div class="form-row">
                     <input type="text" name="name" class="input-3d" placeholder="Business Name" required>
                 </div>

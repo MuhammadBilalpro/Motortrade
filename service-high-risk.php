@@ -17,7 +17,8 @@
         <div class="form-3d-header" style="background: linear-gradient(135deg, #333 0%, #000 100%);"> Confidential Quote
         </div>
         <div class="form-3d-body">
-            <form action="referral.php" method="POST">
+            <form action="referal.php" method="POST">
+                <input type="hidden" name="service_type" value="High-Risk Driver (Convicted)">
                 <div class="form-row">
                     <input type="text" name="name" class="input-3d" placeholder="Full Name" required>
                 </div>

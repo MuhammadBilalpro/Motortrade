@@ -3,7 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motor Trade Insurance Referral Specialists</title>
+    
+    <?php
+    // Get current page name for dynamic meta tags
+    $currentPage = basename($_SERVER['PHP_SELF'], '.php');
+    $baseUrl = 'https://motortradeinsurancesra.co.uk/';
+    $currentUrl = $baseUrl . ($currentPage == 'index' ? '' : $currentPage . '.php');
+    
+    // Page-specific SEO data
+    $seoData = [
+        'index' => [
+            'title' => 'Motor Trade Insurance Quotes | Save Up to 50% | Free Quotes UK',
+            'description' => 'Get competitive motor trade insurance quotes. Save up to 50% on road risk, combined policies & convicted driver insurance. Free quotes from specialist brokers.',
+            'keywords' => 'motor trade insurance, motor trade insurance quotes, road risk insurance, motor trade insurance UK'
+        ],
+        'about' => [
+            'title' => 'About Us | Motor Trade Insurance Referral Specialists',
+            'description' => 'We connect motor traders with trusted insurance brokers. GDPR compliant introducer service. No fees, no advice - just expert referrals to specialist insurers.',
+            'keywords' => 'motor trade insurance introducer, insurance referral service, motor trade brokers'
+        ],
+        'services' => [
+            'title' => 'Motor Trade Insurance Services | Road Risk & Combined Policies',
+            'description' => 'Comprehensive motor trade insurance services: Road Risk, Combined policies, convicted driver insurance. Compare quotes from specialist UK brokers.',
+            'keywords' => 'motor trade insurance services, road risk insurance, combined motor trade insurance'
+        ],
+        'service-motor-trade' => [
+            'title' => 'Motor Trade Insurance | Comprehensive Cover for Dealers & Mechanics',
+            'description' => 'Motor trade insurance for car dealers, mechanics & traders. Cover for buying, selling & repairing vehicles. Get competitive quotes from specialist brokers.',
+            'keywords' => 'motor trade insurance, car dealer insurance, mechanic insurance, motor trader insurance'
+        ],
+        'service-high-risk' => [
+            'title' => 'Convicted Driver Insurance | DR10, IN10 Motor Trade Cover',
+            'description' => 'Motor trade insurance for convicted drivers. Specialist cover for DR10, IN10, TT99 convictions. Get quotes from high-risk insurance brokers.',
+            'keywords' => 'convicted driver insurance, DR10 insurance, IN10 insurance, high risk motor trade insurance'
+        ],
+        'service-road-risk' => [
+            'title' => 'Road Risk & Combined Motor Trade Insurance | Compare Quotes',
+            'description' => 'Road risk only or combined motor trade insurance. Cover for premises, tools, stock & vehicles. Compare quotes from UK specialist brokers.',
+            'keywords' => 'road risk insurance, combined motor trade insurance, motor trade premises insurance'
+        ],
+        'contact' => [
+            'title' => 'Contact Us | Motor Trade Insurance Referral Specialists',
+            'description' => 'Contact our motor trade insurance referral service. Get in touch for quotes, enquiries or support. We connect you with specialist UK brokers.',
+            'keywords' => 'motor trade insurance contact, insurance referral contact'
+        ],
+        'referral' => [
+            'title' => 'Get a Motor Trade Insurance Quote | Free No-Obligation Quotes',
+            'description' => 'Get your free motor trade insurance quote. Fill in our quick form and we\'ll connect you with specialist brokers. No obligation, competitive rates.',
+            'keywords' => 'motor trade insurance quote, free insurance quote, motor trade insurance application'
+        ],
+        'referal' => [
+            'title' => 'Get a Motor Trade Insurance Quote | Free No-Obligation Quotes',
+            'description' => 'Get your free motor trade insurance quote. Fill in our quick form and we\'ll connect you with specialist brokers. No obligation, competitive rates.',
+            'keywords' => 'motor trade insurance quote, free insurance quote, motor trade insurance application'
+        ],
+        'privacy' => [
+            'title' => 'Privacy Policy | Motor Trade Insurance Referral Specialists',
+            'description' => 'Privacy policy and GDPR compliance information for Motor Trade Insurance Referral Specialists. Learn how we protect your data.',
+            'keywords' => 'privacy policy, GDPR compliance, data protection'
+        ]
+    ];
+    
+    $page = $seoData[$currentPage] ?? $seoData['index'];
+    ?>
+    
+    <!-- Primary Meta Tags -->
+    <title><?php echo htmlspecialchars($page['title']); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($page['description']); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($page['keywords']); ?>">
+    <meta name="author" content="Motor Trade Referral Specialists">
+    <link rel="canonical" href="<?php echo $currentUrl; ?>">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?php echo $currentUrl; ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($page['title']); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($page['description']); ?>">
+    <meta property="og:image" content="<?php echo $baseUrl; ?>assets/logo.png">
+    <meta property="og:site_name" content="Motor Trade Insurance Referral Specialists">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="<?php echo $currentUrl; ?>">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($page['title']); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($page['description']); ?>">
+    <meta name="twitter:image" content="<?php echo $baseUrl; ?>assets/logo.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Motor Trade Insurance Referral Specialists",
+      "description": "<?php echo htmlspecialchars($page['description']); ?>",
+      "url": "<?php echo $currentUrl; ?>",
+      "logo": "<?php echo $baseUrl; ?>assets/logo.png",
+      "serviceType": "Motor Trade Insurance Referral",
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+44-800-123-4567",
+        "contactType": "Customer Service",
+        "email": "james@motortradeinsurancesra.co.uk"
+      }
+    }
+    </script>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -16,7 +124,9 @@
 
 <header>
     <nav>
-        <a href="index.php" class="logo">MotorTrade<span>Specialists</span></a>
+        <a href="index.php" class="logo">
+            <img src="assets/logo.png" alt="MotorTrade Specialists Logo">
+        </a>
         
         <ul class="nav-links" id="navLinks">
             <li><a href="index.php">Home</a></li>
@@ -32,7 +142,7 @@
             </li>
 
             <li><a href="contact.php">Contact</a></li>
-            <li><a href="referral.php" class="cta-btn">Get a Quote</a></li>
+                    <li><a href="referal.php" class="cta-btn">Get a Quote</a></li>
         </ul>
 
         <div class="burger" onclick="toggleMenu()">
