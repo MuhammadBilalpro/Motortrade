@@ -268,31 +268,13 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
         <div class="form-wrapper">
             
             <?php
-            // Show success message if redirected from home/service form
+            // Show success message if redirected from home form
             if (isset($_GET['success']) && $_GET['success'] == 1) {
                 $name = isset($_GET['name']) ? htmlspecialchars(urldecode($_GET['name'])) : 'there';
-                $emailSent = isset($_GET['email_sent']) && $_GET['email_sent'] == '1';
-                $sheetsSent = isset($_GET['sheets_sent']) && $_GET['sheets_sent'] == '1';
-                $sheetsError = isset($_GET['sheets_error']) ? htmlspecialchars(urldecode($_GET['sheets_error'])) : '';
                 
                 echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-bottom: 20px;">
-                        <strong>✓ Success!</strong> Thank you, ' . $name . '. Your details have been sent. Our partner broker will contact you shortly.';
-                
-                if ($emailSent) {
-                    echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Email notification sent to broker</small>';
-                }
-                if ($sheetsSent) {
-                    echo '<br><small style="color: #155724; margin-top: 10px; display: block;">✓ Data saved to Google Sheets</small>';
-                } else {
-                    // Log error to console instead of displaying
-                    if (!empty($sheetsError)) {
-                        echo '<script>logErrorToConsole(' . json_encode('Google Sheets Error: ' . $sheetsError) . ', "error");</script>';
-                    } else {
-                        echo '<script>logErrorToConsole("Google Sheets save failed. Check PHP error log for details.", "warning");</script>';
-                    }
-                }
-                
-                echo '</div>';
+                        <strong>✓ Success!</strong> Thank you, ' . $name . '. Your details have been sent. Our partner broker will contact you shortly.
+                      </div>';
             }
             
             // Show success message for referral form (if form was submitted and no redirect happened)
