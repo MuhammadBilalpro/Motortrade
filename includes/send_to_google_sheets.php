@@ -169,13 +169,13 @@ function sendToGoogleSheets($formData) {
                 break;
                 
             case 'Road Risk & Combined':
-                // Road Risk & Combined: Timestamp | Name | Phone | Conviction Code | Date of Conviction
+                // Road Risk & Combined: Timestamp | Name | Phone | Stock Value | Service Type
                 $values = [[
                     date("Y-m-d H:i:s"),
                     $formData['name'] ?? 'N/A',
                     $formData['phone'] ?? 'N/A',
-                    $formData['conviction_code'] ?? 'N/A',
-                    $formData['details'] ?? ($formData['conviction_date'] ?? 'N/A'), // Date of Conviction
+                    $formData['stock_value'] ?? 'N/A', // Stock Value
+                    $serviceType // Service Type (value: "Road Risk & Combined")
                 ]];
                 $range = $tabName . '!A:E'; // 5 columns
                 break;
