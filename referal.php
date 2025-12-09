@@ -399,11 +399,37 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
 ?>
 
 <section style="background-color: #f4f6f8; padding: 40px 20px;">
+    <style>
+        .form-wrapper-responsive select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #fff;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        .form-wrapper-responsive select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(149, 31, 32, 0.1);
+        }
+        @media (max-width: 768px) {
+            .form-wrapper-responsive-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .form-wrapper-responsive {
+                padding: 30px 20px !important;
+            }
+        }
+    </style>
     <div class="container">
         <h1 class="text-center">Get a Quick Quote</h1>
         <p class="text-center" style="margin-bottom: 30px;">Fill in the details below. Our partner broker will contact you shortly.</p>
 
-        <div class="form-wrapper">
+        <div class="form-wrapper form-wrapper-responsive" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
             
             <?php
             // Show success message if redirected from home form
@@ -440,12 +466,12 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                     <input type="date" name="dob" required value="<?php echo isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : ''; ?>">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
+                <div class="form-wrapper-responsive-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div class="form-group" style="margin-bottom: 0;">
                         <label>Phone Number *</label>
                         <input type="tel" name="phone" required placeholder="07700 900 000" value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 0;">
                         <label>Email Address *</label>
                         <input type="email" name="email" required placeholder="john@example.com" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                     </div>
@@ -475,7 +501,9 @@ error_log("=== REFERAL.PHP HTML OUTPUT START ===");
                     </label>
                 </div>
 
-                <button type="submit" class="submit-btn">GET MY QUOTE <i class="fas fa-arrow-right"></i></button>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="submit-btn" style="width: 100%; max-width: 400px; padding: 14px 30px; font-size: 1.05rem;">GET MY QUOTE <i class="fas fa-arrow-right"></i></button>
+                </div>
 
             </form>
         </div>
