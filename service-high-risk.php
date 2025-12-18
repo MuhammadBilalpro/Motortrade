@@ -46,22 +46,23 @@
 
 <section class="container">
     <div class="text-center">
-        <h2 class="section-title">Don't Let a Conviction Stop Your Business</h2>
-        <p class="section-subtitle">We believe everyone deserves a second chance to earn a living.</p>
+        <h2 class="section-title">Convicted Driver Insurance for Motor Traders</h2>
+        
+        <p class="section-subtitle">We believe everyone with <strong>driving convictions</strong> deserves a second chance to earn a living.</p>
     </div>
 
     <div class="grid-3" style="margin-top:40px;">
         <div class="card">
-            <h3><i class="fas fa-beer" style="color:#951F20;"></i> Drink/Drug Driving</h3>
-            <p>If you have a DR10 or DG10 code, mainstream insurers might reject you. Our partners specialize in getting you back on the road legally.</p>
+            <h3><i class="fas fa-beer" style="color:#951F20;"></i> Drink Driving Insurance (DR10/DG10)</h3>
+            <p>If you have a DR10 or DG10 code, mainstream insurers might reject you. Our partners specialize in <strong>drink driving insurance</strong> to get you back on the road legally.</p>
         </div>
         <div class="card">
-            <h3><i class="fas fa-ban" style="color:#951F20;"></i> Disqualified Drivers</h3>
-            <p>Returning from a ban? We help you find insurance that acknowledges your ban is over and helps you rebuild your No Claims Bonus.</p>
+            <h3><i class="fas fa-ban" style="color:#951F20;"></i> Disqualified Drivers Cover</h3>
+            <p>Returning from a ban? We help you find <strong>motor trade insurance</strong> that acknowledges your ban is over and helps you rebuild your No Claims Bonus.</p>
         </div>
         <div class="card">
-            <h3><i class="fas fa-file-invoice-dollar" style="color:#951F20;"></i> No Insurance (IN10)</h3>
-            <p>An IN10 code can be costly, but as a motor trader, you need cover. We compare multiple specialist underwriters to lower that cost.</p>
+            <h3><i class="fas fa-file-invoice-dollar" style="color:#951F20;"></i> No Insurance Conviction (IN10)</h3>
+            <p>An <strong>IN10 conviction</strong> can be costly, but as a motor trader, you need cover. We compare specialist underwriters to lower your premiums.</p>
         </div>
     </div>
 </section>
