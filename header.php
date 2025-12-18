@@ -45,7 +45,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+   <link rel="icon" type="image/png" href="assets/logo.png">
     <?php
     // Get current page name for dynamic meta tags
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
