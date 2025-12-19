@@ -75,35 +75,48 @@
 
 <section class="container" style="background-color: var(--bg-light);">
     <div class="text-center">
-        <h2 class="section-title">Our Insurance Services</h2>
-        <p class="section-subtitle">Tailored protection for every aspect of your motor trade business.</p>
+        <h2 class="section-title">Our Motor Trade Insurance Services</h2>
+        <p class="section-subtitle">Tailored protection for every aspect of your <strong style="color:var(--primary);">trade business</strong>.</p>
     </div>
 
     <div class="grid-3">
         <div class="card">
             <div class="card-icon"><i class="fas fa-car-crash"></i></div>
-            <h3>Road Risk Policy</h3>
-            <p>Essential cover for driving customer vehicles or stock cars. The minimum legal requirement for traders.</p>
+            <h3>Road Risks Insurance</h3>
+            <p>Essential cover for driving customer vehicles. The minimum legal requirement for <strong>motor traders</strong> operating from home.</p>
         </div>
 
         <div class="card">
             <div class="card-icon"><i class="fas fa-warehouse"></i></div>
-            <h3>Combined Premises</h3>
-            <p>Comprehensive protection for your garage, tools, stock, and cash, combined with road risk cover.</p>
+            <h3>Combined Premises Insurance</h3>
+            <p>Comprehensive protection for your garage, tools, stock, and cash, combined with <strong>trade vehicle insurance</strong>.</p>
         </div>
 
         <div class="card">
             <div class="card-icon"><i class="fas fa-gavel"></i></div>
-            <h3>Convicted Drivers</h3>
-            <p>We help traders with adverse history (DR10, IN10) find competitive cover where others can't.</p>
+            <h3>Convicted Driver Insurance</h3>
+            <p>We help traders with adverse history (DR10, IN10) find competitive <strong>convicted driver insurance</strong> where others can't.</p>
         </div>
 
         <div class="card">
             <div class="card-icon"><i class="fas fa-tools"></i></div>
-            <h3>Part-Time Traders</h3>
-            <p>Flexible policies designed for mechanics and dealers operating from home as a second income.</p>
+            <h3>Part-Time Motor Trade Insurance</h3>
+            <p>Flexible policies designed for mechanics and dealers operating as a second income. Perfect for <strong>part-time traders</strong>.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-wrench"></i></div>
+            <h3>Mobile Mechanic Insurance</h3>
+            <p>Specialist cover for mechanics on the move. Includes Public Liability and <strong>Road Risk</strong> in one package.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-user-clock"></i></div>
+            <h3>Young Trader Insurance (Under 25)</h3>
+            <p>Struggling to get covered? We compare quotes for <strong>young motor traders</strong> under 25 to help you start your career.</p>
         </div>
         
-    </section>
+    </div>
+</section>
 
 <?php include 'footer.php'; ?>
