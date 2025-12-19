@@ -155,7 +155,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <body>
 
 <div class="top-bar">
-    <span><i class="fas fa-envelope"></i> email@motortrade-referrals.co.uk</span>
+    <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
     <span><i class="fas fa-phone-alt"></i> Call Us: 0800 123 4567</span>
 </div>
 
