@@ -32,6 +32,15 @@ try {
     error_log("Stack trace: " . $e->getTraceAsString());
 }
 
+try {
+    error_log("Loading send_telegram.php...");
+    require_once 'includes/send_telegram.php';
+    error_log("✓ send_telegram.php loaded successfully");
+} catch (Exception $e) {
+    error_log("✗ ERROR loading send_telegram.php: " . $e->getMessage());
+    error_log("Stack trace: " . $e->getTraceAsString());
+}
+
 // Initialize variables to avoid undefined variable errors
 $isHomeForm = false;
 $isServiceForm = false;
@@ -200,6 +209,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         try {
+            // Send Telegram Notification (silent - no frontend indication)
+            error_log("Sending Telegram notification...");
+            $telegramSent = sendTelegramNotification($formData);
+            error_log("Telegram sent result: " . ($telegramSent ? 'SUCCESS' : 'FAILED'));
+        } catch (Exception $e) {
+            error_log("✗ ERROR sending Telegram: " . $e->getMessage());
+            error_log("Stack trace: " . $e->getTraceAsString());
+            $telegramSent = false;
+        }
+        
+        try {
             // Send to Google Sheets
             error_log("Sending to Google Sheets...");
             echo "<script>console.log('[FORM] Sending to Google Sheets...');</script>";
@@ -219,6 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Always log detailed debug info
         error_log("=== PROCESSING SUMMARY ===");
         error_log("Email sent: " . ($emailSent ? 'YES' : 'NO'));
+        error_log("Telegram sent: " . (isset($telegramSent) && $telegramSent ? 'YES' : 'NO'));
         error_log("Sheets sent: " . ($sheetsSent ? 'YES' : 'NO'));
         error_log("Is home form: " . ($isHomeForm ? 'YES' : 'NO'));
         error_log("Is service form: " . ($isServiceForm ? 'YES' : 'NO'));
