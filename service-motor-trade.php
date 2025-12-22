@@ -54,17 +54,31 @@
         <div class="about-text">
             <h3>Protect Your Business Assets</h3>
             <p>Whether you trade from home, a small unit, or a large forecourt, Motor Trade Insurance is the backbone of your business. It allows you to legally drive vehicles you don't own (Road Risks) and protects your stock.</p>
+            
             <br>
             <h4>What we cover:</h4>
             <ul style="margin-left:20px; margin-top:10px; line-height:1.8;">
-                <li><strong>Material Damage:</strong> Protection for your tools and stock.</li>
-                <li><strong>Road Risks:</strong> Driving customer cars for testing.</li>
-                <li><strong>Demonstration:</strong> Allowing customers to test drive.</li>
+                <li><strong>Material Damage:</strong> Protection for your tools, stock, and premises.</li>
+                
+                <li><strong>Specialist Vehicles:</strong> We provide quotes for <strong>recovery truck insurance</strong> and <strong>courier van insurance</strong>.</li>
+                
+                <li><strong>Passenger Transport:</strong> Looking for <strong>cheap private hire insurance</strong> or the <strong>cheapest taxi insurance</strong>? We compare the market for you.</li>
+                
+                <li><strong>Modern Fleets:</strong> Policies suitable for hybrids and <strong>new electric cars 2020</strong> models onwards.</li>
+                
+                <li><strong>Flexible Work:</strong> Coverage available for specific <strong>contract work insurance</strong> needs.</li>
             </ul>
+
+            <br>
+            <p style="font-size: 0.95rem; color: #555;">
+                <strong>Get the Best Rates:</strong> We understand that every penny counts. Contact us to find the best <strong>trade insurance price</strong> or request a specific <strong>private hire insurance quote</strong> today. 
+                Our partners also assist with the <strong>mid update</strong> (Motor Insurance Database) to keep your vehicles legal on the road.
+            </p>
+
         </div>
+        
         <div class="about-image">
-            
-            <img src="https://img.freepik.com/free-photo/young-couple-talking-sales-person-car-showroom_1303-15135.jpg?semt=ais_hybrid&w=740&q=80" alt="Car Dealer" style="width:100%; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img src="https://img.freepik.com/free-photo/young-couple-talking-sales-person-car-showroom_1303-15135.jpg?semt=ais_hybrid&w=740&q=80" alt="Car Dealer & Insurance" style="width:100%; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         </div>
     </div>
 </section>
