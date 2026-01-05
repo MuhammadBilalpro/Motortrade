@@ -26,7 +26,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     $baseUrl = 'https://motortradeinsurancesra.co.uk/';
     $currentUrl = $baseUrl . ($currentPage == 'index' ? '' : $currentPage . '.php');
     
-    // SEO Data (Kept same as before)
+    // SEO Data
     $seoData = [
         'index' => ['title' => 'Motor Trade Insurance Quotes | Save Up to 50% | Free Quotes UK', 'description' => 'Get competitive motor trade insurance quotes. Save up to 50% on road risk.', 'keywords' => 'motor trade insurance, quotes'],
         'about' => ['title' => 'About Us | Motor Trade Insurance Referral Specialists', 'description' => 'We connect motor traders with trusted insurance brokers.', 'keywords' => 'motor trade insurance introducer'],
@@ -82,7 +82,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         /* Top Bar Styles */
         .top-bar {
-            background-color: #004aad; /* Blue Theme */
+            background-color: #004aad;
             color: white;
             padding: 10px 5%;
             display: flex;
@@ -111,7 +111,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             padding: 0 5%;
         }
         .logo img {
-            height: 50px; /* Adjust logo size */
+            height: 50px;
             width: auto;
         }
         
@@ -119,7 +119,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         .nav-links {
             display: flex;
             justify-content: space-around;
-            width: 60%; /* Adjust based on menu items */
+            width: 60%;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -135,7 +135,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         /* CTA Button */
         .cta-btn {
-            background-color: #ff6b00; /* Orange Button */
+            background-color: #ff6b00;
             color: white !important;
             padding: 10px 20px;
             border-radius: 5px;
@@ -143,7 +143,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         }
         .cta-btn:hover { background-color: #e65c00; }
 
-        /* Dropdown Menu */
+        /* Dropdown Menu (Desktop) */
         .dropdown { position: relative; }
         .dropdown-menu {
             position: absolute;
@@ -154,10 +154,10 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             list-style: none;
             padding: 10px 0;
             width: 250px;
-            display: none; /* Hidden by default */
+            display: none;
             z-index: 999;
         }
-        .dropdown:hover .dropdown-menu { display: block; } /* Show on Hover (Desktop) */
+        .dropdown:hover .dropdown-menu { display: block; }
         .dropdown-menu li { padding: 0; }
         .dropdown-menu li a {
             display: block;
@@ -175,7 +175,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 
         /* MOBILE RESPONSIVENESS */
         @media screen and (max-width: 960px) {
-            /* Fix Top Bar Stacking */
             .top-bar {
                 flex-direction: column;
                 text-align: center;
@@ -183,50 +182,66 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             }
             .top-bar span { margin: 0; display: block; }
             
-            /* Fix Navigation */
             .nav-links {
                 position: absolute;
                 right: 0px;
-                height: 92vh; /* Full screen height minus header */
+                height: 92vh;
                 top: 8vh;
                 background-color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                width: 100%; /* Cover full width on mobile */
-                transform: translateX(100%); /* Hide off-screen */
+                width: 100%;
+                transform: translateX(100%);
                 transition: transform 0.4s ease-in;
                 padding-top: 30px;
                 border-top: 1px solid #eee;
             }
-            .nav-links li { 
-                margin: 20px 0; 
+            
+            /* Main Menu Items Spacing */
+            .nav-links > li { 
+                margin: 20px 0; /* Gap between main items */
                 width: 100%;
                 text-align: center;
             }
             
-            /* Show Menu when Active */
             .nav-links.active {
                 transform: translateX(0%);
             }
             
-            /* Show Burger Icon */
             .burger { display: block; }
-            
-            /* Mobile Dropdown Handling */
-            .dropdown-menu {
-                position: relative;
-                box-shadow: none;
-                background: #f9f9f9;
-                width: 100%;
-                text-align: center;
-                display: none; /* Controlled via JS or CSS */
-            }
-            .dropdown:hover .dropdown-menu { display: block; } /* Keep hover for simplicity, or tap */
-            
-            /* Adjust Logo Size on Mobile */
             .logo img { height: 40px; }
+
+            /* --- FIXED DROPDOWN STYLING FOR MOBILE --- */
+            .dropdown-menu {
+                position: relative; /* Not absolute on mobile */
+                box-shadow: none;
+                background: #f4f4f4; /* Slightly grey background */
+                width: 100%; /* Full width */
+                padding: 0;
+                margin-top: 15px; /* Space between "Services" and list */
+            }
+            
+            /* Remove the big margin from dropdown list items */
+            .dropdown-menu li {
+                margin: 0 !important; /* Force remove margin */
+                border-bottom: 1px solid #e0e0e0;
+                width: 100%;
+            }
+            
+            /* Style the links inside dropdown */
+            .dropdown-menu li a {
+                padding: 15px 0; /* Good touch target */
+                display: block;
+                font-size: 0.95rem;
+                color: #555;
+            }
+            
+            /* Remove border from last item */
+            .dropdown-menu li:last-child {
+                border-bottom: none;
+            }
         }
     </style>
 </head>
@@ -276,7 +291,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         nav.classList.toggle("active");
         
-        // Change Icon from Bars to X when open
         if (nav.classList.contains("active")) {
             burger.classList.remove("fa-bars");
             burger.classList.add("fa-times");
@@ -286,10 +300,11 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         }
     }
     
-    // Improved Mobile Dropdown Toggle
+    // Toggle Dropdown on Mobile
     function toggleDropdown(element) {
         if (window.innerWidth <= 960) {
             const menu = element.querySelector('.dropdown-menu');
+            // Toggle block/none
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             } else {
@@ -298,12 +313,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         }
     }
 
-    // Global error handlers
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript Error:', e.error);
-        return true;
-    });
-    window.addEventListener('unhandledrejection', function(e) {
-        console.error('Unhandled Promise Rejection:', e.reason);
-    });
+    // Error logging
+    window.addEventListener('error', function(e) { console.error('JavaScript Error:', e.error); return true; });
+    window.addEventListener('unhandledrejection', function(e) { console.error('Unhandled Promise Rejection:', e.reason); });
 </script>
