@@ -104,14 +104,12 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     $page = $seoData[$currentPage] ?? $seoData['index'];
     ?>
     
-    <!-- Primary Meta Tags -->
     <title><?php echo htmlspecialchars($page['title']); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($page['description']); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($page['keywords']); ?>">
     <meta name="author" content="Motor Trade Referral Specialists">
     <link rel="canonical" href="<?php echo $currentUrl; ?>">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo $currentUrl; ?>">
     <meta property="og:title" content="<?php echo htmlspecialchars($page['title']); ?>">
@@ -119,14 +117,12 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     <meta property="og:image" content="<?php echo $baseUrl; ?>assets/logo.png">
     <meta property="og:site_name" content="Motor Trade Insurance Referral Specialists">
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<?php echo $currentUrl; ?>">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($page['title']); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($page['description']); ?>">
     <meta name="twitter:image" content="<?php echo $baseUrl; ?>assets/logo.png">
     
-    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -139,6 +135,13 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
       "areaServed": {
         "@type": "Country",
         "name": "United Kingdom"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Street15",
+        "addressLocality": "Leicester",
+        "postalCode": "LE1 1AA",
+        "addressCountry": "UK"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -157,6 +160,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <div class="top-bar">
     <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
     <span><i class="fas fa-phone-alt"></i> Call Us: 0800 123 4567</span>
+    <span><i class="fas fa-map-marker-alt"></i> Street15, Leicester LE1 1AA</span>
 </div>
 
 <header>
