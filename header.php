@@ -1,42 +1,17 @@
 <?php
 // Set up error handler to log PHP errors to JavaScript console
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
-    // Only log if errors are not suppressed
-    if (!(error_reporting() & $errno)) {
-        return false;
-    }
-    
+    if (!(error_reporting() & $errno)) { return false; }
     $errorType = 'Unknown';
     switch($errno) {
-        case E_ERROR:
-        case E_CORE_ERROR:
-        case E_COMPILE_ERROR:
-        case E_USER_ERROR:
-        case E_RECOVERABLE_ERROR:
-            $errorType = 'Error';
-            break;
-        case E_WARNING:
-        case E_CORE_WARNING:
-        case E_COMPILE_WARNING:
-        case E_USER_WARNING:
-            $errorType = 'Warning';
-            break;
-        case E_NOTICE:
-        case E_USER_NOTICE:
-            $errorType = 'Notice';
-            break;
-        case E_DEPRECATED:
-        case E_USER_DEPRECATED:
-            $errorType = 'Deprecated';
-            break;
+        case E_ERROR: case E_CORE_ERROR: case E_COMPILE_ERROR: case E_USER_ERROR: case E_RECOVERABLE_ERROR: $errorType = 'Error'; break;
+        case E_WARNING: case E_CORE_WARNING: case E_COMPILE_WARNING: case E_USER_WARNING: $errorType = 'Warning'; break;
+        case E_NOTICE: case E_USER_NOTICE: $errorType = 'Notice'; break;
+        case E_DEPRECATED: case E_USER_DEPRECATED: $errorType = 'Deprecated'; break;
     }
-    
-    // Output JavaScript to log error to console
     $errorMsg = htmlspecialchars($errstr, ENT_QUOTES, 'UTF-8');
     $errorFile = htmlspecialchars(basename($errfile), ENT_QUOTES, 'UTF-8');
     echo "<script>console.error('[PHP {$errorType}] {$errorMsg} in {$errorFile} on line {$errline}');</script>\n";
-    
-    // Don't execute PHP internal error handler
     return true;
 }, E_ALL & ~E_DEPRECATED & ~E_STRICT);
 ?>
@@ -45,62 +20,24 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <?php
-    // Get current page name for dynamic meta tags
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     $baseUrl = 'https://motortradeinsurancesra.co.uk/';
     $currentUrl = $baseUrl . ($currentPage == 'index' ? '' : $currentPage . '.php');
     
-    // Page-specific SEO data
+    // SEO Data (Kept same as before)
     $seoData = [
-        'index' => [
-            'title' => 'Motor Trade Insurance Quotes | Save Up to 50% | Free Quotes UK',
-            'description' => 'Get competitive motor trade insurance quotes. Save up to 50% on road risk, combined policies & convicted driver insurance. Free quotes from specialist brokers.',
-            'keywords' => 'motor trade insurance, motor trade insurance quotes, road risk insurance, motor trade insurance UK'
-        ],
-        'about' => [
-            'title' => 'About Us | Motor Trade Insurance Referral Specialists',
-            'description' => 'We connect motor traders with trusted insurance brokers. GDPR compliant introducer service. No fees, no advice - just expert referrals to specialist insurers.',
-            'keywords' => 'motor trade insurance introducer, insurance referral service, motor trade brokers'
-        ],
-        'service-motor-trade' => [
-            'title' => 'Motor Trade Insurance | Comprehensive Cover for Dealers & Mechanics',
-            'description' => 'Motor trade insurance for car dealers, mechanics & traders. Cover for buying, selling & repairing vehicles. Get competitive quotes from specialist brokers.',
-            'keywords' => 'motor trade insurance, car dealer insurance, mechanic insurance, motor trader insurance'
-        ],
-        'service-high-risk' => [
-            'title' => 'Convicted Driver Insurance | DR10, IN10 Motor Trade Cover',
-            'description' => 'Motor trade insurance for convicted drivers. Specialist cover for DR10, IN10, TT99 convictions. Get quotes from high-risk insurance brokers.',
-            'keywords' => 'convicted driver insurance, DR10 insurance, IN10 insurance, high risk motor trade insurance'
-        ],
-        'service-road-risk' => [
-            'title' => 'Road Risk & Combined Motor Trade Insurance | Compare Quotes',
-            'description' => 'Road risk only or combined motor trade insurance. Cover for premises, tools, stock & vehicles. Compare quotes from UK specialist brokers.',
-            'keywords' => 'road risk insurance, combined motor trade insurance, motor trade premises insurance'
-        ],
-        'contact' => [
-            'title' => 'Contact Us | Motor Trade Insurance Referral Specialists',
-            'description' => 'Contact our motor trade insurance referral service. Get in touch for quotes, enquiries or support. We connect you with specialist UK brokers.',
-            'keywords' => 'motor trade insurance contact, insurance referral contact'
-        ],
-        'referral' => [
-            'title' => 'Get a Motor Trade Insurance Quote | Free No-Obligation Quotes',
-            'description' => 'Get your free motor trade insurance quote. Fill in our quick form and we\'ll connect you with specialist brokers. No obligation, competitive rates.',
-            'keywords' => 'motor trade insurance quote, free insurance quote, motor trade insurance application'
-        ],
-        'referal' => [
-            'title' => 'Get a Motor Trade Insurance Quote | Free No-Obligation Quotes',
-            'description' => 'Get your free motor trade insurance quote. Fill in our quick form and we\'ll connect you with specialist brokers. No obligation, competitive rates.',
-            'keywords' => 'motor trade insurance quote, free insurance quote, motor trade insurance application'
-        ],
-        'privacy' => [
-            'title' => 'Privacy Policy | Motor Trade Insurance Referral Specialists',
-            'description' => 'Privacy policy and GDPR compliance information for Motor Trade Insurance Referral Specialists. Learn how we protect your data.',
-            'keywords' => 'privacy policy, GDPR compliance, data protection'
-        ]
+        'index' => ['title' => 'Motor Trade Insurance Quotes | Save Up to 50% | Free Quotes UK', 'description' => 'Get competitive motor trade insurance quotes. Save up to 50% on road risk.', 'keywords' => 'motor trade insurance, quotes'],
+        'about' => ['title' => 'About Us | Motor Trade Insurance Referral Specialists', 'description' => 'We connect motor traders with trusted insurance brokers.', 'keywords' => 'motor trade insurance introducer'],
+        'service-motor-trade' => ['title' => 'Motor Trade Insurance | Comprehensive Cover', 'description' => 'Motor trade insurance for car dealers, mechanics & traders.', 'keywords' => 'car dealer insurance, mechanic insurance'],
+        'service-high-risk' => ['title' => 'Convicted Driver Insurance | DR10, IN10', 'description' => 'Motor trade insurance for convicted drivers.', 'keywords' => 'convicted driver insurance, DR10 insurance'],
+        'service-road-risk' => ['title' => 'Road Risk & Combined Motor Trade Insurance', 'description' => 'Road risk only or combined motor trade insurance.', 'keywords' => 'road risk insurance'],
+        'contact' => ['title' => 'Contact Us | Motor Trade Insurance Referral Specialists', 'description' => 'Contact our motor trade insurance referral service.', 'keywords' => 'contact motor trade insurance'],
+        'referral' => ['title' => 'Get a Motor Trade Insurance Quote', 'description' => 'Get your free motor trade insurance quote.', 'keywords' => 'motor trade insurance quote'],
+        'referal' => ['title' => 'Get a Motor Trade Insurance Quote', 'description' => 'Get your free motor trade insurance quote.', 'keywords' => 'motor trade insurance quote'],
+        'privacy' => ['title' => 'Privacy Policy', 'description' => 'Privacy policy and GDPR compliance.', 'keywords' => 'privacy policy']
     ];
-    
     $page = $seoData[$currentPage] ?? $seoData['index'];
     ?>
     
@@ -115,7 +52,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     <meta property="og:title" content="<?php echo htmlspecialchars($page['title']); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars($page['description']); ?>">
     <meta property="og:image" content="<?php echo $baseUrl; ?>assets/logo.png">
-    <meta property="og:site_name" content="Motor Trade Insurance Referral Specialists">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<?php echo $currentUrl; ?>">
@@ -132,36 +68,174 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
       "url": "<?php echo $currentUrl; ?>",
       "logo": "<?php echo $baseUrl; ?>assets/logo.png",
       "serviceType": "Motor Trade Insurance Referral",
-      "areaServed": {
-        "@type": "Country",
-        "name": "United Kingdom"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Street15",
-        "addressLocality": "Leicester",
-        "postalCode": "LE1 1AA",
-        "addressCountry": "UK"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "0118 370 1701",
-        "contactType": "Customer Service",
-        "email": "james@motortradeinsurancesra.co.uk"
-      }
+      "address": { "@type": "PostalAddress", "streetAddress": "Street15", "addressLocality": "Leicester", "postalCode": "LE1 1AA", "addressCountry": "UK" },
+      "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "james@motortradeinsurancesra.co.uk" }
     }
     </script>
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* General Resets */
+        body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        
+        /* Top Bar Styles */
+        .top-bar {
+            background-color: #004aad; /* Blue Theme */
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .top-bar span { margin-right: 15px; }
+        .top-bar a { color: white; text-decoration: none; }
+        .top-bar a:hover { text-decoration: underline; }
+
+        /* Header & Nav Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 8vh;
+            padding: 0 5%;
+        }
+        .logo img {
+            height: 50px; /* Adjust logo size */
+            width: auto;
+        }
+        
+        /* Navigation Links (Desktop) */
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            width: 60%; /* Adjust based on menu items */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover { color: #004aad; }
+        
+        /* CTA Button */
+        .cta-btn {
+            background-color: #ff6b00; /* Orange Button */
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .cta-btn:hover { background-color: #e65c00; }
+
+        /* Dropdown Menu */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 10px 0;
+            width: 250px;
+            display: none; /* Hidden by default */
+            z-index: 999;
+        }
+        .dropdown:hover .dropdown-menu { display: block; } /* Show on Hover (Desktop) */
+        .dropdown-menu li { padding: 0; }
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 20px;
+            font-weight: 400;
+        }
+        .dropdown-menu li a:hover { background-color: #f1f1f1; }
+
+        /* Burger Menu (Hidden on Desktop) */
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+        .burger i { font-size: 1.5rem; color: #333; }
+
+        /* MOBILE RESPONSIVENESS */
+        @media screen and (max-width: 960px) {
+            /* Fix Top Bar Stacking */
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            .top-bar span { margin: 0; display: block; }
+            
+            /* Fix Navigation */
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh; /* Full screen height minus header */
+                top: 8vh;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%; /* Cover full width on mobile */
+                transform: translateX(100%); /* Hide off-screen */
+                transition: transform 0.4s ease-in;
+                padding-top: 30px;
+                border-top: 1px solid #eee;
+            }
+            .nav-links li { 
+                margin: 20px 0; 
+                width: 100%;
+                text-align: center;
+            }
+            
+            /* Show Menu when Active */
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+            
+            /* Show Burger Icon */
+            .burger { display: block; }
+            
+            /* Mobile Dropdown Handling */
+            .dropdown-menu {
+                position: relative;
+                box-shadow: none;
+                background: #f9f9f9;
+                width: 100%;
+                text-align: center;
+                display: none; /* Controlled via JS or CSS */
+            }
+            .dropdown:hover .dropdown-menu { display: block; } /* Keep hover for simplicity, or tap */
+            
+            /* Adjust Logo Size on Mobile */
+            .logo img { height: 40px; }
+        }
+    </style>
 </head>
 <body>
 
 <div class="top-bar">
     <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
-    <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701" style="color: inherit; text-decoration: none;">0118 370 1701</a></span>
-    
-    <a href="https://www.google.com/maps/search/?api=1&query=Street15,+Leicester+LE1+1AA" target="_blank" style="color: inherit; text-decoration: none;">
+    <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701">0118 370 1701</a></span>
+    <a href="https://www.google.com/maps/search/?api=1&query=Street15,+Leicester+LE1+1AA" target="_blank">
         <span><i class="fas fa-map-marker-alt"></i> Street15, Leicester LE1 1AA</span>
     </a>
 </div>
@@ -169,24 +243,24 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <header>
     <nav>
         <a href="index.php" class="logo">
-            <img src="assets/logo.png" alt="MotorTrade Specialists Logo">
+            <img src="assets/logo.png" alt="MotorTrade Specialists">
         </a>
         
         <ul class="nav-links" id="navLinks">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About Us</a></li>
             
-            <li class="dropdown">
+            <li class="dropdown" onclick="toggleDropdown(this)">
                 <a href="#" onclick="return false;">Services <i class="fas fa-chevron-down" style="font-size: 0.8rem; margin-left: 5px;"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="service-motor-trade.php">Motor Trade Insurance</a></li>
-                    <li><a href="service-high-risk.php">High-Risk Drivers (Convicted)</a></li>
+                    <li><a href="service-high-risk.php">High-Risk Drivers</a></li>
                     <li><a href="service-road-risk.php">Road Risk & Combined</a></li>
                 </ul>
             </li>
 
             <li><a href="contact.php">Contact</a></li>
-                    <li><a href="referal.php" class="cta-btn">Get a Quote</a></li>
+            <li><a href="referal.php" class="cta-btn">Get a Quote</a></li>
         </ul>
 
         <div class="burger" onclick="toggleMenu()">
@@ -198,30 +272,38 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <script>
     function toggleMenu() {
         const nav = document.getElementById("navLinks");
+        const burger = document.querySelector(".burger i");
+        
         nav.classList.toggle("active");
-    }
-    
-    // Global error handler - log all errors to console, never display on page
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript Error:', e.error);
-        e.preventDefault(); // Prevent default error display
-        return true;
-    });
-    
-    // Catch unhandled promise rejections
-    window.addEventListener('unhandledrejection', function(e) {
-        console.error('Unhandled Promise Rejection:', e.reason);
-        e.preventDefault();
-    });
-    
-    // Function to log PHP errors to console
-    function logErrorToConsole(message, type) {
-        if (type === 'error') {
-            console.error('[PHP Error]', message);
-        } else if (type === 'warning') {
-            console.warn('[PHP Warning]', message);
+        
+        // Change Icon from Bars to X when open
+        if (nav.classList.contains("active")) {
+            burger.classList.remove("fa-bars");
+            burger.classList.add("fa-times");
         } else {
-            console.log('[PHP Info]', message);
+            burger.classList.remove("fa-times");
+            burger.classList.add("fa-bars");
         }
     }
+    
+    // Improved Mobile Dropdown Toggle
+    function toggleDropdown(element) {
+        if (window.innerWidth <= 960) {
+            const menu = element.querySelector('.dropdown-menu');
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+    }
+
+    // Global error handlers
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript Error:', e.error);
+        return true;
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled Promise Rejection:', e.reason);
+    });
 </script>
