@@ -145,7 +145,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+44-800-123-4567",
+        "telephone": "0118 370 1701",
         "contactType": "Customer Service",
         "email": "james@motortradeinsurancesra.co.uk"
       }
@@ -159,8 +159,11 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 
 <div class="top-bar">
     <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
-    <span><i class="fas fa-phone-alt"></i> Call Us: 0800 123 4567</span>
-    <span><i class="fas fa-map-marker-alt"></i> Street15, Leicester LE1 1AA</span>
+    <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701" style="color: inherit; text-decoration: none;">0118 370 1701</a></span>
+    
+    <a href="https://www.google.com/maps/search/?api=1&query=Street15,+Leicester+LE1+1AA" target="_blank" style="color: inherit; text-decoration: none;">
+        <span><i class="fas fa-map-marker-alt"></i> Street15, Leicester LE1 1AA</span>
+    </a>
 </div>
 
 <header>
