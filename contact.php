@@ -1,6 +1,31 @@
 <?php include 'header.php'; ?>
 <?php require_once 'includes/send_email.php'; ?>
 
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+
+<style>
+  /* Map container height fix */
+  gmpx-store-locator {
+    width: 100%;
+    height: 500px; /* Map ki height set ki hai */
+    border-radius: 8px;
+    overflow: hidden;
+    
+    /* Google Locator Colors Match kiye hain aapki site se */
+    --gmpx-color-surface: #fff;
+    --gmpx-color-on-surface: #212121;
+    --gmpx-color-primary: #004aad; /* Aapka blue theme */
+    --gmpx-font-family-base: "Arial", sans-serif;
+  }
+  
+  /* Mobile pe height thodi kam */
+  @media screen and (max-width: 768px) {
+      gmpx-store-locator {
+          height: 400px;
+      }
+  }
+</style>
+
 <div class="container" style="padding-bottom: 60px;">
     
     <div class="text-center" style="margin-bottom: 40px; margin-top: 20px;">
@@ -13,9 +38,7 @@
         <h3 style="margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px;">Send an Enquiry</h3>
 
         <?php
-        // Handle form submission
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['contact_submit'])) {
-            // Collect and sanitize data
             $formData = array(
                 'name' => htmlspecialchars(trim($_POST['contact_name'] ?? '')),
                 'email' => filter_var(trim($_POST['contact_email'] ?? ''), FILTER_SANITIZE_EMAIL),
@@ -23,32 +46,21 @@
                 'message' => htmlspecialchars(trim($_POST['contact_message'] ?? ''))
             );
             
-            // Validate
             $errors = array();
             if (empty($formData['name'])) $errors[] = "Name is required";
-            if (empty($formData['email']) || !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) {
-                $errors[] = "Valid email is required";
-            }
+            if (empty($formData['email']) || !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) $errors[] = "Valid email is required";
             if (empty($formData['message'])) $errors[] = "Message is required";
             
             if (empty($errors)) {
-                // Send email
                 $emailSent = sendContactEmail($formData);
-                
                 if ($emailSent) {
-                    echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                            <strong>✓ Success!</strong> Your message has been sent. We will get back to you shortly.
-                          </div>';
+                    echo '<div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; margin-bottom: 20px;"><strong>✓ Success!</strong> Your message has been sent.</div>';
                     $formData = array('name' => '', 'email' => '', 'phone' => '', 'message' => '');
                 } else {
-                    echo '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                            <strong>! Error:</strong> There was a problem sending your message. Please try again.
-                          </div>';
+                    echo '<div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px;"><strong>! Error:</strong> Problem sending message.</div>';
                 }
             } else {
-                echo '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                        <strong>! Please fix the following:</strong><br>' . implode('<br>', $errors) . '
-                      </div>';
+                echo '<div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 4px; margin-bottom: 20px;"><strong>! Please fix:</strong><br>' . implode('<br>', $errors) . '</div>';
             }
         } else {
             $formData = array('name' => '', 'email' => '', 'phone' => '', 'message' => '');
@@ -83,7 +95,7 @@
 
     <div style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
         
-        <div style="background: #f9f9f9; padding: 30px; border-radius: 8px;">
+        <div style="background: #f9f9f9; padding: 30px; border-radius: 8px; height: fit-content;">
             <h3 style="margin-bottom: 20px;">Contact Information</h3>
             
             <div style="margin-bottom: 20px; display: flex; align-items: start;">
@@ -92,7 +104,7 @@
                 </div>
                 <div>
                     <strong>Our Location:</strong><br>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Street15+Leicester+LE1+1AA" target="_blank" style="color: #666; text-decoration: none;">
+                    <a href="#" style="color: #666; text-decoration: none;">
                         Street15, Leicester LE1 1AA
                     </a>
                 </div>
@@ -133,19 +145,55 @@
             </div>
         </div>
 
-        <div style="height: 100%; min-height: 350px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-            <iframe 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                scrolling="no" 
-                marginheight="0" 
-                marginwidth="0" 
-                src="https://maps.google.com/maps?q=Leicester%20LE1%201AA&t=&z=13&ie=UTF8&iwloc=&output=embed">
-            </iframe>
+        <div style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+            <gmpx-api-loader key="AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs" solution-channel="GMP_QB_locatorplus_v11_cABD"></gmpx-api-loader>
+            
+            <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
         </div>
 
     </div>
 </div>
+
+<script>
+    const CONFIGURATION = {
+    "locations": [
+        {
+            "title": "Motor Trade Referral Specialists",
+            "address1": "Street15",
+            "address2": "Leicester LE1 1AA, UK",
+            "coords": {
+                "lat": 52.6369, 
+                "lng": -1.1398 
+            }, 
+            "placeId": "ChIJYb_xPLpnd0gRLtLyOM8URKM" 
+        }
+    ],
+    "mapOptions": {
+        "center": {"lat": 52.6369, "lng": -1.1398},
+        "fullscreenControl": true,
+        "mapTypeControl": false,
+        "streetViewControl": false,
+        "zoom": 13,
+        "zoomControl": true,
+        "maxZoom": 17,
+        "mapId": ""
+    },
+    "mapsApiKey": "AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs",
+    "capabilities": {
+        "input": true,
+        "autocomplete": true,
+        "directions": true,
+        "distanceMatrix": true,
+        "details": true,
+        "actions": false
+    }
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        await customElements.whenDefined('gmpx-store-locator');
+        const locator = document.querySelector('gmpx-store-locator');
+        locator.configureFromQuickBuilder(CONFIGURATION);
+    });
+</script>
 
 <?php include 'footer.php'; ?>
