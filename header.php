@@ -18,9 +18,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17810625990"></script>
     <script>
@@ -31,9 +28,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
       gtag('config', 'AW-17810625990');
     </script>
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ... rest of your existing head content ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/logo.png">

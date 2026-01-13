@@ -1,5 +1,10 @@
 <?php include 'header.php'; ?>
 
+<!-- Event snippet for Book appointment conversion page -->
+<script>
+gtag('event', 'conversion', {'send_to': 'AW-17810625990/9fqNCLXWytIbEMar4qxC'});
+</script>
+
 <section style="background-color: #f4f6f8; padding: 80px 20px; min-height: 60vh; display: flex; align-items: center;">
     <div class="container" style="max-width: 600px; margin: 0 auto; text-align: center;">
         <?php
