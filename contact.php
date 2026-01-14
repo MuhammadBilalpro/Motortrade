@@ -1,4 +1,3 @@
-Street 15, Leicester LE1 1AA
 <?php include 'header.php'; ?>
 <?php require_once 'includes/send_email.php'; ?>
 
