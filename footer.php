@@ -5,8 +5,8 @@
             
             <p>
                 <i class="fas fa-map-marker-alt"></i> 
-                <a href="https://www.google.com/maps/search/?api=1&query=Street15,+Leicester+LE1+1AA" target="_blank" style="color: inherit; text-decoration: none;">
-                    Street15, Leicester LE1 1AA
+                <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank" style="color: inherit; text-decoration: none;">
+                    85-87 Station Rd, Countesthorpe, Leicester LE8 5TD
                 </a>
             </p>
 

@@ -104,8 +104,8 @@
                 </div>
                 <div>
                     <strong>Our Location:</strong><br>
-                    <a href="#" style="color: #666; text-decoration: none;">
-                        Street15, Leicester LE1 1AA
+                    <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank" style="color: #666; text-decoration: none;">
+                        85-87 Station Rd, Countesthorpe, Leicester LE8 5TD
                     </a>
                 </div>
             </div>
@@ -158,18 +158,18 @@
     const CONFIGURATION = {
     "locations": [
         {
-            "title": "Motor Trade Referral Specialists",
-            "address1": "Street15",
-            "address2": "Leicester LE1 1AA, UK",
+            "title": "85-87 Station Rd",
+            "address1": "85-87 Station Rd",
+            "address2": "Countesthorpe, Leicester LE8 5TD, UK",
             "coords": {
-                "lat": 52.6369, 
-                "lng": -1.1398 
+                "lat": 52.5538101803364, 
+                "lng": -1.1471972128627805 
             }, 
-            "placeId": "ChIJYb_xPLpnd0gRLtLyOM8URKM" 
+            "placeId": "ChIJZdhKP7pnd0gRdwPR-IqyF4A" 
         }
     ],
     "mapOptions": {
-        "center": {"lat": 52.6369, "lng": -1.1398},
+        "center": {"lat": 52.5538101803364, "lng": -1.1471972128627805},
         "fullscreenControl": true,
         "mapTypeControl": false,
         "streetViewControl": false,

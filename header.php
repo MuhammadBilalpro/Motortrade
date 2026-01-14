@@ -78,7 +78,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
       "url": "<?php echo $currentUrl; ?>",
       "logo": "<?php echo $baseUrl; ?>assets/logo.png",
       "serviceType": "Motor Trade Insurance Referral",
-      "address": { "@type": "PostalAddress", "streetAddress": "Street15", "addressLocality": "Leicester", "postalCode": "LE1 1AA", "addressCountry": "UK" },
+      "address": { "@type": "PostalAddress", "streetAddress": "85-87 Station Rd", "addressLocality": "Countesthorpe, Leicester", "postalCode": "LE8 5TD", "addressCountry": "UK" },
       "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "james@motortradeinsurancesra.co.uk" }
     }
     </script>
@@ -260,8 +260,8 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <div class="top-bar">
     <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
     <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701">0118 370 1701</a></span>
-    <a href="https://www.google.com/maps/search/?api=1&query=Street15,+Leicester+LE1+1AA" target="_blank">
-        <span><i class="fas fa-map-marker-alt"></i> Street15, Leicester LE1 1AA</span>
+    <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank">
+        <span><i class="fas fa-map-marker-alt"></i> 85-87 Station Rd, Countesthorpe, Leicester LE8 5TD</span>
     </a>
 </div>
 
