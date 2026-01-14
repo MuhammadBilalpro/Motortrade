@@ -1,3 +1,4 @@
+Street 15, Leicester LE1 1AA
 <?php include 'header.php'; ?>
 <?php require_once 'includes/send_email.php'; ?>
 
@@ -105,7 +106,7 @@
                 <div>
                     <strong>Our Location:</strong><br>
                     <a href="#" style="color: #666; text-decoration: none;">
-                        Street15, Leicester LE1 1AA
+                        Street 15, Leicester LE1 1AA
                     </a>
                 </div>
             </div>
@@ -147,7 +148,6 @@
 
         <div style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
             <gmpx-api-loader key="AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs" solution-channel="GMP_QB_locatorplus_v11_cABD"></gmpx-api-loader>
-            
             <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
         </div>
 
@@ -159,7 +159,7 @@
     "locations": [
         {
             "title": "Motor Trade Referral Specialists",
-            "address1": "Street15",
+            "address1": "Street 15",
             "address2": "Leicester LE1 1AA, UK",
             "coords": {
                 "lat": 52.6369, 
@@ -176,7 +176,7 @@
         "zoom": 13,
         "zoomControl": true,
         "maxZoom": 17,
-        "mapId": ""
+        "mapId": "DEMO_MAP_ID"
     },
     "mapsApiKey": "AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs",
     "capabilities": {
