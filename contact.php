@@ -1,26 +1,14 @@
+
 <?php include 'header.php'; ?>
 <?php require_once 'includes/send_email.php'; ?>
 
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
-
 <style>
-  /* Map container height fix */
-  gmpx-store-locator {
-    width: 100%;
-    height: 500px; /* Map ki height set ki hai */
-    border-radius: 8px;
-    overflow: hidden;
-    
-    /* Google Locator Colors Match kiye hain aapki site se */
-    --gmpx-color-surface: #fff;
-    --gmpx-color-on-surface: #212121;
-    --gmpx-color-primary: #004aad; /* Aapka blue theme */
-    --gmpx-font-family-base: "Arial", sans-serif;
+  /* Mobile pe map height thodi kam */
+  .map-container iframe {
+      height: 500px;
   }
-  
-  /* Mobile pe height thodi kam */
   @media screen and (max-width: 768px) {
-      gmpx-store-locator {
+      .map-container iframe {
           height: 400px;
       }
   }
@@ -145,55 +133,18 @@
             </div>
         </div>
 
-        <div style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-            <gmpx-api-loader key="AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs" solution-channel="GMP_QB_locatorplus_v11_cABD"></gmpx-api-loader>
-            
-            <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
+        <div class="map-container" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2420.3!2d-1.1471972128627805!3d52.5538101803364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487761266209ef5f%3A0x8e83b8a135905d6e!2s85-87%20Station%20Rd%2C%20Countesthorpe%2C%20Leicester%20LE8%205TD%2C%20UK!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                width="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
 
     </div>
 </div>
-
-<script>
-    const CONFIGURATION = {
-    "locations": [
-        {
-            "title": "85-87 Station Rd",
-            "address1": "85-87 Station Rd",
-            "address2": "Countesthorpe, Leicester LE8 5TD, UK",
-            "coords": {
-                "lat": 52.5538101803364, 
-                "lng": -1.1471972128627805 
-            }, 
-            "placeId": "ChIJZdhKP7pnd0gRdwPR-IqyF4A" 
-        }
-    ],
-    "mapOptions": {
-        "center": {"lat": 52.5538101803364, "lng": -1.1471972128627805},
-        "fullscreenControl": true,
-        "mapTypeControl": false,
-        "streetViewControl": false,
-        "zoom": 13,
-        "zoomControl": true,
-        "maxZoom": 17,
-        "mapId": ""
-    },
-    "mapsApiKey": "AIzaSyDbZp4CGkcSJrvv_aVS9SLhn52owYLT3Cs",
-    "capabilities": {
-        "input": true,
-        "autocomplete": true,
-        "directions": true,
-        "distanceMatrix": true,
-        "details": true,
-        "actions": false
-    }
-    };
-
-    document.addEventListener('DOMContentLoaded', async () => {
-        await customElements.whenDefined('gmpx-store-locator');
-        const locator = document.querySelector('gmpx-store-locator');
-        locator.configureFromQuickBuilder(CONFIGURATION);
-    });
-</script>
 
 <?php include 'footer.php'; ?>

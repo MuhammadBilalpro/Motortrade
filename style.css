@@ -23,7 +23,7 @@ h1, h2, h3 { color: var(--text-dark); margin-bottom: 15px; font-weight: 700; }
 .section-subtitle { color: var(--text-light); margin-bottom: 40px; font-size: 1.1rem; }
 
 /* --- 3. Header & Navigation --- */
-header { background: var(--white); border-bottom: 3px solid var(--primary-color); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; }
+header { background: var(--white); border-bottom: 0px solid var(--white); box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 1000; }
 nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto; }
 
 .logo img {

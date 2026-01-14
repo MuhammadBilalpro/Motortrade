@@ -92,9 +92,9 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         /* Top Bar Styles */
         .top-bar {
-            background-color: #004aad;
+            background-color: #951f20;
             color: white;
-            padding: 10px 5%;
+            padding: 0px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -145,7 +145,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         /* CTA Button */
         .cta-btn {
-            background-color: #ff6b00;
+            background-color: #951f20;
             color: white !important;
             padding: 10px 20px;
             border-radius: 5px;
