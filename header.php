@@ -145,7 +145,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
         
         /* CTA Button */
         .cta-btn {
-            background-color: #ff6b00;
+            background-color: #fff;
             color: white !important;
             padding: 10px 20px;
             border-radius: 5px;
