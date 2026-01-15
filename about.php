@@ -39,8 +39,8 @@
         </div>
 
         <div class="about-image animate-right">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUU7y7pKYj2Sa0EwAYcRnT4n9-ZXX8UohaIw&s" 
-                 alt="Our Team" 
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80" 
+                 alt="Professional Insurance Team" 
                  style="width: 100%; border-radius: 15px; box-shadow: 0 15px 30px rgba(149, 31, 32, 0.2); border: 5px solid #fff;">
             
             <div style="position: absolute; bottom: -20px; right: -20px; background: #951F20; color: white; padding: 20px; border-radius: 10px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">

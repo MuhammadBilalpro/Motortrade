@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://www.iexpats.com/wp-content/uploads/2023/03/motor-trade-iexpats.jpg'); background-size: cover; background-position: center;">
+<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1600&q=80'); background-size: cover; background-position: center;">
     
     <div class="hero-text-box">
         <h1>Motor Trade <span>Insurance</span></h1>
@@ -35,6 +35,7 @@
                         <option>Car Sales</option>
                         <option>Mechanic</option>
                         <option>Valeter</option>
+                        <option>Recovery</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-3d">Get Quote Now</button>
@@ -64,7 +65,7 @@
                 
                 <li><strong>Passenger Transport:</strong> Looking for <strong>cheap private hire insurance</strong> or the <strong>cheapest taxi insurance</strong>? We compare the market for you.</li>
                 
-                <li><strong>Modern Fleets:</strong> Policies suitable for hybrids and <strong>new electric cars 2020</strong> models onwards.</li>
+                <li><strong>Modern Fleets:</strong> Policies suitable for hybrids and electric car models.</li>
                 
                 <li><strong>Flexible Work:</strong> Coverage available for specific <strong>contract work insurance</strong> needs.</li>
             </ul>
@@ -72,13 +73,13 @@
             <br>
             <p style="font-size: 0.95rem; color: #555;">
                 <strong>Get the Best Rates:</strong> We understand that every penny counts. Contact us to find the best <strong>trade insurance price</strong> or request a specific <strong>private hire insurance quote</strong> today. 
-                Our partners also assist with the <strong>mid update</strong> (Motor Insurance Database) to keep your vehicles legal on the road.
+                Our partners also assist with the <strong>MID update</strong> (Motor Insurance Database) to keep your vehicles legal on the road.
             </p>
 
         </div>
         
         <div class="about-image">
-            <img src="https://img.freepik.com/free-photo/young-couple-talking-sales-person-car-showroom_1303-15135.jpg?semt=ais_hybrid&w=740&q=80" alt="Car Dealer & Insurance" style="width:100%; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80" alt="Car Dealer & Insurance" style="width:100%; border-radius:10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
         </div>
     </div>
 </section>

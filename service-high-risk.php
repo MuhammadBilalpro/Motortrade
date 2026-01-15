@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://jensteninsurance.co.uk/wp-content/uploads/2023/12/Motor-Trade-Combined-Insurance.jpg'); background-size: cover; background-position: center;">
+<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80'); background-size: cover; background-position: center;">
     
     <div class="hero-text-box">
         <h1>Convicted Driver <span>Insurance</span></h1>
@@ -14,7 +14,8 @@
     </div>
 
     <div class="hero-form-3d">
-        <div class="form-3d-header" style="background: linear-gradient(135deg, #333 0%, #000 100%);"> Confidential Quote
+        <div class="form-3d-header" style="background: linear-gradient(135deg, #333 0%, #000 100%);">
+            Confidential Quote
         </div>
         <div class="form-3d-body">
             <form action="referal.php" method="POST">
@@ -47,7 +48,6 @@
 <section class="container">
     <div class="text-center">
         <h2 class="section-title">Convicted Driver Insurance for Motor Traders</h2>
-        
         <p class="section-subtitle">We believe everyone with <strong>driving convictions</strong> deserves a second chance to earn a living.</p>
     </div>
 

@@ -6,7 +6,7 @@
             <ul>
                 <li>
                     <i class="fas fa-map-marker-alt"></i> 
-                    <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank">
+                    <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank" rel="noopener">
                         85-87 Station Rd, Countesthorpe, Leicester LE8 5TD
                     </a>
                 </li>
@@ -32,7 +32,12 @@
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="service-motor-trade.php">Motor Trade Insurance</a></li>
+                <li><a href="service-high-risk.php">Convicted Driver Cover</a></li>
+                <li><a href="service-road-risk.php">Road Risk Insurance</a></li>
                 <li><a href="referal.php">Get a Quote</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
                 <li><a href="privacy.php">Privacy Policy</a></li>
             </ul>
         </div>
@@ -42,35 +47,19 @@
             <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">
                 <strong>Introducer Only:</strong> We do not offer insurance advice. We act solely as an introducer to authorized insurance brokers who will provide your quote.
             </p>
+            <br>
+            <p style="color: #bbb; font-size: 0.85rem;">
+                <i class="fas fa-shield-alt" style="color: #951F20;"></i> GDPR Compliant | Your data is protected
+            </p>
         </div>
 
     </div>
     
     <div class="copyright">
-        &copy; <?php echo date("Y"); ?> Motor Trade Referral Specialists. All Rights Reserved.
+        &copy; <?php echo date("Y"); ?> Motor Trade Insurance Specialists. All Rights Reserved. | 
+        <a href="privacy.php" style="color: #888;">Privacy Policy</a>
     </div>
 </footer>
-
-<script>
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    
-    if(burger){
-        burger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            
-            // Icon animation
-            const icon = burger.querySelector('i');
-            if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-    }
-</script>
 
 </body>
 </html>

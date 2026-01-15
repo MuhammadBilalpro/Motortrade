@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://internationalfireandsafetyjournal.com/wp-content/uploads/2024/04/road-traffic-collision.jpg'); background-size: cover; background-position: center;">
+<section class="hero-split" style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1600&q=80'); background-size: cover; background-position: center;">
     
     <div class="hero-text-box">
         <h1>Road Risk & <span>Combined</span></h1>
