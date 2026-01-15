@@ -79,7 +79,7 @@
 </section>
 
 <section class="container" style="
-    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url('https://www.ballantineinsuranceni.co.uk/motor-trade-gap-insurance/');
+    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url('https://www.tradex.com/images/default-source/default-album/man-with-brown-hair-stands-in-a-garage-wth-a-clipboard.png?sfvrsn=f2d95112_1');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;">
