@@ -752,19 +752,25 @@ footer {
     
     .hero-text-box ul {
         text-align: left;
-        display: inline-block;
+        display: block;
         margin-top: 10px;
+        padding: 0 10px;
     }
     
     .hero-text-box ul li { 
+        display: flex;
+        align-items: center;
         justify-content: flex-start;
-        font-size: 0.75rem;
-        margin-bottom: 5px;
-        gap: 6px;
+        font-size: 0.78rem;
+        margin-bottom: 8px;
+        gap: 8px;
+        line-height: 1.4;
     }
     
     .hero-text-box ul li i {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        min-width: 16px;
+        color: #ff5252;
     }
     
     /* Form Fix Mobile */
