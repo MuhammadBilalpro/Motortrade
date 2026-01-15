@@ -3,15 +3,21 @@
 <section class="hero-split">
     
     <div class="hero-text-box">
-        <h1>Motor Trade Insurance <span>Specialists</span></h1>
-        <h2>Save up to 50% on your policy <i class="fas fa-arrow-right"></i></h2>
+        <h1>Specialist <span>Motor Trade Insurance</span> (Convictions & Bans)</h1>
+        
+        <h2>Competitive Convicted Driver Insurance for <strong>DR10, IN10 & Banned Traders</strong> <i class="fas fa-arrow-right"></i></h2>
+        
+        <p style="margin-bottom: 20px; font-size: 1.1rem; line-height: 1.6;">
+            We understand that mistakes happen. [cite_start]If you are looking for <strong>motor trade insurance with a conviction</strong> [cite: 3] [cite_start]or have been a <strong>banned driver</strong>[cite: 8], we can help. 
+            [cite_start]We specialize in <strong>high-risk motor trade insurance</strong> [cite: 7] [cite_start]and helping <strong>motor traders</strong> who have been <strong>declined elsewhere</strong> [cite: 9] [cite_start]due to alcohol or drug offenses[cite: 16, 20].
+        </p>
         
         <ul>
-            <li><i class="fas fa-check"></i> Cover for All Motor Trade Occupations</li>
-            <li><i class="fas fa-check"></i> Compare Your Quote to find savings</li>
-            <li><i class="fas fa-check"></i> Free No-Obligation Quotes</li>
-            <li><i class="fas fa-check"></i> Immediate Cover available</li>
-            <li><i class="fas fa-check"></i> Over 25? Get a Cheap Road Risk Quote</li>
+            <li><i class="fas fa-check"></i> <strong>Hard to Place</strong> & Convicted Motor Trader Insurance</li>
+            <li><i class="fas fa-check"></i> Cover available <strong>after Driving Ban</strong> or Disqualification</li>
+            <li><i class="fas fa-check"></i> Specialist Rates for <strong>DR10, DR80, IN10</strong> & Points</li>
+            <li><i class="fas fa-check"></i> <strong>Refused or Declined?</strong> We Quote Non-Standard Risks</li>
+            <li><i class="fas fa-check"></i> <strong>Cheap Motor Trade Insurance</strong> for Convictions</li>
         </ul>
     </div>
 
@@ -73,7 +79,12 @@
     </div>
 </section>
 
-<section class="container" style="background-color: var(--bg-light);">
+<section class="container" style="
+    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url('https://www.ballantineinsuranceni.co.uk/motor-trade-gap-insurance/');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;">
+    
     <div class="text-center">
         <h2 class="section-title">Our Motor Trade Insurance Services</h2>
         <p class="section-subtitle">Tailored protection for every aspect of your <strong style="color:var(--primary);">trade business</strong>.</p>
@@ -95,7 +106,7 @@
         <div class="card">
             <div class="card-icon"><i class="fas fa-gavel"></i></div>
             <h3>Convicted Driver Insurance</h3>
-            <p>We help traders with adverse history (DR10, IN10) find competitive <strong>convicted driver insurance</strong> where others can't.</p>
+            <p>We help traders with adverse history (<strong>DR10, IN10</strong>) find <strong>competitive convicted driver insurance</strong>. Even if you have been <strong>declined</strong> elsewhere.</p>
         </div>
 
         <div class="card">
