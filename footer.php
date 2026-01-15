@@ -12,8 +12,8 @@
 
             <p>
                 <i class="fas fa-envelope"></i> 
-                <a href="mailto:james@motortradeinsurancesra.co.uk" style="color: inherit; text-decoration: none;">
-                    james@motortradeinsurancesra.co.uk
+                <a href="mailto:info@motortradeinsurancesra.co.uk" style="color: inherit; text-decoration: none;">
+                    info@motortradeinsurancesra.co.uk
                 </a>
             </p>
 
