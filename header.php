@@ -130,7 +130,7 @@
         .top-bar {
             background-color: #951f20;
             color: white;
-            padding: 0px 5%;
+            padding: 0px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
