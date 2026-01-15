@@ -104,8 +104,8 @@
                 </div>
                 <div>
                     <strong>Email Us:</strong><br>
-                    <a href="mailto:james@motortradeinsurancesra.co.uk" style="color: #666; text-decoration: none;">
-                        james@motortradeinsurancesra.co.uk
+                    <a href="mailto:info@motortradeinsurancesra.co.uk" style="color: #666; text-decoration: none;">
+                        info@motortradeinsurancesra.co.uk
                     </a>
                 </div>
             </div>

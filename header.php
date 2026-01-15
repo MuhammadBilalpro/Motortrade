@@ -15,8 +15,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="icon" type="image/png" href="https://motortradeinsurancesra.co.uk/assets/logo.png">
+    <link rel="icon" type="image/x-icon" href="https://motortradeinsurancesra.co.uk/favicon.ico">
+    <link rel="apple-touch-icon" href="https://motortradeinsurancesra.co.uk/assets/logo.png">
     
     <?php
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
@@ -27,7 +28,7 @@
     $seoData = array(
         'index' => array(
             'title' => 'Motor Trade Insurance UK | DR10, IN10 Convicted Driver & Banned Driver Quotes',
-            'description' => 'Specialist Motor Trade Insurance for convicted drivers with DR10, IN10, DR80, TT99. Motor trade insurance drink driving, after ban, declined elsewhere. Cheap motor trade insurance quotes UK.',
+            'description' => 'Specialist Motor Trade Insurance for DR10, IN10, DR80 convicted drivers. Motor trade insurance drink driving, banned driver, after ban, declined elsewhere. Contact: info@motortradeinsurancesra.co.uk | 85-87 Station Rd, Leicester LE8 5TD',
             'keywords' => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
         ),
         'about' => array(
@@ -122,8 +123,14 @@
             "postalCode": "LE8 5TD",
             "addressCountry": "GB"
         },
-        "telephone": "+441183701701",
+        "telephone": "+44 0118 370 1701",
         "email": "info@motortradeinsurancesra.co.uk",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+44 0118 370 1701",
+            "email": "info@motortradeinsurancesra.co.uk",
+            "contactType": "customer service"
+        },
         "openingHours": "Mo-Fr 09:00-18:00",
         "priceRange": "££",
         "areaServed": {
