@@ -253,6 +253,23 @@ nav {
     flex: 1; 
 }
 
+.form-col-small {
+    flex: 0 0 70px;
+}
+
+.dob-row select {
+    flex: 1;
+}
+
+.card-icon {
+    margin-bottom: 15px;
+}
+
+.card-icon i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
 input, select, textarea { 
     width: 100%; 
     padding: 12px; 
