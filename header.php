@@ -17,20 +17,22 @@
     <link rel="shortcut icon" href="assets/logo.png" type="image/png">
 
     <?php
+    // Get current filename without extension
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     $baseUrl = 'https://motortradeinsurancesra.co.uk/';
-    // Safe URL creation
+    
+    // Construct Current URL (Safe Method)
     if ($currentPage == 'index') {
         $currentUrl = $baseUrl;
     } else {
         $currentUrl = $baseUrl . $currentPage . '.php';
     }
     
-    // SEO Data
+    // SEO Data - Updated for Google Content & Keywords
     $seoData = array(
         'index' => array(
             'title' => 'Convicted Motor Trade Insurance | DR10, IN10 & Banned Driver Quotes', 
-            'description' => 'Specialist Motor Trade Insurance for convicted drivers (DR10, IN10). Refused or banned? We provide competitive quotes for high-risk traders.', 
+            'description' => 'Specialist Motor Trade Insurance for convicted drivers (DR10, IN10, DR80). Refused, banned or declined elsewhere? Get competitive high-risk trader quotes.', 
             'keywords' => 'motor trade insurance convicted, dr10 insurance, banned driver insurance, in10, refused motor trade insurance'
         ),
         'about' => array(
@@ -40,7 +42,7 @@
         ),
         'service-motor-trade' => array(
             'title' => 'Motor Trade Insurance | Comprehensive Cover', 
-            'description' => 'Motor trade insurance for car dealers, mechanics & traders.', 
+            'description' => 'Motor trade insurance for car dealers, mechanics & traders. Save on road risk and combined policies.', 
             'keywords' => 'car dealer insurance, mechanic insurance'
         ),
         'service-high-risk' => array(
@@ -50,22 +52,22 @@
         ),
         'service-road-risk' => array(
             'title' => 'Road Risk & Combined Motor Trade Insurance', 
-            'description' => 'Road risk only or combined motor trade insurance.', 
+            'description' => 'Road risk only or combined motor trade insurance quotes.', 
             'keywords' => 'road risk insurance'
         ),
         'contact' => array(
             'title' => 'Contact Us | Motor Trade Insurance Referral Specialists', 
-            'description' => 'Contact our motor trade insurance referral service.', 
+            'description' => 'Contact our motor trade insurance referral service for a free quote.', 
             'keywords' => 'contact motor trade insurance'
         ),
         'referral' => array(
             'title' => 'Get a Motor Trade Insurance Quote', 
-            'description' => 'Get your free motor trade insurance quote.', 
+            'description' => 'Get your free motor trade insurance quote today.', 
             'keywords' => 'motor trade insurance quote'
         ),
         'referal' => array(
             'title' => 'Get a Motor Trade Insurance Quote', 
-            'description' => 'Get your free motor trade insurance quote.', 
+            'description' => 'Get your free motor trade insurance quote today.', 
             'keywords' => 'motor trade insurance quote'
         ),
         'privacy' => array(
@@ -75,7 +77,7 @@
         )
     );
 
-    // Safe fallback logic
+    // Safe Logic to select page data
     if (isset($seoData[$currentPage])) {
         $page = $seoData[$currentPage];
     } else {
@@ -112,7 +114,7 @@
       "image": "<?php echo $baseUrl; ?>assets/logo.png", 
       "serviceType": "Motor Trade Insurance Referral",
       "address": { "@type": "PostalAddress", "streetAddress": "85-87 Station Rd", "addressLocality": "Countesthorpe, Leicester", "postalCode": "LE8 5TD", "addressCountry": "UK" },
-      "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "james@motortradeinsurancesra.co.uk" },
+      "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "info@motortradeinsurancesra.co.uk" },
       "priceRange": "$$"
     }
     </script>
@@ -292,7 +294,7 @@
 <body>
 
 <div class="top-bar">
-    <span><i class="fas fa-envelope"></i> james@motortradeinsurancesra.co.uk</span>
+    <span><i class="fas fa-envelope"></i> info@motortradeinsurancesra.co.uk</span>
     <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701">0118 370 1701</a></span>
     <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank">
         <span><i class="fas fa-map-marker-alt"></i> 85-87 Station Rd, Countesthorpe, Leicester LE8 5TD</span>
