@@ -127,20 +127,69 @@
         body { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         
         /* Top Bar Styles */
-        .top-bar {
-            background-color: #951f20;
-            color: white;
-            padding: 0px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-        }
-        .top-bar span { margin-right: 15px; }
-        .top-bar a { color: white; text-decoration: none; }
-        .top-bar a:hover { text-decoration: underline; }
+      /* --- Professional Top Bar Styling --- */
+.top-bar {
+    background-color: #951f20; /* Aapka Red Color */
+    color: white;
+    padding: 0px 10%; /* Thora vertical padding diya taake text chipke nahi */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle divider line */
+}
 
+/* Har item ke liye styling */
+.top-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+/* Links ki styling */
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500; /* Thora bold taake red par saaf dikhe */
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease; /* Smooth effect */
+}
+
+/* Icons ki spacing */
+.top-bar i {
+    margin-right: 8px;
+    color: rgba(255, 255, 255, 0.8); /* Icon thora sa light taake text highlight ho */
+}
+
+/* Hover Effect (Jab mouse upar layenge) */
+.top-bar a:hover {
+    color: #ffcc00; /* Yellow tint on hover */
+    text-decoration: none;
+    transform: translateY(-1px); /* Slight lift effect */
+}
+.top-bar a:hover i {
+    color: #fff;
+}
+
+/* Mobile Responsiveness ke liye */
+@media screen and (max-width: 960px) {
+    .top-bar {
+        padding: 10px 5%;
+        justify-content: center;
+        gap: 10px;
+        text-align: center;
+    }
+    .top-item {
+        width: 100%; /* Mobile pe har item alag line mein */
+        justify-content: center;
+    }
+    .address-hide {
+        display: none; /* Mobile pe address chupa dein taake crowd na ho (Optional) */
+    }
+}
         /* Header & Nav Styles */
         header {
             background: white;
@@ -294,11 +343,23 @@
 <body>
 
 <div class="top-bar">
-    <span><i class="fas fa-envelope"></i> info@motortradeinsurancesra.co.uk</span>
-    <span><i class="fas fa-phone-alt"></i> Call Us: <a href="tel:01183701701">0118 370 1701</a></span>
-    <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank">
-        <span><i class="fas fa-map-marker-alt"></i> 85-87 Station Rd, Countesthorpe, Leicester LE8 5TD</span>
-    </a>
+    <div class="top-item">
+        <a href="mailto:info@motortradeinsurancesra.co.uk">
+            <i class="fas fa-envelope"></i> info@motortradeinsurancesra.co.uk
+        </a>
+    </div>
+
+    <div class="top-item">
+        <a href="tel:01183701701">
+            <i class="fas fa-phone-alt"></i> Call Us: 0118 370 1701
+        </a>
+    </div>
+
+    <div class="top-item address-hide">
+        <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> 85-87 Station Rd, Countesthorpe, Leicester LE8 5TD
+        </a>
+    </div>
 </div>
 
 <header>
