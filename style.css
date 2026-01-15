@@ -35,9 +35,10 @@ img {
     color: white;
     padding: 10px 5%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     font-size: 0.9rem;
-    gap: 20px;
+    gap: 30px;
     flex-wrap: wrap;
 }
 .top-bar a { color: white; text-decoration: none; display: flex; align-items: center; gap: 5px; }

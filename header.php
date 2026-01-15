@@ -154,8 +154,8 @@
     <div class="top-item">
         <a href="tel:01183701701"><i class="fas fa-phone-alt"></i> Call Us: 0118 370 1701</a>
     </div>
-    <div class="top-item address-hide">
-        <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> Leicester, UK</a>
+    <div class="top-item">
+        <a href="https://www.google.com/maps/search/?api=1&query=85-87+Station+Rd,+Countesthorpe,+Leicester+LE8+5TD" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt"></i> 85-87 Station Rd, Leicester LE8 5TD</a>
     </div>
 </div>
 
