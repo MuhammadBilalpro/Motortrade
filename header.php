@@ -1,20 +1,3 @@
-<?php
-// Set up error handler to log PHP errors to JavaScript console
-set_error_handler(function($errno, $errstr, $errfile, $errline) {
-    if (!(error_reporting() & $errno)) { return false; }
-    $errorType = 'Unknown';
-    switch($errno) {
-        case E_ERROR: case E_CORE_ERROR: case E_COMPILE_ERROR: case E_USER_ERROR: case E_RECOVERABLE_ERROR: $errorType = 'Error'; break;
-        case E_WARNING: case E_CORE_WARNING: case E_COMPILE_WARNING: case E_USER_WARNING: $errorType = 'Warning'; break;
-        case E_NOTICE: case E_USER_NOTICE: $errorType = 'Notice'; break;
-        case E_DEPRECATED: case E_USER_DEPRECATED: $errorType = 'Deprecated'; break;
-    }
-    $errorMsg = htmlspecialchars($errstr, ENT_QUOTES, 'UTF-8');
-    $errorFile = htmlspecialchars(basename($errfile), ENT_QUOTES, 'UTF-8');
-    echo "<script>console.error('[PHP {$errorType}] {$errorMsg} in {$errorFile} on line {$errline}');</script>\n";
-    return true;
-}, E_ALL & ~E_DEPRECATED & ~E_STRICT);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,64 +13,74 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
 
     <?php
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     $baseUrl = 'https://motortradeinsurancesra.co.uk/';
-    $currentUrl = $baseUrl . ($currentPage == 'index' ? '' : $currentPage . '.php');
+    // Safe URL creation
+    if ($currentPage == 'index') {
+        $currentUrl = $baseUrl;
+    } else {
+        $currentUrl = $baseUrl . $currentPage . '.php';
+    }
     
-    [cite_start]// SEO Data - UPDATED FOR CONVICTED DRIVER KEYWORDS [cite: 1, 2, 3, 4]
-    $seoData = [
-        'index' => [
+    // SEO Data
+    $seoData = array(
+        'index' => array(
             'title' => 'Convicted Motor Trade Insurance | DR10, IN10 & Banned Driver Quotes', 
-            'description' => 'Specialist Motor Trade Insurance for convicted drivers (DR10, IN10). Refused or banned? We provide competitive quotes for high-risk traders. Save up to 50%.', 
+            'description' => 'Specialist Motor Trade Insurance for convicted drivers (DR10, IN10). Refused or banned? We provide competitive quotes for high-risk traders.', 
             'keywords' => 'motor trade insurance convicted, dr10 insurance, banned driver insurance, in10, refused motor trade insurance'
-        ],
-        'about' => [
+        ),
+        'about' => array(
             'title' => 'About Us | High Risk Motor Trade Insurance Specialists', 
             'description' => 'We connect motor traders with trusted insurance brokers, specializing in hard-to-place and convicted driver policies.', 
             'keywords' => 'motor trade insurance introducer, high risk insurance'
-        ],
-        'service-motor-trade' => [
+        ),
+        'service-motor-trade' => array(
             'title' => 'Motor Trade Insurance | Comprehensive Cover', 
             'description' => 'Motor trade insurance for car dealers, mechanics & traders.', 
             'keywords' => 'car dealer insurance, mechanic insurance'
-        ],
-        'service-high-risk' => [
+        ),
+        'service-high-risk' => array(
             'title' => 'Convicted Driver Insurance | DR10, IN10 & Bans', 
             'description' => 'Motor trade insurance for convicted drivers. We help with DR10, drug driving bans, and refused insurance.', 
             'keywords' => 'convicted driver insurance, DR10 insurance, drug driving insurance'
-        ],
-        'service-road-risk' => [
+        ),
+        'service-road-risk' => array(
             'title' => 'Road Risk & Combined Motor Trade Insurance', 
             'description' => 'Road risk only or combined motor trade insurance.', 
             'keywords' => 'road risk insurance'
-        ],
-        'contact' => [
+        ),
+        'contact' => array(
             'title' => 'Contact Us | Motor Trade Insurance Referral Specialists', 
             'description' => 'Contact our motor trade insurance referral service.', 
             'keywords' => 'contact motor trade insurance'
-        ],
-        'referral' => [
+        ),
+        'referral' => array(
             'title' => 'Get a Motor Trade Insurance Quote', 
             'description' => 'Get your free motor trade insurance quote.', 
             'keywords' => 'motor trade insurance quote'
-        ],
-        'referal' => [
+        ),
+        'referal' => array(
             'title' => 'Get a Motor Trade Insurance Quote', 
             'description' => 'Get your free motor trade insurance quote.', 
             'keywords' => 'motor trade insurance quote'
-        ],
-        'privacy' => [
+        ),
+        'privacy' => array(
             'title' => 'Privacy Policy', 
             'description' => 'Privacy policy and GDPR compliance.', 
             'keywords' => 'privacy policy'
-        ]
-    ];
-    $page = $seoData[$currentPage] ?? $seoData['index'];
+        )
+    );
+
+    // Safe fallback logic
+    if (isset($seoData[$currentPage])) {
+        $page = $seoData[$currentPage];
+    } else {
+        $page = $seoData['index'];
+    }
     ?>
     
     <title><?php echo htmlspecialchars($page['title']); ?></title>
@@ -363,8 +356,4 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
             }
         }
     }
-
-    // Error logging
-    window.addEventListener('error', function(e) { console.error('JavaScript Error:', e.error); return true; });
-    window.addEventListener('unhandledrejection', function(e) { console.error('Unhandled Promise Rejection:', e.reason); });
 </script>
