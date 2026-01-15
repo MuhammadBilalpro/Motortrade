@@ -104,6 +104,18 @@
                 <h3>Part-Time Traders</h3>
                 <p>Flexible policies designed for mechanics and dealers operating from home as a second income.</p>
             </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-ban"></i></div>
+                <h3>Banned Drivers</h3>
+                <p>Recently unbanned? We help you get back on the road with fair insurance premiums.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-user-friends"></i></div>
+                <h3>Young Traders</h3>
+                <p>Insurance solutions for motor traders under 25 who struggle to find cover elsewhere.</p>
+            </div>
         </div>
     </div>
 </section>
