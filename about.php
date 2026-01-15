@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<section class="about-hero animate-up">
+<section class="about-hero animate-up" style="background: linear-gradient(rgba(149, 31, 32, 0.9), rgba(112, 21, 22, 0.9)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80'); background-size: cover; background-position: center;">
     <h1>About Us</h1>
     <p>Connecting Traders with Trusted Insurers since 2010</p>
 </section>
