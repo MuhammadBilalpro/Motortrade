@@ -6,10 +6,11 @@
         <h1>Motor Trade <span>Insurance</span></h1>
         <h2>Comprehensive Cover for Dealers & Mechanics</h2>
         <ul>
-            <li><i class="fas fa-check"></i> Buying & Selling Vehicles</li>
-            <li><i class="fas fa-check"></i> Mechanics & Servicing</li>
-            <li><i class="fas fa-check"></i> Customer Vehicles Covered</li>
-            <li><i class="fas fa-check"></i> Liability Protection Included</li>
+            <li><i class="fas fa-check"></i> Cheap Motor Trade Insurance Quotes</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance with Endorsements</li>
+            <li><i class="fas fa-check"></i> Specialist Motor Trade Insurance</li>
+            <li><i class="fas fa-check"></i> Compare Motor Trade Insurance</li>
+            <li><i class="fas fa-check"></i> Affordable Motor Trade Insurance</li>
         </ul>
     </div>
 

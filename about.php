@@ -2,7 +2,7 @@
 
 <section class="about-hero animate-up" style="background: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80'); background-size: cover; background-position: center; padding: 100px 5%; min-height: 300px;">
     <h1>About Us</h1>
-    <p>Connecting Traders with Trusted Insurers since 2010</p>
+    <p style="color: #ff5252; font-weight: 600;">Connecting Traders with Trusted Insurers since 2010</p>
 </section>
 
 <section class="container">

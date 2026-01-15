@@ -4,12 +4,13 @@
     
     <div class="hero-text-box">
         <h1>Convicted Driver <span>Insurance</span></h1>
-        <h2>DR10, IN10, TT99? We Can Help.</h2>
+        <h2>DR10, IN10, DR80, TT99? We Can Help.</h2>
         <ul>
-            <li><i class="fas fa-check"></i> Specialist "High Risk" Brokers</li>
-            <li><i class="fas fa-check"></i> Drink Driving & Bans Covered</li>
-            <li><i class="fas fa-check"></i> Fair Prices for Past Mistakes</li>
-            <li><i class="fas fa-check"></i> Instant Cover Available</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance Drink Driving</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance After Ban</li>
+            <li><i class="fas fa-check"></i> DR10 Motor Trade Insurance</li>
+            <li><i class="fas fa-check"></i> High Risk Motor Trade Insurance</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance Declined Elsewhere</li>
         </ul>
     </div>
 

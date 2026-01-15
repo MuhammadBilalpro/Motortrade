@@ -4,14 +4,14 @@
     
     <div class="hero-text-box">
         <h1>Motor Trade Insurance <span>Specialists</span></h1>
-        <h2>Save up to 50% on your policy <i class="fas fa-arrow-right"></i></h2>
+        <h2>DR10, IN10 & Convicted Driver Insurance <i class="fas fa-arrow-right"></i></h2>
         
         <ul>
-            <li><i class="fas fa-check"></i> Cover for All Motor Trade Occupations</li>
-            <li><i class="fas fa-check"></i> Compare Your Quote to find savings</li>
-            <li><i class="fas fa-check"></i> Free No-Obligation Quotes</li>
-            <li><i class="fas fa-check"></i> Immediate Cover available</li>
-            <li><i class="fas fa-check"></i> Over 25? Get a Cheap Road Risk Quote</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance with Convictions</li>
+            <li><i class="fas fa-check"></i> DR10 & Drink Driving Insurance</li>
+            <li><i class="fas fa-check"></i> Banned Driver & High Risk Cover</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance After Ban</li>
+            <li><i class="fas fa-check"></i> Cheap Motor Trade Insurance Quotes</li>
         </ul>
     </div>
 

@@ -6,10 +6,11 @@
         <h1>Road Risk & <span>Combined</span></h1>
         <h2>Premises, Tools, and Vehicle Cover in One.</h2>
         <ul>
-            <li><i class="fas fa-check"></i> Buildings & Contents Insurance</li>
-            <li><i class="fas fa-check"></i> Public & Employers Liability</li>
-            <li><i class="fas fa-check"></i> Stock of Vehicles on Premises</li>
-            <li><i class="fas fa-check"></i> Road Risk (Driving) Included</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance Non Standard Risk</li>
+            <li><i class="fas fa-check"></i> Hard to Place Motor Trade Insurance</li>
+            <li><i class="fas fa-check"></i> Motor Trade Cover After Driving Ban</li>
+            <li><i class="fas fa-check"></i> Banned Motor Trader Insurance</li>
+            <li><i class="fas fa-check"></i> Motor Trade Insurance Refused</li>
         </ul>
     </div>
 

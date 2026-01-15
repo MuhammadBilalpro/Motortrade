@@ -26,9 +26,9 @@
     // SEO Data for ALL Pages
     $seoData = array(
         'index' => array(
-            'title' => 'Motor Trade Insurance UK | Convicted Driver & High Risk Quotes | DR10, IN10',
-            'description' => 'Get specialist Motor Trade Insurance for convicted drivers with DR10, IN10, TT99 convictions. Banned or refused? We provide competitive quotes for high-risk traders across the UK. Free quotes in minutes!',
-            'keywords' => 'motor trade insurance, convicted driver insurance, dr10 insurance, in10 insurance, banned driver insurance, high risk motor trade, road risk insurance uk'
+            'title' => 'Motor Trade Insurance UK | DR10, IN10 Convicted Driver & Banned Driver Quotes',
+            'description' => 'Specialist Motor Trade Insurance for convicted drivers with DR10, IN10, DR80, TT99. Motor trade insurance drink driving, after ban, declined elsewhere. Cheap motor trade insurance quotes UK.',
+            'keywords' => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
         ),
         'about' => array(
             'title' => 'About Us | Motor Trade Insurance Specialists UK',
@@ -46,9 +46,9 @@
             'keywords' => 'motor trade insurance, car dealer insurance, mechanic insurance, valeter insurance, trader insurance uk'
         ),
         'service-high-risk' => array(
-            'title' => 'Convicted Driver Insurance | DR10, IN10, TT99 Cover UK',
-            'description' => 'Specialist insurance for convicted drivers with DR10 (drink driving), IN10 (no insurance), TT99 convictions. Get back on the road with affordable motor trade cover.',
-            'keywords' => 'convicted driver insurance, dr10 insurance, in10 insurance, tt99 insurance, drink driving insurance, banned driver cover'
+            'title' => 'Convicted Driver Insurance | DR10, IN10, DR80 Motor Trade Insurance UK',
+            'description' => 'Motor trade insurance drink driving, DR10 motor trade insurance, motor trade insurance after drink drive ban. Specialist convicted motor trader insurance for high risk drivers.',
+            'keywords' => 'motor trade insurance dr10, motor trade policy with drink driving conviction, motor trade insurance after drink drive ban, motor trade insurance convicted drink driver, dr80 motor trade insurance, motor trade insurance drug driving, motor trade insurance declined drug driving, high risk motor trade insurance'
         ),
         'service-road-risk' => array(
             'title' => 'Road Risk & Combined Insurance | Premises & Vehicle Cover UK',
