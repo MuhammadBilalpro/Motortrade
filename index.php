@@ -3,20 +3,19 @@
 <section class="hero-split">
     
     <div class="hero-text-box">
-        <h1>Specialist <span>Motor Trade Insurance</span> (Convictions & Bans)</h1>
+        <h1>Specialist <span>Motor Trade Insurance</span></h1>
         
         <h2>Competitive Convicted Driver Insurance for <strong>DR10, IN10 & Banned Traders</strong> <i class="fas fa-arrow-right"></i></h2>
         
-        <p style="margin-bottom: 20px; font-size: 1.1rem; line-height: 1.6;">
-            We understand that mistakes happen. [cite_start]If you are looking for <strong>motor trade insurance with a conviction</strong> [cite: 3] [cite_start]or have been a <strong>banned driver</strong>[cite: 8], we can help. 
-            [cite_start]We specialize in <strong>high-risk motor trade insurance</strong> [cite: 7] [cite_start]and helping <strong>motor traders</strong> who have been <strong>declined elsewhere</strong> [cite: 9] [cite_start]due to alcohol or drug offenses[cite: 16, 20].
+        <p>
+            We specialize in <strong>high-risk motor trade insurance</strong> for drivers with <strong>DR10, IN10</strong> convictions or previous bans. If you have been <strong>refused or declined elsewhere</strong>, we can help you find the right cover.
         </p>
         
         <ul>
             <li><i class="fas fa-check"></i> <strong>Hard to Place</strong> & Convicted Motor Trader Insurance</li>
             <li><i class="fas fa-check"></i> Cover available <strong>after Driving Ban</strong> or Disqualification</li>
-            <li><i class="fas fa-check"></i> Specialist Rates for <strong>DR10, DR80, IN10</strong> & Points</li>
-            <li><i class="fas fa-check"></i> <strong>Refused or Declined?</strong> We Quote Non-Standard Risks</li>
+            <li><i class="fas fa-check"></i> Specialist Rates for <strong>DR10, IN10</strong> & Points</li>
+            <li><i class="fas fa-check"></i> <strong>Refused Insurance?</strong> We Quote Non-Standard Risks</li>
             <li><i class="fas fa-check"></i> <strong>Cheap Motor Trade Insurance</strong> for Convictions</li>
         </ul>
     </div>
@@ -87,7 +86,9 @@
     
     <div class="text-center">
         <h2 class="section-title">Our Motor Trade Insurance Services</h2>
-        <p class="section-subtitle">Tailored protection for every aspect of your <strong style="color:var(--primary);">trade business</strong>.</p>
+        <p class="section-subtitle">
+            Tailored protection for <strong style="color:var(--primary);">Motor Traders</strong> with previous convictions, bans, or high-risk profiles.
+        </p>
     </div>
 
     <div class="grid-3">
@@ -124,7 +125,7 @@
         <div class="card">
             <div class="card-icon"><i class="fas fa-user-clock"></i></div>
             <h3>Young Trader Insurance (Under 25)</h3>
-            <p>Struggling to get covered? We compare quotes for <strong>young motor traders</strong> under 25 to help you start your career.</p>
+            <p>Struggling to get covered? We compare quotes for <strong>high-risk young motor traders</strong> under 25 to help you start your career.</p>
         </div>
         
     </div>
