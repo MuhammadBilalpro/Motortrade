@@ -18,7 +18,6 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17810625990"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -30,23 +29,63 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/logo.png">
+    
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
     <?php
     $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     $baseUrl = 'https://motortradeinsurancesra.co.uk/';
     $currentUrl = $baseUrl . ($currentPage == 'index' ? '' : $currentPage . '.php');
     
-    // SEO Data
+    [cite_start]// SEO Data - UPDATED FOR CONVICTED DRIVER KEYWORDS [cite: 1, 2, 3, 4]
     $seoData = [
-        'index' => ['title' => 'Motor Trade Insurance Quotes | Save Up to 50% | Free Quotes UK', 'description' => 'Get competitive motor trade insurance quotes. Save up to 50% on road risk.', 'keywords' => 'motor trade insurance, quotes'],
-        'about' => ['title' => 'About Us | Motor Trade Insurance Referral Specialists', 'description' => 'We connect motor traders with trusted insurance brokers.', 'keywords' => 'motor trade insurance introducer'],
-        'service-motor-trade' => ['title' => 'Motor Trade Insurance | Comprehensive Cover', 'description' => 'Motor trade insurance for car dealers, mechanics & traders.', 'keywords' => 'car dealer insurance, mechanic insurance'],
-        'service-high-risk' => ['title' => 'Convicted Driver Insurance | DR10, IN10', 'description' => 'Motor trade insurance for convicted drivers.', 'keywords' => 'convicted driver insurance, DR10 insurance'],
-        'service-road-risk' => ['title' => 'Road Risk & Combined Motor Trade Insurance', 'description' => 'Road risk only or combined motor trade insurance.', 'keywords' => 'road risk insurance'],
-        'contact' => ['title' => 'Contact Us | Motor Trade Insurance Referral Specialists', 'description' => 'Contact our motor trade insurance referral service.', 'keywords' => 'contact motor trade insurance'],
-        'referral' => ['title' => 'Get a Motor Trade Insurance Quote', 'description' => 'Get your free motor trade insurance quote.', 'keywords' => 'motor trade insurance quote'],
-        'referal' => ['title' => 'Get a Motor Trade Insurance Quote', 'description' => 'Get your free motor trade insurance quote.', 'keywords' => 'motor trade insurance quote'],
-        'privacy' => ['title' => 'Privacy Policy', 'description' => 'Privacy policy and GDPR compliance.', 'keywords' => 'privacy policy']
+        'index' => [
+            'title' => 'Convicted Motor Trade Insurance | DR10, IN10 & Banned Driver Quotes', 
+            'description' => 'Specialist Motor Trade Insurance for convicted drivers (DR10, IN10). Refused or banned? We provide competitive quotes for high-risk traders. Save up to 50%.', 
+            'keywords' => 'motor trade insurance convicted, dr10 insurance, banned driver insurance, in10, refused motor trade insurance'
+        ],
+        'about' => [
+            'title' => 'About Us | High Risk Motor Trade Insurance Specialists', 
+            'description' => 'We connect motor traders with trusted insurance brokers, specializing in hard-to-place and convicted driver policies.', 
+            'keywords' => 'motor trade insurance introducer, high risk insurance'
+        ],
+        'service-motor-trade' => [
+            'title' => 'Motor Trade Insurance | Comprehensive Cover', 
+            'description' => 'Motor trade insurance for car dealers, mechanics & traders.', 
+            'keywords' => 'car dealer insurance, mechanic insurance'
+        ],
+        'service-high-risk' => [
+            'title' => 'Convicted Driver Insurance | DR10, IN10 & Bans', 
+            'description' => 'Motor trade insurance for convicted drivers. We help with DR10, drug driving bans, and refused insurance.', 
+            'keywords' => 'convicted driver insurance, DR10 insurance, drug driving insurance'
+        ],
+        'service-road-risk' => [
+            'title' => 'Road Risk & Combined Motor Trade Insurance', 
+            'description' => 'Road risk only or combined motor trade insurance.', 
+            'keywords' => 'road risk insurance'
+        ],
+        'contact' => [
+            'title' => 'Contact Us | Motor Trade Insurance Referral Specialists', 
+            'description' => 'Contact our motor trade insurance referral service.', 
+            'keywords' => 'contact motor trade insurance'
+        ],
+        'referral' => [
+            'title' => 'Get a Motor Trade Insurance Quote', 
+            'description' => 'Get your free motor trade insurance quote.', 
+            'keywords' => 'motor trade insurance quote'
+        ],
+        'referal' => [
+            'title' => 'Get a Motor Trade Insurance Quote', 
+            'description' => 'Get your free motor trade insurance quote.', 
+            'keywords' => 'motor trade insurance quote'
+        ],
+        'privacy' => [
+            'title' => 'Privacy Policy', 
+            'description' => 'Privacy policy and GDPR compliance.', 
+            'keywords' => 'privacy policy'
+        ]
     ];
     $page = $seoData[$currentPage] ?? $seoData['index'];
     ?>
@@ -72,14 +111,16 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FinancialService",
-      "name": "Motor Trade Insurance Referral Specialists",
-      "description": "<?php echo htmlspecialchars($page['description']); ?>",
+      "@type": "InsuranceAgency",
+      "name": "Motor Trade Insurance Specialists",
+      "description": "Specialist insurance for motor traders with convictions (DR10, IN10), bans, or high-risk profiles.",
       "url": "<?php echo $currentUrl; ?>",
       "logo": "<?php echo $baseUrl; ?>assets/logo.png",
+      "image": "<?php echo $baseUrl; ?>assets/logo.png", 
       "serviceType": "Motor Trade Insurance Referral",
       "address": { "@type": "PostalAddress", "streetAddress": "85-87 Station Rd", "addressLocality": "Countesthorpe, Leicester", "postalCode": "LE8 5TD", "addressCountry": "UK" },
-      "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "james@motortradeinsurancesra.co.uk" }
+      "contactPoint": { "@type": "ContactPoint", "telephone": "0118 370 1701", "contactType": "Customer Service", "email": "james@motortradeinsurancesra.co.uk" },
+      "priceRange": "$$"
     }
     </script>
     
