@@ -25,12 +25,15 @@
     $currentUrl = ($currentPage == 'index') ? $baseUrl : $baseUrl . $currentPage . '.php';
 
     // SEO Data for ALL Pages
-    $seoData = array(
-        'index' => array(
-            'title' => 'Motor Trade Insurance UK | DR10, IN10 Convicted Driver & Banned Driver Quotes',
-            'description' => 'Specialist Motor Trade Insurance for DR10, IN10, DR80 convicted drivers. Motor trade insurance drink driving, banned driver, after ban, declined elsewhere. Contact: info@motortradeinsurancesra.co.uk | 85-87 Station Rd, Leicester LE8 5TD',
-            'keywords' => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
-        ),
+$seoData = array(
+    'index' => array(
+        'title' => 'Motor Trade Insurance UK for DR10 & Banned Drivers | MTI Specialists',
+        'description' => 'Specialist Motor Trade Insurance for DR10, IN10 & banned drivers in the UK. High-risk cover or declined elsewhere? Get a fast quote today.',
+        'keywords' => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
+    ),
+);
+
+   
         'about' => array(
             'title' => 'About Us | Motor Trade Insurance Specialists UK',
             'description' => 'Learn about Motor Trade Insurance Specialists - connecting motor traders with trusted insurance brokers since 2010. We help convicted drivers, high-risk traders find affordable cover.',
