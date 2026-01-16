@@ -3,8 +3,13 @@
 <section class="hero-split">
     
     <div class="hero-text-box">
-        <h1>Motor Trade Insurance <span>Specialists</span></h1>
-        <h2>DR10, IN10 & Convicted Driver Insurance <i class="fas fa-arrow-right"></i></h2>
+       <h1>Motor Trade Insurance SRA – DR10 & Convicted Driver Specialists</h1>
+        <h2>UK Motor Trade Insurance for DR10, IN10, Banned & High-Risk Drivers<i class="fas fa-arrow-right"></i></h2>
+        <p class="hero-intro">
+Motor Trade Insurance SRA is a UK specialist helping motor traders, including
+DR10, IN10 and banned drivers, get insured even when declined elsewhere.
+</p>
+
         
         <ul>
             <li><i class="fas fa-check"></i> Motor Trade Insurance with Convictions</li>
