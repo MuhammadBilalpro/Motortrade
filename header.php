@@ -16,7 +16,7 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://motortradeinsurancesra.co.uk/assets/logo.png">
-    <link rel="icon" type="image/x-icon" href="https://motortradeinsurancesra.co.uk/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://motortradeinsurancesra.co.uk/logo.png">
     <link rel="apple-touch-icon" href="https://motortradeinsurancesra.co.uk/assets/logo.png">
     
     <?php
@@ -27,54 +27,60 @@
     // SEO Data for ALL Pages
 $seoData = array(
     'index' => array(
-        'title' => 'Motor Trade Insurance UK for DR10 & Banned Drivers | MTI Specialists',
+        'title'       => 'Motor Trade Insurance UK for DR10 & Banned Drivers | MTI Specialists',
         'description' => 'Specialist Motor Trade Insurance for DR10, IN10 & banned drivers in the UK. High-risk cover or declined elsewhere? Get a fast quote today.',
-        'keywords' => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
+        'keywords'    => 'motor trade insurance drink driving, motor trade insurance with conviction, dr10 motor trade insurance, motor trade insurance banned driver, motor trade insurance high risk, motor trade insurance after ban, motor trade insurance declined elsewhere, cheap motor trade insurance convictions, convicted motor trader insurance'
     ),
+
+    'about' => array(
+        'title'       => 'About Us | Motor Trade Insurance Specialists UK',
+        'description' => 'Learn about Motor Trade Insurance Specialists - connecting motor traders with trusted insurance brokers since 2010. We help convicted drivers, high-risk traders find affordable cover.',
+        'keywords'    => 'motor trade insurance company, insurance broker uk, convicted driver specialists'
+    ),
+
+    'contact' => array(
+        'title'       => 'Contact Us | Motor Trade Insurance Quotes | Call 0118 370 1701',
+        'description' => 'Contact Motor Trade Insurance Specialists for a free quote. Call 0118 370 1701 or fill our online form. Based in Leicester, UK. Fast response for motor traders.',
+        'keywords'    => 'motor trade insurance contact, insurance quote uk, leicester insurance broker'
+    ),
+
+    'service-motor-trade' => array(
+        'title'       => 'Motor Trade Insurance | Car Dealers & Mechanics Cover UK',
+        'description' => 'Comprehensive Motor Trade Insurance for car dealers, mechanics, valeters and traders. Protect your business with road risk, stock cover and liability insurance. Get instant quotes!',
+        'keywords'    => 'motor trade insurance, car dealer insurance, mechanic insurance, valeter insurance, trader insurance uk'
+    ),
+
+    'service-high-risk' => array(
+        'title'       => 'Convicted Driver Insurance | DR10, IN10, DR80 Motor Trade Insurance UK',
+        'description' => 'Motor trade insurance drink driving, DR10 motor trade insurance, motor trade insurance after drink drive ban. Specialist convicted motor trader insurance for high risk drivers.',
+        'keywords'    => 'motor trade insurance dr10, motor trade policy with drink driving conviction, motor trade insurance after drink drive ban, motor trade insurance convicted drink driver, dr80 motor trade insurance, motor trade insurance drug driving, motor trade insurance declined drug driving, high risk motor trade insurance'
+    ),
+
+    'service-road-risk' => array(
+        'title'       => 'Road Risk & Combined Insurance | Premises & Vehicle Cover UK',
+        'description' => 'Road Risk Only or Combined Motor Trade Insurance. Protect your garage, tools, stock and vehicles. Perfect for mechanics, MOT stations and car sales forecourts.',
+        'keywords'    => 'road risk insurance, combined motor trade insurance, garage insurance, premises cover, mot station insurance'
+    ),
+
+    'referal' => array(
+        'title'       => 'Get a Free Motor Trade Insurance Quote | Fast & Easy',
+        'description' => 'Request a free Motor Trade Insurance quote in minutes. Fill our simple form and our partner brokers will contact you with competitive rates. No obligation quotes.',
+        'keywords'    => 'motor trade insurance quote, free insurance quote, motor trader quote uk'
+    ),
+
+    'privacy' => array(
+        'title'       => 'Privacy Policy | Motor Trade Insurance Specialists',
+        'description' => 'Read our Privacy Policy and GDPR compliance statement. Learn how we protect your data and handle your information securely.',
+        'keywords'    => 'privacy policy, gdpr compliance, data protection'
+    ),
+
+    'success' => array(
+        'title'       => 'Quote Request Received | Motor Trade Insurance Specialists',
+        'description' => 'Thank you for your quote request. Our partner broker will contact you shortly with competitive motor trade insurance rates.',
+        'keywords'    => 'insurance quote submitted, motor trade quote'
+    )
 );
 
-   
-        'about' => array(
-            'title' => 'About Us | Motor Trade Insurance Specialists UK',
-            'description' => 'Learn about Motor Trade Insurance Specialists - connecting motor traders with trusted insurance brokers since 2010. We help convicted drivers, high-risk traders find affordable cover.',
-            'keywords' => 'motor trade insurance company, insurance broker uk, convicted driver specialists'
-        ),
-        'contact' => array(
-            'title' => 'Contact Us | Motor Trade Insurance Quotes | Call 0118 370 1701',
-            'description' => 'Contact Motor Trade Insurance Specialists for a free quote. Call 0118 370 1701 or fill our online form. Based in Leicester, UK. Fast response for motor traders.',
-            'keywords' => 'motor trade insurance contact, insurance quote uk, leicester insurance broker'
-        ),
-        'service-motor-trade' => array(
-            'title' => 'Motor Trade Insurance | Car Dealers & Mechanics Cover UK',
-            'description' => 'Comprehensive Motor Trade Insurance for car dealers, mechanics, valeters and traders. Protect your business with road risk, stock cover and liability insurance. Get instant quotes!',
-            'keywords' => 'motor trade insurance, car dealer insurance, mechanic insurance, valeter insurance, trader insurance uk'
-        ),
-        'service-high-risk' => array(
-            'title' => 'Convicted Driver Insurance | DR10, IN10, DR80 Motor Trade Insurance UK',
-            'description' => 'Motor trade insurance drink driving, DR10 motor trade insurance, motor trade insurance after drink drive ban. Specialist convicted motor trader insurance for high risk drivers.',
-            'keywords' => 'motor trade insurance dr10, motor trade policy with drink driving conviction, motor trade insurance after drink drive ban, motor trade insurance convicted drink driver, dr80 motor trade insurance, motor trade insurance drug driving, motor trade insurance declined drug driving, high risk motor trade insurance'
-        ),
-        'service-road-risk' => array(
-            'title' => 'Road Risk & Combined Insurance | Premises & Vehicle Cover UK',
-            'description' => 'Road Risk Only or Combined Motor Trade Insurance. Protect your garage, tools, stock and vehicles. Perfect for mechanics, MOT stations and car sales forecourts.',
-            'keywords' => 'road risk insurance, combined motor trade insurance, garage insurance, premises cover, mot station insurance'
-        ),
-        'referal' => array(
-            'title' => 'Get a Free Motor Trade Insurance Quote | Fast & Easy',
-            'description' => 'Request a free Motor Trade Insurance quote in minutes. Fill our simple form and our partner brokers will contact you with competitive rates. No obligation quotes.',
-            'keywords' => 'motor trade insurance quote, free insurance quote, motor trader quote uk'
-        ),
-        'privacy' => array(
-            'title' => 'Privacy Policy | Motor Trade Insurance Specialists',
-            'description' => 'Read our Privacy Policy and GDPR compliance statement. Learn how we protect your data and handle your information securely.',
-            'keywords' => 'privacy policy, gdpr compliance, data protection'
-        ),
-        'success' => array(
-            'title' => 'Quote Request Received | Motor Trade Insurance Specialists',
-            'description' => 'Thank you for your quote request. Our partner broker will contact you shortly with competitive motor trade insurance rates.',
-            'keywords' => 'insurance quote submitted, motor trade quote'
-        )
-    );
     
     $page = isset($seoData[$currentPage]) ? $seoData[$currentPage] : $seoData['index'];
     ?>
