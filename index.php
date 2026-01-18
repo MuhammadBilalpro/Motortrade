@@ -124,4 +124,184 @@ DR10, IN10 and banned drivers, get insured even when declined elsewhere.
     </div>
 </section>
 
+<section class="faq-section" style="background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about Motor Trade Insurance.</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I get Motor Trade Insurance with a DR10 conviction?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we specialize in helping motor traders with DR10 (drink driving) convictions get insured. While many insurers decline applications with convictions, we work with specialist brokers who understand your situation and can find competitive cover.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the difference between Road Risk and Combined Insurance?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Road Risk Only covers you for driving customer vehicles and stock cars on public roads - it's the minimum legal requirement. Combined Insurance includes Road Risk plus protection for your premises, tools, stock, and cash. Combined is recommended if you operate from a garage or forecourt.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How long after a driving ban can I get Motor Trade Insurance?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can typically get Motor Trade Insurance immediately after your ban ends, provided your license is valid. We work with brokers who specialize in recently unbanned drivers and can help you find cover even if you've been declined elsewhere.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do I need Trade NCB (No Claims Bonus) for Motor Trade Insurance?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Trade NCB is not always required, but having 1+ years of Trade NCB can significantly reduce your premium. If you're new to motor trading, you can still get insured - we'll help you find the best rates available for your situation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can part-time traders get Motor Trade Insurance?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. Many of our customers are part-time traders, mechanics, or dealers operating from home as a second income. We offer flexible policies designed specifically for part-time motor traders.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What if I've been declined by other insurers?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Being declined elsewhere doesn't mean you can't get insured. We specialize in high-risk cases and work with a network of specialist brokers who understand complex situations including convictions, bans, and adverse history.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real feedback from motor traders we've helped get insured.</p>
+        </div>
+
+        <div class="reviews-carousel-wrapper">
+            <button class="carousel-btn carousel-prev" aria-label="Previous review">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="reviews-carousel">
+                <div class="reviews-track">
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"After being declined by three other insurers due to my DR10 conviction, I was losing hope. These guys found me a competitive quote within 24 hours. Professional service and they really understand the challenges traders face."</p>
+                        <div class="review-author">
+                            <strong>James M.</strong>
+                            <span>Motor Trader, Birmingham</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Excellent service from start to finish. As a part-time trader working from home, I needed flexible cover. They understood my needs and found the perfect policy at a great price. Highly recommend!"</p>
+                        <div class="review-author">
+                            <strong>Sarah K.</strong>
+                            <span>Part-Time Dealer, Manchester</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"I was recently unbanned and struggling to find insurance. The team here made the process simple and stress-free. Got my quote quickly and the premium was much better than I expected. Thank you!"</p>
+                        <div class="review-author">
+                            <strong>David R.</strong>
+                            <span>Mechanic, London</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Fast, efficient, and knowledgeable. They helped me understand the difference between road risk and combined policies, and found me the right cover for my garage. Great customer service throughout."</p>
+                        <div class="review-author">
+                            <strong>Michael T.</strong>
+                            <span>Garage Owner, Leeds</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"As a young trader under 25, I was getting quoted ridiculous prices everywhere. These specialists found me a fair deal and explained everything clearly. Couldn't be happier with the service."</p>
+                        <div class="review-author">
+                            <strong>Tom L.</strong>
+                            <span>Young Trader, Bristol</span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Professional, friendly, and they really know their stuff. I had multiple convictions and thought I'd never get insured. They worked with specialist brokers and got me covered. Outstanding service!"</p>
+                        <div class="review-author">
+                            <strong>Robert H.</strong>
+                            <span>Car Dealer, Sheffield</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next review">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
 <?php include 'footer.php'; ?>

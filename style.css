@@ -418,6 +418,212 @@ input:focus, select:focus, textarea:focus {
     line-height: 1.6;
 }
 
+/* --- 4.1 FAQ SECTION --- */
+.faq-section {
+    padding: 60px 5%;
+    background: #f9f9f9;
+}
+
+.faq-section .section-title {
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 40px auto 0;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+    padding: 20px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #f9f9f9;
+}
+
+.faq-question h3 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+    padding-right: 20px;
+}
+
+.faq-question i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background: #f9f9f9;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 25px 20px;
+}
+
+.faq-answer p {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin: 0;
+    padding-top: 15px;
+}
+
+/* --- 4.2 REVIEWS SECTION --- */
+.reviews-section {
+    padding: 60px 5%;
+    background: white;
+}
+
+.reviews-section .section-title {
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.reviews-carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 50px;
+}
+
+.reviews-carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+.reviews-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 30px;
+}
+
+.reviews-track .review-card {
+    flex: 0 0 calc(33.333% - 20px);
+    min-width: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(149, 31, 32, 0.3);
+}
+
+.carousel-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(149, 31, 32, 0.4);
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+.review-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 3px solid transparent;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    border-top-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.review-stars {
+    color: #ffc107;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 3px;
+}
+
+.review-stars i {
+    color: #ffc107;
+}
+
+.review-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.review-author {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+}
+
+.review-author strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.review-author span {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
 /* --- 5. CONTAINER & UTILITIES --- */
 .container {
     max-width: 1200px;
@@ -805,6 +1011,60 @@ footer {
         padding: 25px 20px;
     }
     
+    /* FAQ Section */
+    .faq-section {
+        padding: 40px 4%;
+    }
+    
+    .faq-container {
+        margin-top: 30px;
+    }
+    
+    .faq-question {
+        padding: 15px 20px;
+    }
+    
+    .faq-question h3 {
+        font-size: 1rem;
+        padding-right: 15px;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 20px 15px;
+    }
+    
+    .faq-answer p {
+        font-size: 0.9rem;
+    }
+    
+    /* Reviews Section */
+    .reviews-section {
+        padding: 40px 4%;
+    }
+    
+    .reviews-carousel-wrapper {
+        padding: 0 45px;
+        margin-top: 30px;
+    }
+    
+    .reviews-track .review-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .review-card {
+        padding: 25px 20px;
+    }
+    
+    .review-text {
+        text-align: justify;
+    }
+    
     /* Container */
     .container {
         padding: 40px 4%;
@@ -894,6 +1154,24 @@ footer {
     
     .section-title {
         font-size: 1.4rem;
+    }
+    
+    .reviews-track .review-card {
+        flex: 0 0 100%;
+    }
+    
+    .reviews-carousel-wrapper {
+        padding: 0 40px;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .review-text {
+        text-align: justify;
     }
 }
 
