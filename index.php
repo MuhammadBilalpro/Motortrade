@@ -3,7 +3,7 @@
 <section class="hero-split">
     
     <div class="hero-text-box">
-       <h1>Motor Trade Insurance Sra Specialist </h1>
+       <h1>Motor Trade Insurance SRA Specialist </h1>
            <p class="hero-intro">
 Motor Trade Insurance SRA is a UK specialist helping motor traders, including
 DR10, IN10 and banned drivers, get insured even when declined elsewhere.
