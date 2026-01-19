@@ -101,7 +101,7 @@ function buildTelegramMessage($formData) {
 }
 
 /**
- * Send referral notification to Telegram (to all configured chat IDs)
+ * Send referral notification to Telegram (to all configured chat IDs and username)
  * @param array $formData Form submission data
  * @return bool True if sent successfully to at least one chat, false otherwise
  */
@@ -112,26 +112,72 @@ function sendTelegramNotification($formData) {
         return false;
     }
     
-    if (!defined('TELEGRAM_CHAT_IDS') || empty(TELEGRAM_CHAT_IDS) || !is_array(TELEGRAM_CHAT_IDS)) {
-        error_log("Telegram: Chat IDs not configured");
-        return false;
-    }
-    
     $message = buildTelegramMessage($formData);
     $botToken = TELEGRAM_BOT_TOKEN;
-    $chatIds = TELEGRAM_CHAT_IDS;
     $apiUrl = TELEGRAM_API_URL . $botToken . '/sendMessage';
     
     $successCount = 0;
-    $totalChats = count($chatIds);
+    $totalChats = 0;
     
     // Send to all configured chat IDs
-    foreach ($chatIds as $chatId) {
-        // Prepare data
+    if (defined('TELEGRAM_CHAT_IDS') && !empty(TELEGRAM_CHAT_IDS) && is_array(TELEGRAM_CHAT_IDS)) {
+        $chatIds = TELEGRAM_CHAT_IDS;
+        $totalChats = count($chatIds);
+        
+        foreach ($chatIds as $chatId) {
+            // Prepare data
+            $data = [
+                'chat_id' => $chatId,
+                'text' => $message,
+                'parse_mode' => 'Markdown', // Allows formatting with *bold*, _italic_, etc.
+                'disable_web_page_preview' => true
+            ];
+            
+            // Send via cURL
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $apiUrl);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $curlError = curl_error($ch);
+            curl_close($ch);
+            
+            if ($curlError) {
+                error_log("Telegram cURL Error for chat ID {$chatId}: " . $curlError);
+                continue;
+            }
+            
+            if ($httpCode !== 200) {
+                error_log("Telegram API Error for chat ID {$chatId}: HTTP " . $httpCode . " - Response: " . $response);
+                continue;
+            }
+            
+            $result = json_decode($response, true);
+            if (isset($result['ok']) && $result['ok'] === true) {
+                $successCount++;
+                error_log("✓ Telegram notification sent successfully to chat ID: {$chatId}");
+            } else {
+                $errorDesc = $result['description'] ?? 'Unknown error';
+                error_log("Telegram API Error for chat ID {$chatId}: " . $errorDesc);
+            }
+        }
+    }
+    
+    // Also send to username/group if configured
+    if (defined('TELEGRAM_USERNAME') && !empty(TELEGRAM_USERNAME)) {
+        $username = TELEGRAM_USERNAME;
+        $totalChats++; // Count username as one recipient
+        
+        // Prepare data for username
         $data = [
-            'chat_id' => $chatId,
+            'chat_id' => $username,
             'text' => $message,
-            'parse_mode' => 'Markdown', // Allows formatting with *bold*, _italic_, etc.
+            'parse_mode' => 'Markdown',
             'disable_web_page_preview' => true
         ];
         
@@ -150,31 +196,27 @@ function sendTelegramNotification($formData) {
         curl_close($ch);
         
         if ($curlError) {
-            error_log("Telegram cURL Error for chat ID {$chatId}: " . $curlError);
-            continue;
-        }
-        
-        if ($httpCode !== 200) {
-            error_log("Telegram API Error for chat ID {$chatId}: HTTP " . $httpCode . " - Response: " . $response);
-            continue;
-        }
-        
-        $result = json_decode($response, true);
-        if (isset($result['ok']) && $result['ok'] === true) {
-            $successCount++;
-            error_log("✓ Telegram notification sent successfully to chat ID: {$chatId}");
+            error_log("Telegram cURL Error for username {$username}: " . $curlError);
+        } elseif ($httpCode !== 200) {
+            error_log("Telegram API Error for username {$username}: HTTP " . $httpCode . " - Response: " . $response);
         } else {
-            $errorDesc = $result['description'] ?? 'Unknown error';
-            error_log("Telegram API Error for chat ID {$chatId}: " . $errorDesc);
+            $result = json_decode($response, true);
+            if (isset($result['ok']) && $result['ok'] === true) {
+                $successCount++;
+                error_log("✓ Telegram notification sent successfully to username: {$username}");
+            } else {
+                $errorDesc = $result['description'] ?? 'Unknown error';
+                error_log("Telegram API Error for username {$username}: " . $errorDesc);
+            }
         }
     }
     
     // Return true if at least one message was sent successfully
     if ($successCount > 0) {
-        error_log("Telegram: Sent to {$successCount} out of {$totalChats} chat(s)");
+        error_log("Telegram: Sent to {$successCount} out of {$totalChats} recipient(s)");
         return true;
     } else {
-        error_log("Telegram: Failed to send to any chat");
+        error_log("Telegram: Failed to send to any recipient");
         return false;
     }
 }
