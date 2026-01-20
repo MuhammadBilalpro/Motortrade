@@ -3,14 +3,35 @@
 <?php require_once 'includes/send_email.php'; ?>
 
 <style>
-  /* Mobile pe map height thodi kam */
-  .map-container iframe {
+  /* Store Locator styling */
+  .map-container {
       height: 500px;
+      width: 100%;
   }
   @media screen and (max-width: 768px) {
-      .map-container iframe {
+      .map-container {
           height: 400px;
       }
+  }
+  
+  /* Store Locator component styling */
+  gmpx-store-locator {
+      width: 100%;
+      height: 100%;
+      --gmpx-color-surface: #fff;
+      --gmpx-color-on-surface: #212121;
+      --gmpx-color-on-surface-variant: #757575;
+      --gmpx-color-primary: #1967d2;
+      --gmpx-color-outline: #e0e0e0;
+      --gmpx-fixed-panel-width-row-layout: 28.5em;
+      --gmpx-fixed-panel-height-column-layout: 65%;
+      --gmpx-font-family-base: "Roboto", sans-serif;
+      --gmpx-font-family-headings: "Roboto", sans-serif;
+      --gmpx-font-size-base: 0.875rem;
+      --gmpx-hours-color-open: #188038;
+      --gmpx-hours-color-closed: #d50000;
+      --gmpx-rating-color: #ffb300;
+      --gmpx-rating-color-empty: #e0e0e0;
   }
 </style>
 
@@ -133,16 +154,59 @@
             </div>
         </div>
 
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+        
         <div class="map-container" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2420.3!2d-1.1471972128627805!3d52.5538101803364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487761266209ef5f%3A0x8e83b8a135905d6e!2s85-87%20Station%20Rd%2C%20Countesthorpe%2C%20Leicester%20LE8%205TD%2C%20UK!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
-                width="100%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+            <gmpx-api-loader key="YOUR_API_KEY_HERE" solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
+            <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
         </div>
+        <script>
+            const CONFIGURATION = {
+                "locations": [
+                    {
+                        "title": "85-87 Station Rd",
+                        "address1": "85-87 Station Rd",
+                        "address2": "Countesthorpe, Leicester LE8 5TD, UK",
+                        "coords": {
+                            "lat": 52.5538309373601,
+                            "lng": -1.1471998950717954
+                        },
+                        "placeId": "ChIJZdhKP7pnd0gRdwPR-IqyF4A"
+                    }
+                ],
+                "mapOptions": {
+                    "center": {
+                        "lat": 52.5538309373601,
+                        "lng": -1.1471998950717954
+                    },
+                    "fullscreenControl": true,
+                    "mapTypeControl": false,
+                    "streetViewControl": false,
+                    "zoom": 15,
+                    "zoomControl": true,
+                    "maxZoom": 17,
+                    "mapId": ""
+                },
+                "mapsApiKey": "YOUR_API_KEY_HERE",
+                "capabilities": {
+                    "input": false,
+                    "autocomplete": false,
+                    "directions": false,
+                    "distanceMatrix": false,
+                    "details": false,
+                    "actions": false
+                }
+            };
+        </script>
+        <script type="module">
+            document.addEventListener('DOMContentLoaded', async () => {
+                await customElements.whenDefined('gmpx-store-locator');
+                const locator = document.querySelector('gmpx-store-locator');
+                if (locator) {
+                    locator.configureFromQuickBuilder(CONFIGURATION);
+                }
+            });
+        </script>
 
     </div>
 </div>

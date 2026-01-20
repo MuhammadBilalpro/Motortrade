@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17810625990"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'AW-17810625990');
+    </script>
+
+    <script>
+      gtag('config', 'AW-17810625990/MNiCCOzO--gbEMar4qxC', {
+        'phone_conversion_number': '0118 370 1701'
+      });
     </script>
     
     <meta charset="UTF-8">
