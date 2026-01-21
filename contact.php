@@ -157,7 +157,7 @@
         <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
         
         <div class="map-container" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-            <gmpx-api-loader key="YOUR_API_KEY_HERE" solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
+            <gmpx-api-loader key="AIzaSyAaZR-tVt1J9Q7sk6y6K_AaEgo8Lqiap1I" solution-channel="GMP_QB_locatorplus_v11_c"></gmpx-api-loader>
             <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
         </div>
         <script>
@@ -187,7 +187,7 @@
                     "maxZoom": 17,
                     "mapId": ""
                 },
-                "mapsApiKey": "YOUR_API_KEY_HERE",
+                "mapsApiKey": "AIzaSyAaZR-tVt1J9Q7sk6y6K_AaEgo8Lqiap1I",
                 "capabilities": {
                     "input": false,
                     "autocomplete": false,
