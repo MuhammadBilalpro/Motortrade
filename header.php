@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17810625990"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P7BLG68MGT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-17810625990');
-    </script>
+  gtag('config', 'G-P7BLG68MGT');
+</script>
 
     <script>
       gtag('config', 'AW-17810625990/MNiCCOzO--gbEMar4qxC', {
